@@ -1,0 +1,7 @@
+ofxAssimpModelLoader
+ofxCv
+ofxISF
+ofxOpenCv
+ofxOsc
+ofxPostProcessing
+ofxStateMachine
