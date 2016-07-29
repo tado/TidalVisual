@@ -2,8 +2,26 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-#include "ISFDIrt.hpp"
 #include "ofxThreadedOSCReceiver.h"
+#include "ofxIO.h"
+#include "ISFDIrt.hpp"
+
+// a custom hidden path filter
+class CustomPathFilter: public ofxIO::AbstractPathFilter
+{
+public:
+    CustomPathFilter(){
+    }
+    
+    virtual ~CustomPathFilter(){
+    }
+    
+    bool accept(const Poco::Path& path) const {
+        // don't return hidden files or files with names containing "FilterMeOut
+        return !Poco::File(path).isHidden() &&
+        !ofIsStringInString(path.toString(), "FilterMeOut");
+    }
+};
 
 class ofApp : public ofBaseApp{
     
@@ -34,4 +52,7 @@ public:
     //ISFDirt
     string currentISF;
     vector<ISFDirt *> isfDirts;
+    
+    //IO
+    CustomPathFilter pathFilter;
 };

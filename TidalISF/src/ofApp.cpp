@@ -2,15 +2,16 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    //init ISFs
+    std::vector<std::string> files;
+    ofxIO::DirectoryUtils::list("ISF", files, false, &pathFilter, true);
     ISFDirt *isf;
-    isf = new ISFDirt("blank");
-    isfDirts.push_back(isf);
-    isf = new ISFDirt("red");
-    isfDirts.push_back(isf);
-    isf = new ISFDirt("green");
-    isfDirts.push_back(isf);
-    isf = new ISFDirt("blue");
-    isfDirts.push_back(isf);
+    for (std::size_t i = 0; i < files.size(); ++i){
+        string name = files[i].substr(0, files[i].length()-3);
+        cout << "files : " << name << endl;
+        isf = new ISFDirt(name);
+        isfDirts.push_back(isf);
+    }
     
     //OSC
     receiver.setup(PORT);

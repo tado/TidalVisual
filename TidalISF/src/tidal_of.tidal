@@ -24,7 +24,22 @@ o1 <- openFrameworksStream
 
 cps(120/120)
 
-o1 $ s "[red blank blue blank] green blank" # gain "1.0" # layer "0"
+o1 $ s "blank"
+
+o1 $ s "[planes tunnel flower blank]*4"
+
+o1 $ s "[[flower spiral water ripple stripe] search]"
+
+o1 $ s "[blue planes blank sparkle blank]*8"
+
+o1 $ s "[sparkle planes]*3 [blue planes]*4"
+
+o1 $ s "[spider fur ripple]*2"
+
+o1 $ s "[planes [tunnel flower] blank blue]*2 [[red green] [planes blank sparkle] blank]"
 
 o1 silence
+
+
+
 
