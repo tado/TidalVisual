@@ -24,7 +24,10 @@ void ofApp::oscReceiveEvent(ofxOscMessage &m){
         string name =  m.getArgAsString(0);
         currentISF = name;
         for (int j = 0; j < isfDirts.size(); j++) {
-            isfDirts[j]->isf->setUniform<float>("gain", m.getArgAsFloat(1));
+            isfDirts[j]->isf->setUniform<float>("vel", m.getArgAsFloat(1));
+        }
+        for (int j = 0; j < isfDirts.size(); j++) {
+            isfDirts[j]->isf->setUniform<float>("gain", m.getArgAsFloat(2));
         }
     }
 }

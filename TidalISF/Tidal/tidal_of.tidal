@@ -2,6 +2,7 @@ import Sound.Tidal.OscStream
 
 let openFrameworks = Shape {
       params = [ S "s" Nothing,
+                 F "vel" (Just 0.5),
                  F "gain" (Just 1),
                  I "layer" (Just 0)
                ],
@@ -17,6 +18,7 @@ let openFrameworks = Shape {
       s <- makeConnection "127.0.0.1" 8000 openFrameworksSlang
       stream (Backend s $ (\_ _ _ -> return ())) openFrameworks
     s = makeS openFrameworks "s"
+    vel = makeF openFrameworks "vel"
     gain = makeF openFrameworks "gain"
     layer = makeI openFrameworks "layer"
 
@@ -25,6 +27,8 @@ o1 <- openFrameworksStream
 cps(120/120)
 
 o1 $ s "blank"
+
+o1 $ s "circle*16" # 
 
 o1 $ s "[planes [tunnel flower] blank]"
 

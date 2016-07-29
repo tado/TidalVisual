@@ -7,14 +7,14 @@
 		{
             "NAME": "shifth",
             "TYPE": "float",
-           "DEFAULT": 0.3,
+           "DEFAULT": 0.0,
             "MIN": -1.0,
             "MAX": 1.0
         },
          {
             "NAME":"shiftv",
             "TYPE": "float",
-           "DEFAULT": 0.3,
+           "DEFAULT": 0.0,
             "MIN": -1.0,
             "MAX": 1.0
         },
@@ -26,11 +26,11 @@
 			"MAX": 5.0
 		},
 		{
-			"NAME": "lightBrightness",
+			"NAME": "vel",
 			"TYPE": "float",
-			"DEFAULT": 0.04,
+			"DEFAULT": 0.5,
 			"MIN": 0.0,
-			"MAX": 0.04
+			"MAX": 1.0
 		},
 		{
 			"NAME": "depth",
@@ -60,7 +60,7 @@ void main( void ) {
 	float rad = length(position);
 
 	float color = 0.0;
-	float brightness = lightBrightness;
+	float brightness = vel * 0.06;
 
 	for (int i = 0; i < 10; i++) {
 		float angleRnd = floor(angle*14.)+1.;

@@ -5,12 +5,12 @@
     ],
     "INPUTS" : [
     	{
-			"NAME": "planeBlur",
-			"LABEL": "Plane Blur",
+			"NAME": "vel",
+			"LABEL": "vel",
 			"TYPE": "float",
 			"MIN": 0.0,
 			"MAX": 1.0,
-			"DEFAULT": 0.9
+			"DEFAULT": 0.5
 		},
          {
             "NAME":"level",
@@ -92,7 +92,7 @@ vec3 drawEffect(vec2 coord, float time){
         float q = fract(sin(n * 123.456) * 234.345);
         float q2= fract(sin(n * 234.123) * 345.234);
 
-		float pblur = (1.0 - planeBlur) / 2000.0;
+		float pblur = (1.0 - vel) / 2000.0;
         q = sin(p.z * pblur + 1.0 * time * (0.25 + 0.75 * q2) + q * 12.0);		
 		
         // Smooth particle edges out

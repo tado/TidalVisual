@@ -2,7 +2,7 @@
 {
 	"INPUTS" : [
 		{
-			"NAME": "zoom",
+			"NAME": "vel",
 			"TYPE": "float",
 			"DEFAULT": 0.3,
 			"MIN": 0.0,
@@ -20,9 +20,9 @@
 		{
 			"NAME": "rotSpeed",
 			"TYPE": "float",
-			"DEFAULT": 0.05,
+			"DEFAULT": 0.2,
 			"MIN": 0.0,
-			"MAX": 0.2
+			"MAX": 0.4
 		}
 	]
 }
@@ -35,7 +35,7 @@ float map(in vec3 p)
 {
 	vec3 c=p; float res=0.;
 	for (int i=0; i < 4; i++) {
-		p= abs(p)/dot(p,p) - zoom;
+		p= abs(p)/dot(p,p) - vel;
 		p.yz= vec2(p.y*p.y-p.z*p.z,2.*p.y*p.z);
 		res += exp(-10. * abs(dot(p,c)));
 	}

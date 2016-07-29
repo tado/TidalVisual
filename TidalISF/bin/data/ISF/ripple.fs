@@ -17,12 +17,12 @@
  "DEFAULT": 1.0
  },
  {
- "NAME": "rippleSize",
+ "NAME": "vel",
  "LABEL": "Ripple Size",
  "TYPE": "float",
  "MIN": 0.0,
- "MAX": 100.0,
- "DEFAULT": 50.0
+ "MAX": 1.0,
+ "DEFAULT": 0.5
  }
  ],
  }
@@ -40,7 +40,7 @@ float rings(vec2 pp, float time2)
     vec2 p = pp;
     p.x += cos(time2*rippleSpeed+pp.y+pp.x);
     p.y += sin(time2*rippleSpeed+pp.x+pp.y);
-    return cos(length(p)* (100.0 - rippleSize) - time2);
+    return cos(length(p)* (100.0 - vel * 100.0) - time2);
 }
 
 void main() {
