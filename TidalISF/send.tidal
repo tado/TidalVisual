@@ -1,16 +1,20 @@
-cps(60/120)
+cps(24/120)
 
-d1 $
-s "8 20 21 22 23" # gain (scale 20 30 $ rand)
+d1 $ sound "[bd cp]*6"
+
+
+d2 $ s "aa [hoge hoo var aaa]*2 hoge aa" # n "1"
 
 d1 $ s "hoge" # gain (rand)
 
 d2 $ s "aa*8" # velocity "1 2 3 4 5 6 7 8" # gain (rand) #
 
-
+d2 silence
 
 n "0"
 
 d1 $
 s "[20 21 22 23]*2"
 |+| pan ((*) <$> rand <*> ("0 0 1"))
+
+hush
