@@ -30,13 +30,13 @@ o1 $ s "blank"
 
 o1 $ s "circle*8" # vel (rand)
 
-o1 $ s "[blank [red blue green]*2]*2" # gain "1.0"
+o1 $ s "[blue [red blue green]*2]*2" # gain "[1.0 0.0]*16"
 
 o1 $ s "flower*4 planes*4 tunnel*4" # vel (rand)
 
 o1 $ s "[planes*4 [tunnel*2 flower*2] blank]"  # vel (scale 0.5 1.0 $ rand)
 
-o1 $ s "[[flower spiral water] [ripple stripe]] search]"
+o1 $ s "[[flower*4 spiral*3 water*4] [ripple*4 stripe*3]] search]"  # vel (scale 0.5 1.0 $ rand)
 
 o1 $ s "[blue planes blank sparkle blank]*3"
 

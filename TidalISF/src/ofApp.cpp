@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofBackground(0);
     //init ISFs
     std::vector<std::string> files;
     ofxIO::DirectoryUtils::list("ISF", files, false, &pathFilter, true);
