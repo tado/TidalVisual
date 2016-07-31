@@ -27,3 +27,9 @@ let openFrameworks = Shape
 
 o1 <- openFrameworksStream
 
+o2 <- openFrameworksStream
+
+o3 <- openFrameworksStream
+
+o4 <- openFrameworksStream
+

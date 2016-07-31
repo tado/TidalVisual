@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
 		1298066D39CE7EC3DA60256A /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2FB74FF42B08FC378F74B2B7 /* snappy-stubs-internal.cc */; };
+		188C26FC1D4DC0D600FE4C81 /* ofxTidalISF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 188C26FA1D4DC0D600FE4C81 /* ofxTidalISF.cpp */; };
 		1CC07C1A616F29EB8EEC3D21 /* SearchPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B424A6DF4D70AACCDBAE /* SearchPath.cpp */; };
 		347D67CCF4C7C7725118DD59 /* ByteBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6C68D431AF8FD1A9E2DCFF2 /* ByteBufferStream.cpp */; };
 		3BFC7CF50BEB0307821B90A6 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 7913239832BBBF6B56ED2600 /* lz4.c */; };
@@ -97,6 +98,8 @@
 		13D68F0C2CAE7809D621924C /* RegexPathFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RegexPathFilter.cpp; path = ../../../addons/ofxIO/libs/ofxIO/src/RegexPathFilter.cpp; sourceTree = SOURCE_ROOT; };
 		14290ED8DE68778AE3023FBC /* LinkFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LinkFilter.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/LinkFilter.h; sourceTree = SOURCE_ROOT; };
 		181F02B531162F6039F6ADC2 /* DirectoryWatcher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DirectoryWatcher.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/DirectoryWatcher.h; sourceTree = SOURCE_ROOT; };
+		188C26FA1D4DC0D600FE4C81 /* ofxTidalISF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalISF.cpp; sourceTree = "<group>"; };
+		188C26FB1D4DC0D600FE4C81 /* ofxTidalISF.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalISF.hpp; sourceTree = "<group>"; };
 		1C011DA756FF131FC46A2907 /* FileExtensionFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FileExtensionFilter.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/FileExtensionFilter.h; sourceTree = SOURCE_ROOT; };
 		1E8B79D0091B95C305295952 /* URIEncoding.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = URIEncoding.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/URIEncoding.h; sourceTree = SOURCE_ROOT; };
 		20F35AFADAF0068B067E713F /* OscReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscReceivedElements.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h; sourceTree = SOURCE_ROOT; };
@@ -577,6 +580,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				8AEFF840787ADBDF0CE6B618 /* ISFDirt.cpp */,
 				BF7AA8D9DDC8D3EBD4ABE637 /* ISFDirt.hpp */,
+				188C26FA1D4DC0D600FE4C81 /* ofxTidalISF.cpp */,
+				188C26FB1D4DC0D600FE4C81 /* ofxTidalISF.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -737,6 +742,7 @@
 				494950167FFB212CEB9ECD0A /* ByteBufferWriter.cpp in Sources */,
 				FE9170FE54D704DF97B0E5BD /* COBSEncoding.cpp in Sources */,
 				93640C223A2F5BEAD6DA2E35 /* Compression.cpp in Sources */,
+				188C26FC1D4DC0D600FE4C81 /* ofxTidalISF.cpp in Sources */,
 				CDB5B1D2D12F42502906F30F /* DeviceFilter.cpp in Sources */,
 				84FED53B4CEB4C25C00E172B /* DirectoryFilter.cpp in Sources */,
 				CEFD3CCAB8B3251DFCAAA0EE /* DirectoryUtils.cpp in Sources */,

@@ -19,7 +19,6 @@ void ISFDirt::update(){
 
 void ISFDirt::draw(){
     if (name.length() > 0) {
-        ofSetColor(255);
         isf->draw(0, 0, ofGetWidth(), ofGetHeight());
     }
 }

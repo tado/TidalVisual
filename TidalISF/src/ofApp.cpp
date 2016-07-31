@@ -3,51 +3,42 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-    //init ISFs
-    std::vector<std::string> files;
-    ofxIO::DirectoryUtils::list("ISF", files, false, &pathFilter, true);
-    ISFDirt *isf;
-    for (std::size_t i = 0; i < files.size(); ++i){
-        string name = files[i].substr(0, files[i].length()-3);
-        cout << "files : " << name << endl;
-        isf = new ISFDirt(name);
-        isfDirts.push_back(isf);
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    
+    for (int i = 0; i < layerNum; i++) {
+        ofxTidalISF *ti = new ofxTidalISF(i);
+        tidalISFs.push_back(ti);
     }
     
     //OSC
     receiver.setup(PORT);
     ofAddListener(receiver.messageReceived, this, &ofApp::oscReceiveEvent);
-    receiver.start();
-}
+    receiver.start();}
+
 
 void ofApp::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/play"){
-        string name =  m.getArgAsString(0);
-        currentISF = name;
-        for (int j = 0; j < isfDirts.size(); j++) {
-            isfDirts[j]->isf->setUniform<float>("vel", m.getArgAsFloat(1));
-        }
-        for (int j = 0; j < isfDirts.size(); j++) {
-            isfDirts[j]->isf->setUniform<float>("gain", m.getArgAsFloat(2));
+        string name = m.getArgAsString(0);
+        int l = m.getArgAsInt(3);
+        tidalISFs[l]->currentISF = name;
+        tidalISFs[l]->gain = m.getArgAsFloat(2);
+        for (int i = 0; i < tidalISFs[l]->isfDirts.size(); i++) {
+            tidalISFs[l]->isfDirts[i]->isf->setUniform<float>("vel", m.getArgAsFloat(1));
         }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for (int i = 0; i < isfDirts.size(); i++) {
-        if (currentISF == isfDirts[i]->name) {
-            isfDirts[i]->update();
-        }
+    for (int i = 0; i < tidalISFs.size(); i++) {
+        tidalISFs[i]->update();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for (int i = 0; i < isfDirts.size(); i++) {
-        if (currentISF == isfDirts[i]->name) {
-            isfDirts[i]->draw();
-        }
+    for (int i = 0; i < tidalISFs.size(); i++) {
+        tidalISFs[i]->draw();
     }
 }
 
