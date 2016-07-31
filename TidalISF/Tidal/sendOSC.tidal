@@ -7,42 +7,41 @@ o2 $ s "blank"
 
 o1 $ s "circle*16"
 # vel (scale 0.75 0.8 $rand)
-# layer "0"
+# l "0"
 
-o1 $ s "[blue [red blue green]*2]*8"
+o1 $ s "[blue blank [red blue green]*2]"
 # gain "1.0"
-# layer "0"
+# l "0"
 
-o1 $ s "water*16"
+o1 $ s "water*6"
 # vel (scale 0.3 0.5 $rand)
-# gain (rand)
+# gain "0.2"
 
-o2 $ s "topo*8"
-# vel (scale 0.7 0.9 $slow 10 $rand)
-# gain (scale 0.0 0.5 $rand)
-# layer "1"
+o2 $ s "topo*4"
+# vel (scale 0.5 0.9 $slow 10 $rand)
+# gain (scale 0.0 1.0 $rand)
+# l "1"
 
-o3 $ s "planes*16"
+o3 $ s "search*16"
 # vel (scale 0.7 0.9 $slow 10 $rand)
-# gain (scale 0.0 0.5 $rand)
-# layer "2"
+# gain (scale 0.0 1.0 $rand)
+# l "2"
 
 o4 $ s "water*8"
 # vel (scale 0.7 0.9 $slow 2 $rand)
 # gain (scale 0.0 0.5 $rand)
-# layer "3"
+# l "3"
 
 o2 $ s "topo*4"
 # vel (scale 0.2 0.9 $rand)
 # gain (rand)
-# layer "1"
+# l "1"
 
-o1 $ s "[flower*4 ripple*2]*2"
+o1 $ s "[flower*4 ripple*2]"
 # vel (scale 0.6 0.7 $rand)
 
 o1
 $ s "[flower*8 [ripple*8 fur]]*2"
-# gain(rand)
 # vel (scale 0.2 0.8 $slow 8 $sine1)
 
 o1
@@ -50,9 +49,15 @@ $ s "[flower*4 [search*2 flower*2] search*2]"
 # vel (scale 0.5 0.95 $rand)
 
 o1
-$ s "[fur*4 ripple*4]*2"
+$ s "topo*16"
 # vel (scale 0.3 1.0 $ rand)
-# gain (scale 0.5 1.0 $rand)
+# gain (rand)
+
+o3
+$ s "topo*3"
+# vel (scale 0.8 1.0 $ rand)
+# gain (rand)
+# l "2"
 
 o1
 $ s "search*8 topo*8"
@@ -63,13 +68,13 @@ $ s "[water*4 flower*4 topo*4]*2"
 # vel (scale 0.2 0.6 $ rand)
 |+| vel (scale 0.2 0.8 $slow 4 $ sine1)
 
-o2 $ s "tunnel*8 planes*8"
+o3 $ s "tunnel*8 planes*8"
 # vel (scale 0.5 1.0 $ rand)
 # gain "0.5"
-# layer "3"
+# l "2"
 
 o1
-$ s "[planes*4 tunnel*4]*8"
+$ s "[planes*4 tunnel*4]*2"
 # vel (scale 0.2 0.8 $ rand)
 # gain (scale 0.0 0.5 $slow 8 $ sine1)
 
@@ -79,7 +84,7 @@ o1 $ s "[spider fur ripple]*2"
 
 o1 $ s "[planes [tunnel flower] blank blue]*2 [[red green] [planes blank sparkle] blank]"
 
-o4 $ s "blank" # layer "3"
+o1 $ s "blank" # l "0"
 
 
 

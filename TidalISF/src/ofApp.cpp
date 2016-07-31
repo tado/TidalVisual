@@ -13,7 +13,8 @@ void ofApp::setup(){
     //OSC
     receiver.setup(PORT);
     ofAddListener(receiver.messageReceived, this, &ofApp::oscReceiveEvent);
-    receiver.start();}
+    receiver.start();
+}
 
 
 void ofApp::oscReceiveEvent(ofxOscMessage &m){
