@@ -9,8 +9,8 @@ o1 $ s "circle*16"
 o1 $ s "[blue [red blue green]*2]*2"
 # gain "[1.0 0.0]*16"
 
-o1 $ s "ripple*8"
-# vel (scale 0.1 0.5 $slow 8 $rand)
+o1 $ s "ripple*12 [topo ripple]*2 flower*4"
+# vel (scale 0.7 0.9 $slow 8 $rand)
 
 o1 $ s "flower*16"
 # vel (scale 0.6 0.7 $rand)
