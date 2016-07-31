@@ -5,11 +5,11 @@
 	],
   	"INPUTS" : [
     {
-    	"NAME": "level",
+    	"NAME": "vel",
 		"TYPE": "float",
 		"MIN": 0.0,
 		"MAX": 1.0,
-		"DEFAULT": 0.2
+		"DEFAULT": 0.5
     },{
     	"NAME": "shift",
 		"TYPE": "float",
@@ -91,6 +91,7 @@ void main( void ) {
    float y=p.y;
    float t = TIME * speed;
    float a, b, c;
+   float col = 0.0;
    a = makePoint(x,y,3.3,2.9,0.3,0.3,t);
    a=a+makePoint(x,y,1.9,2.0,0.4,0.4,t);
    a=a+makePoint(x,y,0.8,0.7,0.4,0.5,t);
@@ -119,6 +120,8 @@ void main( void ) {
    c=c+makePoint(x,y,0.2,0.6,0.6,0.3,t);
    c=c+makePoint(x,y,1.3,0.5,0.5,0.4,t);
 
-   vec3 d=vec3(a,b,c)*level/10.0;
-   gl_FragColor = vec4(d.x,d.y,d.z,1.0);
+   vec3 d=vec3(a,b,c)*vel/10.0;
+   col = (d.x + d.y + d.z) / 8.0;
+   //gl_FragColor = vec4(d.x,d.y,d.z,1.0);
+   gl_FragColor = vec4(col, col, col,1.0);
 }

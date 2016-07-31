@@ -5,6 +5,14 @@
         "noise"
     ],
     "INPUTS" : [
+    	{
+			"NAME": "vel",
+			"TYPE": "float",
+			"DEFAULT": 0.5,
+			"MIN": 0.0,
+			"MAX": 1.0
+
+		},
         {
             "NAME": "inputImage",
             "TYPE": "image"
@@ -42,10 +50,12 @@ void main()
 	vec3 col;
 	float c = 1.0;
 	float inten = .005;
+	float gray = 0.0;
+
 
 	for (int n = 0; n < MAX_ITER; n++){
 		float t = time * (1.0 - (3.5 / float(n+1)));
-		i = p + vec2(cos(t - i.x) * distort + sin(t + i.y) * distort, sin(t - i.y) * distort + cos(t + i.x) * distort);
+		i = p + vec2(cos(t - i.x) * distort * (vel + 1.0) * 0.7 + sin(t + i.y) * distort * (vel + 1.0) * 0.7, sin(t - i.y) * distort * (vel + 1.0) * 0.7 + cos(t + i.x) * distort * (vel + 1.0) * 0.7);
 		c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
 	}
 	c /= float(MAX_ITER);
@@ -55,7 +65,7 @@ void main()
 
 	for (int n = 0; n < MAX_ITER; n++){
 		float t = time * (1.0 - (3.5 / float(n+1)));
-		i = p + vec2(cos(t - i.x) * distort + sin(t + i.y) * distort, sin(t - i.y) * distort + cos(t + i.x) * distort);
+		i = p + vec2(cos(t - i.x) * distort * (vel + 1.0) * 0.7 + sin(t + i.y) * distort * (vel + 1.0) * 0.7, sin(t - i.y) * distort * (vel + 1.0) * 0.7 + cos(t + i.x) * distort * (vel + 1.0) * 0.7);
 		c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
 	}
 	c /= float(MAX_ITER);
@@ -64,12 +74,14 @@ void main()
 
 	for (int n = 0; n < MAX_ITER; n++){
 		float t = time * (1.0 - (3.5 / float(n+1)));
-		i = p + vec2(cos(t - i.x) * distort + sin(t + i.y) * distort, sin(t - i.y) * distort + cos(t + i.x) * distort);
+		i = p + vec2(cos(t - i.x) * distort * (vel + 1.0) * 0.7 + sin(t + i.y) * distort * (vel + 1.0) * 0.7, sin(t - i.y) * distort * (vel + 1.0) * 0.7 + cos(t + i.x) * distort * (vel + 1.0) * 0.7);
 		c += 1.0/length(vec2(p.x / (sin(i.x+t)/inten),p.y / (cos(i.y+t)/inten)));
 	}
 	c /= float(MAX_ITER);
 	c = 1.17 - pow(c, 1.4);
 	colour.b = pow(abs(c), 14.0);
 
-	gl_FragColor = vec4(colour, 1.0);
+	gray = (colour.r + colour.g + colour.b);
+	gl_FragColor = vec4(gray, gray, gray, 1.0);
+	//gl_FragColor = vec4(colour, 1.0);
 }

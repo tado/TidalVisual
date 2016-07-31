@@ -142,5 +142,5 @@ void main()
     //clr = mix(clr, vec3(0.8, 0.9, 1.0), 0.3 * drawLogo(gl_FragCoord.xy));
 
     //gl_FragColor = vec4(clr, 1.0);
-    gl_FragColor = vec4(clr.r*0.0, clr.r*0.8, clr.r*1.0, 1.0);
+    gl_FragColor = vec4(clr.r*1.0, clr.r*1.0, clr.r*1.0, 1.0);
 }

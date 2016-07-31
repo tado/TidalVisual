@@ -67,5 +67,5 @@ void main()
     //gl_FragColor.rgb= log(raymarch(ro,rd) +1.0) * 0.5;
     vec3 col = log(raymarch(ro,rd) +1.0) * 0.5;
     //gl_FragColor.a= 1.0;
-    gl_FragColor = vec4(col.r * 0.0, col.g * 1.0, col.g * 1.2, 1.0);
+    gl_FragColor = vec4(col.r, col.g, col.b, 1.0);
 }

@@ -22,7 +22,7 @@
  "TYPE": "float",
  "MIN": 0.0,
  "MAX": 1.0,
- "DEFAULT": 0.5
+ "DEFAULT": 0.2
  }
  ],
  }
@@ -56,7 +56,9 @@ void main() {
     float colR = rings(pos,TIME);
     float colG = rings(pos2,TIME);
     float colB = rings(pos3,TIME);
-    gl_FragColor = vec4(colR, colG, colB, 1.0);
+    float col = colR/3.0 + colB/3.0 + colB/3.0;
+    //gl_FragColor = vec4(colR, colG, colB, 1.0);
+    gl_FragColor = vec4(col, col, col, 1.0);
 
     //float col = (colR + colG + colB) / 3.0;
     //gl_FragColor = vec4(col, col, col, 1.0);

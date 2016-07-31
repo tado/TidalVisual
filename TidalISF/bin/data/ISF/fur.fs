@@ -10,6 +10,14 @@
     "Automatically Converted"
   ],
   "INPUTS" : [
+  		{
+			"NAME": "vel",
+			"TYPE": "float",
+			"DEFAULT": 0.5,
+			"MIN": 0.0,
+			"MAX": 1.0
+
+		},
          {
             "NAME":"level",
             "TYPE": "float",
@@ -54,7 +62,7 @@ void main()
 	vec2 uv = (gl_FragCoord.xy - RENDERSIZE.xy*.5 )/RENDERSIZE.y;
     vec3 rd = normalize(vec3(uv, (1.-dot(uv, uv)*.5)*.5));
     vec3 ro = vec3(0, 0, TIME*1.26), col = vec3(0), sp;
-	float cs = cos( TIME*speed ), si = sin( TIME*speed );
+	float cs = cos( TIME*speed*(vel * 10.0) ), si = sin( TIME*speed*(vel * 10.0));
     rd.xz = mat2(cs, si,-si, cs)*rd.xz;
 	float t=shift, layers=0., d=0., aD;
     float thD = level;
@@ -72,9 +80,9 @@ void main()
         t += max(d*.7, thD*1.5) * dstepf;
 	}
     col = max(col, 0.);
-    col = mix(col, vec3(min(col.x*1.5, 1.), pow(col.x, 2.5), pow(col.x, 12.)),
-              dot(sin(rd.yzx*8. + sin(rd.zxy*8.)), vec3(.1666))+0.4);
-    col = mix(col, vec3(col.x*col.x*.85, col.x, col.x*col.x*0.3),
-             dot(sin(rd.yzx*4. + sin(rd.zxy*4.)), vec3(.1666))+0.25);
+    //col = mix(col, vec3(min(col.x*1.5, 1.), pow(col.x, 2.5), pow(col.x, 12.)),
+              //dot(sin(rd.yzx*8. + sin(rd.zxy*8.)), vec3(.1666))+0.4);
+    //col = mix(col, vec3(col.x*col.x*.85, col.x, col.x*col.x*0.3),
+             //dot(sin(rd.yzx*4. + sin(rd.zxy*4.)), vec3(.1666))+0.25);
 	gl_FragColor = vec4( clamp(col, 0., 1.), 1.0 );
 }

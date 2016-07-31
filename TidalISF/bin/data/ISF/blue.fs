@@ -12,7 +12,7 @@
 		{
 			"NAME": "gain",
 			"TYPE": "float",
-			"DEFAULT": 0.5
+			"DEFAULT": 1.0
 		}
 	]
 }*/
