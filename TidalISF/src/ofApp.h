@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxOsc.h"
-#include "ofxThreadedOSCReceiver.h"
 #include "ofxTidalISF.hpp"
 
 class ofApp : public ofBaseApp{
@@ -23,14 +21,6 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    void oscReceiveEvent(ofxOscMessage &m);    
     
-    //OSC
-    //ofxOscReceiver receiver;
-    static const int PORT = 8000;
-    ofxThreadedOSCReceiver receiver;
-    
-    vector<ofxTidalISF *> tidalISFs;
-    
-    static const int layerNum = 4;
+    ofxTidalISF *tidalISF;
 };

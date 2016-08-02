@@ -1,43 +1,57 @@
-
-cps(120/120)
+cps(140/120)
 
 o1 $ s "blank"
 
 o2 $ s "blank"
 
-o1 $ s "circle*16"
-# vel (scale 0.75 0.8 $rand)
+o1 $ s "light*16"
+# vel (scale 0.0 0.5 $slow 2 $rand)
 # l "0"
+
+o1 $ s "spiral*12"
+# vel (scale 0.0 1.0 $slow 2 $rand)
+# gain (rand)
+
+o2 $ s "circle*16"
+# vel (scale 0.2 0.5 $rand)
+# gain (scale 0.0 1.0 $slow 2 $sine1)
+# l "1"
 
 o1 $ s "[blue blank [red blue green]*2]"
 # gain "1.0"
 # l "0"
 
-o1 $ s "water*6"
-# vel (scale 0.3 0.5 $rand)
-# gain "0.2"
+o1
+$ s "water*16"
+# vel (scale 0.3 0.9 $rand)
+# gain (scale 0.0 0.5 $slow 8 $sine1)
 
-o2 $ s "topo*4"
-# vel (scale 0.5 0.9 $slow 10 $rand)
-# gain (scale 0.0 1.0 $rand)
+o2 $ s "topo*16"
+# vel (scale 0.1 0.9 $rand)
+# gain (scale 0.0 0.8 $rand)
 # l "1"
 
-o3 $ s "search*16"
-# vel (scale 0.7 0.9 $slow 10 $rand)
-# gain (scale 0.0 1.0 $rand)
+o3 $ s "topo*16"
+# vel (scale 0.7 0.9 $rand)
+# gain (scale 0.0 0.5 $rand)
 # l "2"
+
+o4 $ s "[flower*8 ripple*8] fur"
+# vel (scale 0.7 0.9 $slow 10 $rand)
+# gain (scale 0.0 0.7 $slow 5 $sine1)
+# l "3"
 
 o4 $ s "water*8"
 # vel (scale 0.7 0.9 $slow 2 $rand)
 # gain (scale 0.0 0.5 $rand)
 # l "3"
 
-o2 $ s "topo*4"
+o2 $ s "ripple*8"
 # vel (scale 0.2 0.9 $rand)
 # gain (rand)
 # l "1"
 
-o1 $ s "[flower*4 ripple*2]"
+o1 $ s "[flower*4 ripple*2] search*8"
 # vel (scale 0.6 0.7 $rand)
 
 o1
@@ -54,19 +68,21 @@ $ s "topo*16"
 # gain (rand)
 
 o3
-$ s "topo*3"
+$ s "search*8"
 # vel (scale 0.8 1.0 $ rand)
-# gain (rand)
+# gain (scale 0.0 0.5 $rand)
 # l "2"
 
 o1
 $ s "search*8 topo*8"
 # vel (scale 0.5 0.6 $ rand)
 
-o1
-$ s "[water*4 flower*4 topo*4]*2"
-# vel (scale 0.2 0.6 $ rand)
-|+| vel (scale 0.2 0.8 $slow 4 $ sine1)
+o4
+$ s "[tunnel*4 search*4 planes*4]*2"
+# vel (scale 0.8 0.9 $ rand)
+# gain "0.3"
+# l "3"
+
 
 o3 $ s "tunnel*8 planes*8"
 # vel (scale 0.5 1.0 $ rand)
@@ -78,13 +94,14 @@ $ s "[planes*4 tunnel*4]*2"
 # vel (scale 0.2 0.8 $ rand)
 # gain (scale 0.0 0.5 $slow 8 $ sine1)
 
-o1 $ s "[sparkle planes]*3 [blue planes]*4"
+o1 $ s "[sparkle planes]*3 [spiral search]*2"
+# vel (scale 0.2 0.8 $ rand)
 
 o1 $ s "[spider fur ripple]*2"
 
 o1 $ s "[planes [tunnel flower] blank blue]*2 [[red green] [planes blank sparkle] blank]"
 
-o1 $ s "blank" # l "0"
+o2 $ s "blank" # l "1"
 
 
 

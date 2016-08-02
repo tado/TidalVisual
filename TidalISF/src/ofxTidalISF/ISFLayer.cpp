@@ -1,17 +1,9 @@
-//
-//  ofxTidalISF.cpp
-//  TidalISF
-//
-//  Created by Atsushi Tadokoro on 7/31/16.
-//
-//
+#include "ISFLayer.hpp"
 
-#include "ofxTidalISF.hpp"
-
-ofxTidalISF::ofxTidalISF(int _layer){
+ISFLayer::ISFLayer(int _layer){
     layer = _layer;
     gain = 1.0;
-
+    
     //init ISFs
     std::vector<std::string> files;
     ofxIO::DirectoryUtils::list("ISF", files, false, &pathFilter, true);
@@ -24,7 +16,7 @@ ofxTidalISF::ofxTidalISF(int _layer){
     }
 }
 
-void ofxTidalISF::update(){
+void ISFLayer::update(){
     for (int i = 0; i < isfDirts.size(); i++) {
         if (currentISF == isfDirts[i]->name) {
             isfDirts[i]->update();
@@ -32,7 +24,7 @@ void ofxTidalISF::update(){
     }
 }
 
-void ofxTidalISF::draw(){
+void ISFLayer::draw(){
     ofSetColor(gain * 255);
     for (int i = 0; i < isfDirts.size(); i++) {
         if (currentISF == isfDirts[i]->name) {

@@ -4,8 +4,7 @@
 #include "ISFDIrt.hpp"
 
 // a custom hidden path filter
-class CustomPathFilter: public ofxIO::AbstractPathFilter
-{
+class CustomPathFilter: public ofxIO::AbstractPathFilter{
 public:
     CustomPathFilter(){
     }
@@ -14,15 +13,14 @@ public:
     }
     
     bool accept(const Poco::Path& path) const {
-        // don't return hidden files or files with names containing "FilterMeOut
         return !Poco::File(path).isHidden() &&
         !ofIsStringInString(path.toString(), "FilterMeOut");
     }
 };
 
-class ofxTidalISF {
+class ISFLayer {
 public:
-    ofxTidalISF(int layer);
+    ISFLayer(int layer);
     void update();
     void draw();
     

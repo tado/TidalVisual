@@ -5,42 +5,17 @@ void ofApp::setup(){
     ofBackground(0);
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     
-    for (int i = 0; i < layerNum; i++) {
-        ofxTidalISF *ti = new ofxTidalISF(i);
-        tidalISFs.push_back(ti);
-    }
-    
-    //OSC
-    receiver.setup(PORT);
-    ofAddListener(receiver.messageReceived, this, &ofApp::oscReceiveEvent);
-    receiver.start();
-}
-
-
-void ofApp::oscReceiveEvent(ofxOscMessage &m){
-    if(m.getAddress() == "/play"){
-        string name = m.getArgAsString(0);
-        int l = m.getArgAsInt(3);
-        tidalISFs[l]->currentISF = name;
-        tidalISFs[l]->gain = m.getArgAsFloat(2);
-        for (int i = 0; i < tidalISFs[l]->isfDirts.size(); i++) {
-            tidalISFs[l]->isfDirts[i]->isf->setUniform<float>("vel", m.getArgAsFloat(1));
-        }
-    }
+    tidalISF = new ofxTidalISF(8000);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    for (int i = 0; i < tidalISFs.size(); i++) {
-        tidalISFs[i]->update();
-    }
+    tidalISF->update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    for (int i = 0; i < tidalISFs.size(); i++) {
-        tidalISFs[i]->draw();
-    }
+    tidalISF->draw();
 }
 
 //--------------------------------------------------------------
