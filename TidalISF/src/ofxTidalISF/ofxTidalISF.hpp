@@ -11,12 +11,8 @@ public:
     void draw();
     void oscReceiveEvent(ofxOscMessage &m);
     
-    //OSC
-    //ofxOscReceiver receiver;
     int port;
     ofxThreadedOSCReceiver receiver;
-    
     vector<ISFLayer *> isfLayers;
-    
     static const int layerNum = 4;
 };

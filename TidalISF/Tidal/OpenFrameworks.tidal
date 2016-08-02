@@ -8,7 +8,7 @@ let openFrameworks = Shape
                    I "l" (Just 0)
                  ],
         cpsStamp = False,
-        latency = 0
+        latency = 0.0
       }
     openFrameworksSlang = OscSlang
                           {

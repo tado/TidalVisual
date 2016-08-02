@@ -1,23 +1,32 @@
-cps(140/120)
+cps(120/120)
 
 o1 $ s "blank"
 
-o2 $ s "blank"
+o2 $ s "blank" #l "1"
+
+o3 $ s "blank" #l "2"
+
+o4 $ s "blank" #l "3"
 
 o1 $ s "light*16"
-# vel (scale 0.0 0.5 $slow 2 $rand)
-# l "0"
+# vel (rand)
+# gain (scale 0.0 0.5 $slow 4 $ sine1)
 
-o1 $ s "spiral*12"
-# vel (scale 0.0 1.0 $slow 2 $rand)
+o1 $ s "ripple*16"
+# vel (scale 0.3 0.4 $slow 2 $rand)
 # gain (rand)
 
-o2 $ s "circle*16"
-# vel (scale 0.2 0.5 $rand)
-# gain (scale 0.0 1.0 $slow 2 $sine1)
+o2 $ s "spiral*16"
+# vel (scale 0.4 0.5 $slow 2 $rand)
+# gain (rand)
 # l "1"
 
-o1 $ s "[blue blank [red blue green]*2]"
+o2 $ s "circle*16"
+# vel (scale 0.1 0.3 $rand)
+# gain "1.0"
+# l "1"
+
+o1 $ s "[blue blank [red blue green]*2]*2"
 # gain "1.0"
 # l "0"
 
@@ -68,8 +77,8 @@ $ s "topo*16"
 # gain (rand)
 
 o3
-$ s "search*8"
-# vel (scale 0.8 1.0 $ rand)
+$ s "search*16"
+# vel (scale 0.0 1.0 $ rand)
 # gain (scale 0.0 0.5 $rand)
 # l "2"
 
@@ -78,7 +87,7 @@ $ s "search*8 topo*8"
 # vel (scale 0.5 0.6 $ rand)
 
 o4
-$ s "[tunnel*4 search*4 planes*4]*2"
+$ s "[tunnel*4 search*4 planes*4]*4"
 # vel (scale 0.8 0.9 $ rand)
 # gain "0.3"
 # l "3"
