@@ -19,8 +19,8 @@ void ofApp::update(){
 void ofApp::draw(){
     tidalISF->draw();
     
-    ofSetColor(255);
-    ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate(),4), 20, 20);
+    //ofSetColor(255);
+    //ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate(),4), 20, 20);
 }
 
 //--------------------------------------------------------------

@@ -14,7 +14,7 @@ ofxTidalISF::ofxTidalISF(int _port){
 }
 
 void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
-    if(m.getAddress() == "/play"){
+    if(m.getAddress() == "/ofplay"){
         string name = m.getArgAsString(0);
         int l = m.getArgAsInt(3);
         isfLayers[l]->currentISF = name;
