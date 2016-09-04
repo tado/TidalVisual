@@ -6,16 +6,6 @@
 	],
 	"INPUTS": [
 		{
-			"NAME": "vel",
-			"TYPE": "float",
-			"DEFAULT": 0.5
-		},
-		{
-			"NAME": "gain",
-			"TYPE": "float",
-			"DEFAULT": 1.0
-		},
-		{
 			"NAME": "radius",
 			"TYPE": "float",
 			"DEFAULT": 0.5,
@@ -64,15 +54,13 @@
 			"MIN": 0.0,
 			"MAX": 1.0
 		}
-	]	
-}*/
+	]
+	}*/
 
-float circle(in vec2 _st, in float _radius){
+  float circle(in vec2 _st, in float _radius){
     vec2 dist = vec2(_st.x-(RENDERSIZE.x/RENDERSIZE.y/2.0), _st.y-0.5);
-	return 1.-smoothstep(_radius-(_radius * smooth),
-                         _radius+(_radius * smooth),
-                         dot(dist,dist)*4.0);
-}
+    return 1.-smoothstep(_radius-(_radius * smooth), _radius+(_radius * smooth), dot(dist,dist)*4.0);
+  }
 
 void main(){
 	vec2 st = gl_FragCoord.xy/RENDERSIZE.y;

@@ -1,9 +1,16 @@
-o1 $ s "circle*32"
-# radius "[0.2 1.0 0.02]*4"
-# x "0"
-# y "0"
-# smooth (slow 4 $rand)
-# r "0.75 1.0"
-# g "0.3 1.0 1.0"
-# b "0.7 0.8 0.9 0.0"
+cps(1.0)
+
+o1 $ s "[circle light]*16"
+# radius (scale 0.0 1.0 $slow 4 $rand)
+# x "0 0.25 0 -0.25"
+# y "0.25 0 -0.25"
+# smooth (scale 0.01 0.3 $slow 0.5 $sine1)
+# r "0"
+# g "[1 0]*8"
+# b "1"
+# a "[0 0.5]*8"
+
+
+
+
 

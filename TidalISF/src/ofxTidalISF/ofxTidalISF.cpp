@@ -30,10 +30,13 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
                 || argName == "r"
                 || argName == "g"
                 || argName == "b"
+                || argName == "a"
                 ) {
                 float argValue = m.getArgAsFloat(i+1);
-                isfLayers[l]->isfDirts[0]->isf->setUniform<float>(argName, argValue);
-                cout << "argName = " << argName << ", argValue = " << argValue << endl;
+                for(int j = 0; j < isfLayers[l]->isfDirts.size(); j++){
+                    isfLayers[l]->isfDirts[j]->isf->setUniform<float>(argName, argValue);
+                }
+                //cout << "argName = " << argName << ", argValue = " << argValue << endl;
             }
             if (argName == "s") {
                 string argValue = m.getArgAsString(i+1);
