@@ -15,12 +15,30 @@ ofxTidalISF::ofxTidalISF(int _port){
 
 void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/ofplay"){
-        string name = m.getArgAsString(0);
-        int l = m.getArgAsInt(3);
-        isfLayers[l]->currentISF = name;
-        isfLayers[l]->gain = m.getArgAsFloat(2);
-        for (int i = 0; i < isfLayers[l]->isfDirts.size(); i++) {
-            isfLayers[l]->isfDirts[i]->isf->setUniform<float>("vel", m.getArgAsFloat(1));
+        for (int i = 0; i < m.getNumArgs(); i+=2) {
+            string argName = m.getArgAsString(i);
+            int l = 0;
+            if (argName == "l") {
+                int argValue = m.getArgAsInt(i+1);
+                l = m.getArgAsInt(i+1);
+            }
+            if (argName == "vel"
+                || argName == "x"
+                || argName == "y"
+                || argName == "radius"
+                || argName == "smooth"
+                || argName == "r"
+                || argName == "g"
+                || argName == "b"
+                ) {
+                float argValue = m.getArgAsFloat(i+1);
+                isfLayers[l]->isfDirts[0]->isf->setUniform<float>(argName, argValue);
+                cout << "argName = " << argName << ", argValue = " << argValue << endl;
+            }
+            if (argName == "s") {
+                string argValue = m.getArgAsString(i+1);
+                isfLayers[l]->currentISF = argValue;
+            }
         }
     }
 }

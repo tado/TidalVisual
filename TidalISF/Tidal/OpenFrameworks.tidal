@@ -3,7 +3,14 @@ import Sound.Tidal.OscStream
 let openFrameworks = Shape {
       params = [ S "s" Nothing,
                  F "vel" (Just 0.5),
-                 F "gain" (Just 1),
+                 F "gain" (Just 1.0),
+                 F "x" (Just 0.0),
+                 F "y" (Just 0.0),
+                 F "radius" (Just 1.0),
+                 F "smooth" (Just 0.0),
+                 F "r" (Just 1.0),
+                 F "g" (Just 1.0),
+                 F "b" (Just 1.0),
                  I "l" (Just 0)
                ],
       cpsStamp = False,
@@ -12,7 +19,7 @@ let openFrameworks = Shape {
     openFrameworksSlang = OscSlang {
         path = "/ofplay",
         timestamp = NoStamp,
-        namedParams = False,
+        namedParams = True,
         preamble = []
         }
     openFrameworksStream = do
@@ -21,7 +28,13 @@ let openFrameworks = Shape {
     s = makeS openFrameworks "s"
     vel = makeF openFrameworks "vel"
     gain = makeF openFrameworks "gain"
-    l = makeI openFrameworks "l"
+    x = makeF openFrameworks "x"
+    y = makeF openFrameworks "y"
+    radius = makeF openFrameworks "radius"
+    smooth = makeF openFrameworks "smooth"    
+    r = makeF openFrameworks "r"
+    g = makeF openFrameworks "g"
+    b = makeF openFrameworks "b"
 
 o1 <- openFrameworksStream
 
