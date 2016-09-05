@@ -2,7 +2,7 @@
 
 ISFLayer::ISFLayer(int _layer){
     layer = _layer;
-    gain = 1.0;
+    gain = 0.5;
     
     //init ISFs
     std::vector<std::string> files;
@@ -25,6 +25,7 @@ void ISFLayer::update(){
 }
 
 void ISFLayer::draw(){
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofSetColor(gain * 255);
     for (int i = 0; i < isfDirts.size(); i++) {
         if (currentISF == isfDirts[i]->name) {

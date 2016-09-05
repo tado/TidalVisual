@@ -15,12 +15,14 @@ ofxTidalISF::ofxTidalISF(int _port){
 
 void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/ofplay"){
+        int l = 0;
         for (int i = 0; i < m.getNumArgs(); i+=2) {
             string argName = m.getArgAsString(i);
-            int l = 0;
             if (argName == "l") {
-                int argValue = m.getArgAsInt(i+1);
                 l = m.getArgAsInt(i+1);
+            }
+            if (argName == "s") {
+                isfLayers[l]->currentISF = m.getArgAsString(i+1);
             }
             if (argName == "vel"
                 || argName == "x"
@@ -34,13 +36,11 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
                 ) {
                 float argValue = m.getArgAsFloat(i+1);
                 for(int j = 0; j < isfLayers[l]->isfDirts.size(); j++){
-                    isfLayers[l]->isfDirts[j]->isf->setUniform<float>(argName, argValue);
+                    if(isfLayers[l]->isfDirts[j]->name == isfLayers[l]->currentISF){
+                        isfLayers[l]->isfDirts[j]->isf->setUniform<float>(argName, argValue);
+                    }
                 }
                 //cout << "argName = " << argName << ", argValue = " << argValue << endl;
-            }
-            if (argName == "s") {
-                string argValue = m.getArgAsString(i+1);
-                isfLayers[l]->currentISF = argValue;
             }
         }
     }
