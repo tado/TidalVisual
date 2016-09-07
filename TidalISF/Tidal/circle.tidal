@@ -3,21 +3,43 @@ cps(1.0)
 o1
 $s "circle*16"
 #radius (scale 0.01 0.2 $rand)
-#x "0.5"
+#x "[[0.2 0.8]*2 0.5 0.5]*3"
 #y "0.3 0.7 0.5"
 #r "0"
-#g "1"
+#g "0"
 #b "1"
 #vel (scale 0.5 1.0 $rand)
 #l "0"
 
 o2
+$s "[light circle circle]*8"
+#radius (scale 0.01 0.2 $rand)
+#y "[0.4p [0.6 0.5]*2 0.5]*2"
+#x "0.3 0.7 0.5"
+#r "[1 0.7]*3"
+#g "1"
+#b "[0.7 1]*4"
+#vel (scale 0.0 1.0 $rand)
+#l "1"
+
+o3
+$s "circle*18"
+#radius (scale 0.01 1.0 $rand)
+#y "[0.4 0.6 0.5 0.5]*2"
+#x "0ppppp.3 0.7 0.5"
+#r "1"
+#g "0.5"
+#b "1"
+#vel (scale 0.8 1.0 $rand)
+#l "0"
+
+o2
 $s "[light blank]*16"
 #l "1"
-#r (rand)
-#g (sine1)
-#b (slow 4 $sine1)
-#vel "0.5 0"
+#r "1"
+#g (scale 0 1 $sine1)
+#b (scale 0 1 $slow 4 $sine1)
+#vel (rand)
 
 o1 $ s "blank"
 #l "0"

@@ -24,13 +24,17 @@ ofxTidalISF::ofxTidalISF(int _port){
 }
 
 void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
-    int l = 0;
     if(m.getAddress() == "/ofplay"){
+        //get layer num
+        int l = 0;
         for (int i = 0; i < m.getNumArgs(); i+=2) {
             string argName = m.getArgAsString(i);
             if (argName == "l") {
                 l = m.getArgAsInt(i+1);
             }
+        }
+        for (int i = 0; i < m.getNumArgs(); i+=2) {
+            string argName = m.getArgAsString(i);
             if (argName == "s") {
                 isfLayers[l]->currentISF = m.getArgAsString(i+1);
             }
