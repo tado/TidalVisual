@@ -1,37 +1,42 @@
 cps(1.0)
 
-o1 $ s "circle*32"
+o1 $ s "circle*24"
 # radius (scale 0.0 0.6 $slow 6 $rand)
 # x "0"
 # y "0"
-# smooth (scale 0.8 1.0 $slow 0.5 $sine1)
+# smooth (scale 0.1 0.4 $slow 0.5 $sine1)
 # r "1"
 # g "1"
 # b "1"
-# a "1"
 # l "0"
 
-o2 $ s "[circle]*16"
-# radius (scale 0.0 0.1 $slow 4 $rand)
-# x "[0 0 0.4 0 -0.4 0 0]*4"
-# y "0.25 0 0 -0.25 0"
-# smooth (scale 0.05 0.3 $slow 0.5 $sine1)
-# r "1"
-# g "1"
-# b "1"
-# a "1"
+o2 $ s "light*16"
+# r "[1 0 0 0]*8"
+# g "0"
+# b "0"
 # l "1"
 
-o3 $ s "[circle]*24"
-# radius (scale 0.0 0.02 $slow 4 $rand)
-# y "[0 0 0.4 0 -0.4 0 0]*4 0"
-# x "0.33 0 0 -0.33 0 0 0 "
+o3 $ s "[circle]*16"
+# radius (scale 0.0 0.1 $slow 4 $rand)
+# x "[0 0.4 0 -0.4 0]*1"
+# y "0"
 # smooth (scale 0.05 0.3 $slow 0.5 $sine1)
 # r "1"
 # g "1"
 # b "1"
 # a "1"
 # l "2"
+
+o4 $ s "[circle]*32"
+# radius (scale 0.0 0.02 $slow 4 $rand)
+# y "[0 0 0.4 0 -0.4 0 0]*2"
+# x "0"
+# smooth (scale 0.05 0.3 $slow 0.5 $sine1)
+# r "1"
+# g "1"
+# b "1"
+# a "1"
+# l "3"
 
 o4 $ s "[circle]*8"
 # radius (scale 0.0 0.05 $slow 4 $rand)

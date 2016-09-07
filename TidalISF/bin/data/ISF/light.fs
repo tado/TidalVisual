@@ -7,28 +7,21 @@
 		{
 			"NAME": "r",
 			"TYPE": "float",
-			"DEFAULT": 0.0,
+			"DEFAULT": 1.0,
 			"MIN": 0.0,
 			"MAX": 1.0
 		},
 		{
 			"NAME": "g",
 			"TYPE": "float",
-			"DEFAULT": 0.0,
+			"DEFAULT": 1.0,
 			"MIN": 0.0,
 			"MAX": 1.0
 		},
 		{
 			"NAME": "b",
 			"TYPE": "float",
-			"DEFAULT": 0.0,
-			"MIN": 0.0,
-			"MAX": 1.0
-		},
-		{
-			"NAME": "a",
-			"TYPE": "float",
-			"DEFAULT": 0.0,
+			"DEFAULT": 1.0,
 			"MIN": 0.0,
 			"MAX": 1.0
 		}
@@ -36,5 +29,6 @@
 }*/
 
 void main() {
-	gl_FragColor = vec4(r*a, g*a, b*a);
+	vec3 color = vec3(1.0, 1.0, 1.0);
+	gl_FragColor = vec4(vec3(color.r * r, color.g * g, color.b * b), 1.0);
 }

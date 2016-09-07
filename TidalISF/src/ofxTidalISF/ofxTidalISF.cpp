@@ -32,7 +32,6 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
                 || argName == "r"
                 || argName == "g"
                 || argName == "b"
-                || argName == "a"
                 ) {
                 float argValue = m.getArgAsFloat(i+1);
                 for(int j = 0; j < isfLayers[l]->isfDirts.size(); j++){
