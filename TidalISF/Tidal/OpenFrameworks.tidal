@@ -40,11 +40,19 @@ o1 <- openFrameworksStream
 
 o2 <- openFrameworksStream
 
+o3 <- openFrameworksStream
+
+o4 <- openFrameworksStream
+
 o1 silence
 
 o2 silence
 
-let hush = mapM_ ($ silence) [o1, o2]
+o3 silence
+
+o4 silence
+
+let hush = mapM_ ($ silence) [o1, o2, o3, o4]
 
 let solo = (>>) hush
 

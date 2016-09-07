@@ -33,11 +33,16 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
                 l = m.getArgAsInt(i+1);
             }
         }
+        //set current inst
         for (int i = 0; i < m.getNumArgs(); i+=2) {
             string argName = m.getArgAsString(i);
             if (argName == "s") {
                 isfLayers[l]->currentISF = m.getArgAsString(i+1);
             }
+        }
+        //send params
+        for (int i = 0; i < m.getNumArgs(); i+=2) {
+            string argName = m.getArgAsString(i);
             //find argName in floatArgs
             vector<string>::iterator cIter = find(floatArgs.begin(),floatArgs.end() , argName);
             if (cIter != floatArgs.end()) {
