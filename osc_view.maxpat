@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 1006.0, 721.0, 640.0, 480.0 ],
+		"rect" : [ 978.0, 652.0, 640.0, 480.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -56,9 +56,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 44.75, 350.0, 120.0, 23.0 ],
+					"patching_rect" : [ 44.75, 350.0, 63.0, 23.0 ],
 					"style" : "",
-					"text" : "print receivedmess"
+					"text" : "print Dirt:"
 				}
 
 			}
@@ -97,9 +97,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 44.75, 118.0, 120.0, 23.0 ],
+					"patching_rect" : [ 44.75, 118.0, 58.0, 23.0 ],
 					"style" : "",
-					"text" : "print receivedmess"
+					"text" : "print oF:"
 				}
 
 			}

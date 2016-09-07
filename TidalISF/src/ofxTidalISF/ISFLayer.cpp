@@ -2,34 +2,35 @@
 
 ISFLayer::ISFLayer(int _layer){
     layer = _layer;
-    gain = 0.5;
+    gain = 1.0;
     
     //init ISFs
     std::vector<std::string> files;
     ofxIO::DirectoryUtils::list("ISF", files, false, &pathFilter, true);
-    ISFDirt *isf;
+
     for (std::size_t i = 0; i < files.size(); ++i){
         string name = files[i].substr(0, files[i].length()-3);
-        cout << "files : " << name << endl;
-        isf = new ISFDirt(name);
-        isfDirts.push_back(isf);
+        ofxISF::Shader *isf;
+        isf = new ofxISF::Shader();
+        isf->setup(ofGetWidth()/2, ofGetHeight()/2, GL_RGB32F);
+        isf->load("ISF/" + name + ".fs");
+        isfs.push_back(isf);
     }
 }
 
 void ISFLayer::update(){
-    for (int i = 0; i < isfDirts.size(); i++) {
-        if (currentISF == isfDirts[i]->name) {
-            isfDirts[i]->update();
+    for (int i = 0; i < isfs.size(); i++) {
+        if (currentISF == isfs[i]->getName()) {
+            isfs[i]->update();
         }
     }
 }
 
 void ISFLayer::draw(){
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    ofSetColor(gain * 255);
-    for (int i = 0; i < isfDirts.size(); i++) {
-        if (currentISF == isfDirts[i]->name) {
-            isfDirts[i]->draw();
+    //ofSetColor(gain * 255);
+    for (int i = 0; i < isfs.size(); i++) {
+        if (currentISF == isfs[i]->getName()) {
+            isfs[i]->draw(0, 0, ofGetWidth(), ofGetHeight());
         }
     }
 }

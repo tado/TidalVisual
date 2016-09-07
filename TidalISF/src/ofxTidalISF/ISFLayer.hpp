@@ -1,7 +1,8 @@
 #pragma once
 #include "ofMain.h"
 #include "ofxIO.h"
-#include "ISFDIrt.hpp"
+//#include "ISFDIrt.hpp"
+#include "ofxISF.h"
 
 // a custom hidden path filter
 class CustomPathFilter: public ofxIO::AbstractPathFilter{
@@ -26,7 +27,7 @@ public:
     
     //ISFDirt
     string currentISF;
-    vector<ISFDirt *> isfDirts;
+    vector<ofxISF::Shader *>  isfs;
     int layer;
     float gain;
     

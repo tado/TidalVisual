@@ -15,4 +15,7 @@ public:
     ofxThreadedOSCReceiver receiver;
     vector<ISFLayer *> isfLayers;
     static const int layerNum = 4;
+    
+    vector<string> intArgs;
+    vector<string> floatArgs;
 };

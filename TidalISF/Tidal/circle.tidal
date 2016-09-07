@@ -1,5 +1,52 @@
 cps(1.0)
 
+o1
+$s "circle*16"
+#radius (scale 0.01 0.2 $rand)
+#x "0.5"
+#y "0.3 0.7 0.5"
+#r "0"
+#g "1"
+#b "1"
+#vel (scale 0.5 1.0 $rand)
+#l "0"
+
+o2
+$s "[light blank]*16"
+#l "1"
+#r (rand)
+#g (sine1)
+#b (slow 4 $sine1)
+#vel "0.5 0"
+
+o1 $ s "blank"
+#l "0"
+
+o1 silence
+
+o2 $s "blank"
+#radius (rand)
+#r "1"
+#g "1"
+#b "1"
+#l "1"
+
+o2 $s "circle*16"
+#radius (rand)
+#x "0"
+#l "1"
+#r "0"
+#g "0"
+#b "1"
+
+o2 silence
+
+o2 $ s "blank" # l "1"
+
+o1 silence
+
+d1 silence
+
 o1 $ s "circle*24"
 # radius (scale 0.0 0.6 $slow 6 $rand)
 # x "0"

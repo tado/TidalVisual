@@ -3,7 +3,7 @@
 
 //========================================================================
 int main( ){
-	ofSetupOpenGL(600,600,OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(1280,720,OF_WINDOW);			// <-------- setup the GL context
     //ofSetupOpenGL(1280,720,OF_WINDOW);			// <-------- setup the GL context
 
 	// this kicks off the running of my app

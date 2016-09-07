@@ -15,15 +15,15 @@
 		{
 			"NAME": "x",
 			"TYPE": "float",
-			"DEFAULT": 0.0,
-			"MIN": -1.0,
+			"DEFAULT": 0.5,
+			"MIN": 0.0,
 			"MAX": 1.0
 		},
 		{
 			"NAME": "y",
 			"TYPE": "float",
-			"DEFAULT": 0.0,
-			"MIN": -1.0,
+			"DEFAULT": 0.5,
+			"MIN": 0.0,
 			"MAX": 1.0
 		},
 		{
@@ -53,6 +53,13 @@
 			"DEFAULT": 1.0,
 			"MIN": 0.0,
 			"MAX": 1.0
+		},
+		{
+			"NAME": "vel",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
 		}
 	]
 	}*/
@@ -64,8 +71,8 @@
 
 void main(){
 	vec2 st = gl_FragCoord.xy/RENDERSIZE.y;
-	st.x = st.x - x;
-	st.y = st.y - y;
+	st.x = st.x - (x * 2.0 - 1.0);
+	st.y = st.y - (y * 2.0 - 1.0);
 	vec3 color = vec3(circle(st, radius));
-	gl_FragColor = vec4(color.r*r, color.g*g, color.b*b, 1.0 );
+	gl_FragColor = vec4(vec3(color.r * r, color.g*g, color.b*b) * vel, 1.0);
 }

@@ -2,15 +2,15 @@ import Sound.Tidal.OscStream
 
 let openFrameworks = Shape {
       params = [ S "s" Nothing,
+                 I "l" (Just 0),
+                 F "vel" (Just 1.0),
                  F "x" (Just 0.0),
                  F "y" (Just 0.0),
                  F "radius" (Just 1.0),
                  F "smooth" (Just 0.0),
                  F "r" (Just 1.0),
                  F "g" (Just 1.0),
-                 F "b" (Just 1.0),
-                 F "a" (Just 1.0),                 
-                 I "l" (Just 0)
+                 F "b" (Just 1.0)
                ],
       cpsStamp = False,
       latency = 0.0
@@ -25,6 +25,7 @@ let openFrameworks = Shape {
         s <- makeConnection "127.0.0.1" 8000 openFrameworksSlang
         stream (Backend s $ (\_ _ _ -> return ())) openFrameworks
     s = makeS openFrameworks "s"
+    l = makeI openFrameworks "l"
     vel = makeF openFrameworks "vel"
     gain = makeF openFrameworks "gain"
     x = makeF openFrameworks "x"
@@ -34,14 +35,17 @@ let openFrameworks = Shape {
     r = makeF openFrameworks "r"
     g = makeF openFrameworks "g"
     b = makeF openFrameworks "b"
-    a = makeF openFrameworks "a"    
-    l = makeI openFrameworks "l"    
 
 o1 <- openFrameworksStream
 
 o2 <- openFrameworksStream
 
-o3 <- openFrameworksStream
+o1 silence
 
-o4 <- openFrameworksStream
+o2 silence
+
+let hush = mapM_ ($ silence) [o1, o2]
+
+let solo = (>>) hush
+
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
 		1298066D39CE7EC3DA60256A /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2FB74FF42B08FC378F74B2B7 /* snappy-stubs-internal.cc */; };
-		18AD873C1D5053260077B84E /* ISFDirt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AD87361D5053260077B84E /* ISFDirt.cpp */; };
 		18AD873D1D5053260077B84E /* ISFLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AD87381D5053260077B84E /* ISFLayer.cpp */; };
 		18AD873E1D5053260077B84E /* ofxTidalISF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AD873A1D5053260077B84E /* ofxTidalISF.cpp */; };
 		1CC07C1A616F29EB8EEC3D21 /* SearchPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B424A6DF4D70AACCDBAE /* SearchPath.cpp */; };
@@ -99,8 +98,6 @@
 		13D68F0C2CAE7809D621924C /* RegexPathFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RegexPathFilter.cpp; path = ../../../addons/ofxIO/libs/ofxIO/src/RegexPathFilter.cpp; sourceTree = SOURCE_ROOT; };
 		14290ED8DE68778AE3023FBC /* LinkFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LinkFilter.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/LinkFilter.h; sourceTree = SOURCE_ROOT; };
 		181F02B531162F6039F6ADC2 /* DirectoryWatcher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DirectoryWatcher.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/DirectoryWatcher.h; sourceTree = SOURCE_ROOT; };
-		18AD87361D5053260077B84E /* ISFDirt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ISFDirt.cpp; path = ofxTidalISF/ISFDirt.cpp; sourceTree = "<group>"; };
-		18AD87371D5053260077B84E /* ISFDirt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ISFDirt.hpp; path = ofxTidalISF/ISFDirt.hpp; sourceTree = "<group>"; };
 		18AD87381D5053260077B84E /* ISFLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ISFLayer.cpp; path = ofxTidalISF/ISFLayer.cpp; sourceTree = "<group>"; };
 		18AD87391D5053260077B84E /* ISFLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ISFLayer.hpp; path = ofxTidalISF/ISFLayer.hpp; sourceTree = "<group>"; };
 		18AD873A1D5053260077B84E /* ofxTidalISF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxTidalISF.cpp; path = ofxTidalISF/ofxTidalISF.cpp; sourceTree = "<group>"; };
@@ -251,8 +248,6 @@
 				18AD873B1D5053260077B84E /* ofxTidalISF.hpp */,
 				18AD87381D5053260077B84E /* ISFLayer.cpp */,
 				18AD87391D5053260077B84E /* ISFLayer.hpp */,
-				18AD87361D5053260077B84E /* ISFDirt.cpp */,
-				18AD87371D5053260077B84E /* ISFDirt.hpp */,
 			);
 			name = ofxTidalISF;
 			sourceTree = "<group>";
@@ -782,7 +777,6 @@
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
-				18AD873C1D5053260077B84E /* ISFDirt.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
