@@ -1,8 +1,8 @@
 cps(1.0)
 
-o4 $s "blank" #l "3"
+o1 $s "blank" #l "0"
 
-o1 $s "flower*12"
+o1 $s "circle*32"
 #radius (scale 0.1 0.4 $slow 6 $rand)
 #x (scale 0.4 0.6 $rand)
 #y "0.5"
@@ -11,12 +11,30 @@ o1 $s "flower*12"
 #l "0"
 #r "0 0 0.5 0 0 0" #g "0.75 1 0.6 0 0.6 0.75 1" #b "1.5"
 
-o2 $s "[flower blank]*8"
+o2 $s "circle*16"
 #x "0.5"
 #y "0.5"
 #radius (scale 0.0 1.0 $rand)
 #smooth (scale 0.0 0.05 $slow 8 $rand)
 #l "1"
+#vel "[0.3 0.1]*16"
+#r (scale 0 1.0 $rand) #g "0" #b "1.0"
+
+o3 $s "flower*12"
+#radius (scale 0.1 0.4 $slow 6 $rand)
+#x (scale 0.4 0.6 $rand)
+#y "0.5"
+#smooth (scale 0.2 2.0 $rand)
+#vel (rand)
+#l "2"
+#r "0 0 0.5 0 0 0" #g "0.75 1 0.6 0 0.6 0.75 1" #b "1.5"
+
+o4 $s "[flower blank]*8"
+#x "0.5"
+#y "0.5"
+#radius (scale 0.0 1.0 $rand)
+#smooth (scale 0.0 0.05 $slow 8 $rand)
+#l "3"
 #vel "[0.8 0.2]*16"
 #r (scale 0 1.0 $rand) #g "0" #b "1.0"
 
@@ -29,9 +47,8 @@ o3 $s "[circle circle circle circle circle circle topo]*4"
 #vel (scale 0 2.0 $slow 0.1 $rand)
 #r "0.2" #g "0.2" #b "0.2"
 
-
-o3 $s "[blank blank light blank]*8"
-#l "2"
+o4 $s "[blank blank light blank]*8"
+#l "3"
 #vel (rand)
 #r "0" #g "0" #b "1"
 
@@ -160,6 +177,7 @@ o4 $ s "[circle]*8"
 # a "1"
 # l "3"
 
+hush
 
 
 
