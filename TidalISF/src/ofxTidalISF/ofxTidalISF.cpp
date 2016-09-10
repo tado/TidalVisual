@@ -14,10 +14,13 @@ ofxTidalISF::ofxTidalISF(int _port){
     
     //args
     floatArgs.push_back("vel");
+    floatArgs.push_back("gain");
     floatArgs.push_back("x");
     floatArgs.push_back("y");
     floatArgs.push_back("radius");
     floatArgs.push_back("smooth");
+    floatArgs.push_back("rotSpeed");
+    floatArgs.push_back("zoom");
     floatArgs.push_back("r");
     floatArgs.push_back("g");
     floatArgs.push_back("b");

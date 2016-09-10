@@ -4,10 +4,13 @@ let openFrameworks = Shape {
       params = [ S "s" Nothing,
                  I "l" (Just 0),
                  F "vel" (Just 1.0),
+                 F "gain" (Just 1.0),                 
                  F "x" (Just 0.0),
                  F "y" (Just 0.0),
                  F "radius" (Just 1.0),
                  F "smooth" (Just 0.0),
+                 F "rotSpeed" (Just 0.5),
+                 F "zoom" (Just 0.5),
                  F "r" (Just 1.0),
                  F "g" (Just 1.0),
                  F "b" (Just 1.0)
@@ -31,7 +34,9 @@ let openFrameworks = Shape {
     x = makeF openFrameworks "x"
     y = makeF openFrameworks "y"
     radius = makeF openFrameworks "radius"
-    smooth = makeF openFrameworks "smooth"    
+    smooth = makeF openFrameworks "smooth"
+    rotSpeed = makeF openFrameworks "rotSpeed"
+    zoom = makeF openFrameworks "zoom"
     r = makeF openFrameworks "r"
     g = makeF openFrameworks "g"
     b = makeF openFrameworks "b"

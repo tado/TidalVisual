@@ -38,13 +38,6 @@
 			"MAX": 1.0
 		},
 		{
-			"NAME": "level",
-			"TYPE": "float",
-			"DEFAULT": 0.1,
-			"MIN": 0.0,
-			"MAX": 1.0
-		},
-		{
 			"NAME": "r",
 			"TYPE": "float",
 			"DEFAULT": 1.0,
@@ -60,6 +53,13 @@
 		},
 		{
 			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "gain",
 			"TYPE": "float",
 			"DEFAULT": 1.0,
 			"MIN": 0.0,
@@ -165,6 +165,6 @@ void main() {
         t += inc;
     }
 
-    vec3 finalColor = vec3(r, g, b)* density * level;
-    gl_FragColor = vec4(sqrt(clamp(finalColor, 0.0, 1.0)),1.0);
+    vec3 finalColor = vec3(r, g, b) * 0.2 * density;
+    gl_FragColor = vec4(sqrt(clamp(finalColor, 0.0, 1.0)) * gain,1.0);
 }

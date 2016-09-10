@@ -10,9 +10,9 @@
 
 		},
 		{
-			"NAME": "scale",
+			"NAME": "zoom",
 			"TYPE": "float",
-			"DEFAULT": 0.6,
+			"DEFAULT": 0.5,
 			"MIN": 0.0,
 			"MAX": 1.0
 
@@ -40,6 +40,13 @@
 		},
 		{
 			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "gain",
 			"TYPE": "float",
 			"DEFAULT": 1.0,
 			"MIN": 0.0,
@@ -84,9 +91,9 @@ void main()
     vec3 ro= roty(vec3(3.0), TIME * rotSpeed);
     vec3 uu= normalize(cross(ro, vec3(0.0, 1.0, 0.0)));
     vec3 vv= normalize(cross(uu, ro));
-    vec3 rd= normalize(p.x*uu + p.y*vv - ro * scale);
+    vec3 rd= normalize(p.x*uu + p.y*vv - ro * zoom);
     //gl_FragColor.rgb= log(raymarch(ro,rd) +1.0) * 0.5;
     vec3 col = log(raymarch(ro,rd) +1.0) * 0.5;
     //gl_FragColor.a= 1.0;
-    gl_FragColor = vec4(col.r * r, col.g * g, col.b * b, 1.0);
+    gl_FragColor = vec4(vec3(col.r * r, col.g * g, col.b * b) * gain, 1.0);
 }
