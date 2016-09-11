@@ -1,11 +1,11 @@
-cps(0.6)
+cps(1.0)
 
 o2 $s "blank" #l "1"
 
-p1 $s "[rgb [bloom pixel edge toon] noise none]"
+p1 $s "none"
 
 o1 
-$s "[red green blue] blank balank"
+$s "blank [red green blue]*2"
 #gain "0.8"
 #radius (rand)
 
@@ -49,7 +49,7 @@ o3 $s "topo*16"
 #vel (scale 0.2 0.5 $rand)
 #r "0.3" #g "1.0" #b "1.0"
 
-o4 $s "topo*12 blank"
+o4 $s "topo*6"
 #x "0.5"
 #y "0.5"
 #radius (scale 0.0 1.0 $rand)
