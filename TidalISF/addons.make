@@ -1,4 +1,5 @@
 ofxIO
 ofxISF
 ofxOsc
+ofxPostProcessing
 ofxThreadedOSCReceiver

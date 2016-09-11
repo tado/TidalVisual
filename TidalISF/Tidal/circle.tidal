@@ -1,13 +1,20 @@
-cps(0.7)
+cps(1.0)
 
-o3 $s "blank" #l "2"
+o2 $s "blank" #l "1"
+
+o1 
+$s "[red green blue] blank balank"
+#gain "0.8"
+#radius (rand)
+
+p1 $s "bloom rgb edge pixel noise"
 
 o1 $s "circle*32"
 #radius (scale 0.1 0.4 $slow 6 $rand)
 #x (scale 0.4 0.6 $rand)
 #y "0.5"
 #smooth (scale 0.2 2.0 $rand)
-#gain (rand)
+#gain (scale 0.5 1.0 $rand)
 #l "0"
 #r "0 0 0.5 0 0 0" #g "0.75 1 0.6 0 0.6 0.75 1" #b "1.5"
 
@@ -37,12 +44,12 @@ o3 $s "topo*16"
 #y "0.5"
 #radius (scale 0.0 1.0 $rand)
 #smooth (scale 0.0 0.05 $slow 8 $rand)
-#l "3"
+#l "2"
 #gain (sine1)
 #vel (scale 0.2 0.5 $rand)
 #r "0.3" #g "1.0" #b "1.0"
 
-o4 $s "topo*16"
+o4 $s "topo*12"
 #x "0.5"
 #y "0.5"
 #radius (scale 0.0 1.0 $rand)
@@ -50,9 +57,8 @@ o4 $s "topo*16"
 #l "3"
 #gain "0.7"
 #vel (scale 0.0 0.8 $rand)
-#r "1.0" #g "0.1" #b "1.0"
+#r "1.0" #g "1.0" #b "1.0"
 --- #r (scale 0 1.0 $rand) #g "0.0" #b "1.0"
-
 
 o4 $s "[circle circle circle circle circle circle topo]*4"
 #x "0.5"

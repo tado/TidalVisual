@@ -4,7 +4,6 @@
 void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
     
     tidalISF = new ofxTidalISF(8000);
 }

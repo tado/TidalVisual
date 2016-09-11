@@ -57,7 +57,30 @@ o3 silence
 
 o4 silence
 
-let hush = mapM_ ($ silence) [o1, o2, o3, o4]
+------ post fx
+
+let postProcess = Shape {
+      params = [ S "s" Nothing
+               ],
+      cpsStamp = False,
+      latency = 0.0
+      }
+    postProcessSlang = OscSlang {
+        path = "/post",
+        timestamp = NoStamp,
+        namedParams = True,
+        preamble = []
+        }
+    postProcessStream = do
+        s <- makeConnection "127.0.0.1" 8000 postProcessSlang
+        stream (Backend s $ (\_ _ _ -> return ())) postProcess
+    s = makeS postProcess "s"
+
+p1 <- postProcessStream
+
+p1 silence
+
+let hush = mapM_ ($ silence) [o1, o2, o3, o4, p1]
 
 let solo = (>>) hush
 
