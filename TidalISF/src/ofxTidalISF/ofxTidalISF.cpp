@@ -33,29 +33,19 @@ ofxTidalISF::ofxTidalISF(int _port){
     rgb = post.createPass<RGBShiftPass>();
     edge = post.createPass<EdgePass>();
     pixel = post.createPass<PixelatePass>();
-    
-    /*
-    post.createPass<BloomPass>()->setEnabled(false);
-    post.createPass<KaleidoscopePass>()->setEnabled(false);
-    post.createPass<NoiseWarpPass>()->setEnabled(false);
-    post.createPass<RGBShiftPass>()->setEnabled(false);
-    post.createPass<LimbDarkeningPass>()->setEnabled(false);
-    post.createPass<EdgePass>()->setEnabled(false);
-    post.createPass<PixelatePass>()->setEnabled(false);
-    post.createPass<ContrastPass>()->setEnabled(false);
-    post.createPass<ConvolutionPass>()->setEnabled(false);
-    post.createPass<DofPass>()->setEnabled(false);
-    post.createPass<FakeSSSPass>()->setEnabled(false);
-    post.createPass<FxaaPass>()->setEnabled(false);
-    post.createPass<VerticalTiltShifPass>()->setEnabled(false);
-    post.createPass<GodRaysPass>()->setEnabled(false);
-    post.createPass<BleachBypassPass>()->setEnabled(false);
-    post.createPass<FxaaPass>()->setEnabled(false);
-    post.createPass<GodRaysPass>()->setEnabled(false);
-    post.createPass<HorizontalTiltShifPass>()->setEnabled(false);
-    post.createPass<LimbDarkeningPass>()->setEnabled(false);
-    post.createPass<LUTPass>()->setEnabled(false);
-     */
+    darken = post.createPass<LimbDarkeningPass>();
+    contrast = post.createPass<ContrastPass>();
+    conv = post.createPass<ConvolutionPass>();
+    dof = post.createPass<DofPass>();
+    sss = post.createPass<FakeSSSPass>();
+    fxaa = post.createPass<FxaaPass>();
+    vtilt = post.createPass<VerticalTiltShifPass>();
+    htilt = post.createPass<HorizontalTiltShifPass>();
+    god = post.createPass<GodRaysPass>();
+    bleach = post.createPass<BleachBypassPass>();
+    lut = post.createPass<LUTPass>();
+    toon = post.createPass<ToonPass>();
+    restPostProcess();
 }
 
 void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
@@ -102,24 +92,23 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
             string postName;
             if (argName == "s") {
                 postName = m.getArgAsString(i+1);
-                if (postName == "bloom") {
-                    bloom->setEnabled(true);
-                }
-                if (postName == "kaleido") {
-                    kaleido->setEnabled(true);
-                }
-                if (postName == "noise") {
-                    noise->setEnabled(true);
-                }
-                if (postName == "rgb") {
-                    rgb->setEnabled(true);
-                }
-                if (postName == "edge") {
-                    edge->setEnabled(true);
-                }
-                if (postName == "pixel") {
-                    pixel->setEnabled(true);
-                }
+                if (postName == "bloom") bloom->setEnabled(true);
+                if (postName == "kaleido") kaleido->setEnabled(true);
+                if (postName == "noise") noise->setEnabled(true);
+                if (postName == "rgb") rgb->setEnabled(true);
+                if (postName == "edge") edge->setEnabled(true);
+                if (postName == "pixel") pixel->setEnabled(true);
+                if (postName == "contrast") contrast->setEnabled(true);
+                if (postName == "conv") conv->setEnabled(true);
+                if (postName == "dof") dof->setEnabled(true);
+                if (postName == "sss") sss->setEnabled(true);
+                if (postName == "fxaa") fxaa->setEnabled(true);
+                if (postName == "vtilt") vtilt->setEnabled(true);
+                if (postName == "htilt") htilt->setEnabled(true);
+                if (postName == "god") god->setEnabled(true);
+                if (postName == "bleach") bleach->setEnabled(true);
+                if (postName == "lut") lut->setEnabled(true);
+                if (postName == "toon") toon->setEnabled(true);
             }
         }
     }
@@ -149,4 +138,15 @@ void ofxTidalISF::restPostProcess(){
     edge->setEnabled(false);
     rgb->setEnabled(false);
     pixel->setEnabled(false);
+    contrast->setEnabled(false);
+    conv->setEnabled(false);
+    dof->setEnabled(false);
+    sss->setEnabled(false);
+    fxaa->setEnabled(false);
+    vtilt->setEnabled(false);
+    htilt->setEnabled(false);
+    god->setEnabled(false);
+    bleach->setEnabled(false);
+    lut->setEnabled(false);
+    toon->setEnabled(false);
 }

@@ -27,6 +27,18 @@ public:
     KaleidoscopePass::Ptr kaleido;
     NoiseWarpPass::Ptr noise;
     RGBShiftPass::Ptr rgb;
+    LimbDarkeningPass::Ptr darken;
     EdgePass::Ptr edge;
     PixelatePass::Ptr pixel;
+    ContrastPass::Ptr contrast;
+    ConvolutionPass::Ptr conv;
+    DofPass::Ptr dof;
+    FakeSSSPass::Ptr sss;
+    FxaaPass::Ptr fxaa;
+    VerticalTiltShifPass::Ptr vtilt;
+    HorizontalTiltShifPass::Ptr htilt;
+    GodRaysPass::Ptr god;
+    BleachBypassPass::Ptr bleach;
+    LUTPass::Ptr lut;
+    ToonPass::Ptr toon;
 };
