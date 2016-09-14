@@ -98,6 +98,7 @@ void ofxTidalISF::oscReceiveEvent(ofxOscMessage &m){
                 if (postName == "rgb") rgb->setEnabled(true);
                 if (postName == "edge") edge->setEnabled(true);
                 if (postName == "pixel") pixel->setEnabled(true);
+                if (postName == "darken") darken->setEnabled(true);
                 if (postName == "contrast") contrast->setEnabled(true);
                 if (postName == "conv") conv->setEnabled(true);
                 if (postName == "dof") dof->setEnabled(true);
@@ -135,9 +136,10 @@ void ofxTidalISF::restPostProcess(){
     bloom->setEnabled(false);
     kaleido->setEnabled(false);
     noise->setEnabled(false);
-    edge->setEnabled(false);
     rgb->setEnabled(false);
+    edge->setEnabled(false);
     pixel->setEnabled(false);
+    darken->setEnabled(false);
     contrast->setEnabled(false);
     conv->setEnabled(false);
     dof->setEnabled(false);
