@@ -10,7 +10,7 @@
 			"TYPE": "float",
 			"MIN": 0.0,
 			"MAX": 1.0,
-			"DEFAULT": 0.5
+			"DEFAULT": 0.7
 		},
          {
             "NAME":"level",
@@ -18,7 +18,28 @@
            "DEFAULT": 0.0,
             "MIN": -1.0,
             "MAX": 1.0
-        }
+        },
+		{
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
   ]
 }
 */
@@ -57,7 +78,7 @@ vec3 drawEffect(vec2 coord, float time){
     //dir.x *= 1.5 + 0.5 * sin(time * 0.125);
     //dir.y *= 1.5 + 0.5 * cos(time * 0.25 + 0.5);
     
-    dir.x *= 2.0;
+    dir.x *= 10.0;
 
     // Animate view direction
     //dir.x += 0.25 * sin(time * 0.3);
@@ -112,8 +133,8 @@ vec3 drawEffect(vec2 coord, float time){
         // Cycle palettes
         const vec3 orange = vec3(1.0, 0.2, 0.0);
         const vec3 blue   = vec3(0.0, 0.0, 1.0);
-        //clr += q * mix(orange, blue, 0.5 + 0.5 * sin(time * 0.5 + q2));
-        //clr += q * mix(orange, blue, 1.0 - level);
+        clr += q * mix(orange, blue, 0.5 + 0.5 * sin(time * 0.5 + q2));
+        clr += q * mix(orange, blue, 1.0 - level);
         clr += q * mix(orange, blue, 0.1);
         //clr = orange;
     }
@@ -142,5 +163,6 @@ void main()
     //clr = mix(clr, vec3(0.8, 0.9, 1.0), 0.3 * drawLogo(gl_FragCoord.xy));
 
     //gl_FragColor = vec4(clr, 1.0);
-    gl_FragColor = vec4(clr.r*1.0, clr.r*1.0, clr.r*1.0, 1.0);
+    float colmix = (clr.r + clr.g + clr.b) / 6.0;
+    gl_FragColor = vec4(colmix * r, colmix * g, colmix * b, 1.0);
 }

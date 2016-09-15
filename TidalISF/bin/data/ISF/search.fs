@@ -9,14 +9,14 @@
  "TYPE": "float",
  "MAX" : 0.05,
  "MIN" : 0.0001,
- "DEFAULT":0.2
+ "DEFAULT":0.02
  },
  {
  "NAME": "modVal",
  "TYPE": "float",
  "MAX" : 10.0,
  "MIN" : 0.2,
- "DEFAULT":0.5
+ "DEFAULT":0.3
  },
  {
  "NAME": "zAdder",

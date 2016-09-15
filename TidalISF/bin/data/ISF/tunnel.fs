@@ -21,7 +21,7 @@
 		{
 			"NAME": "speed",
 			"TYPE": "float",
-			"DEFAULT": 0.5,
+			"DEFAULT": 1.0,
 			"MIN": 0.0,
 			"MAX": 5.0
 		},
@@ -38,7 +38,29 @@
 			"DEFAULT": 0.05,
 			"MIN": 0.0,
 			"MAX": 0.3
+		},
+		{
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
 		}
+
 	]
 }*/
 
@@ -49,18 +71,18 @@ precision mediump float;
 
 
 void main( void ) {
-	vec3 light_color = vec3(1.2,0.4,0.3);
+	vec3 light_color = vec3(r, g, b);
 
 	float t = TIME*20.0;
-	//vec2 position = ( gl_FragCoord.xy -  RENDERSIZE.xy*.5) / RENDERSIZE.x;
-	vec2 position = gl_FragCoord.xy/RENDERSIZE.xx*2.-vec2(1.0 + shifth, 0.5 + shiftv);
+	vec2 position = ( gl_FragCoord.xy -  RENDERSIZE.xy*.5) / RENDERSIZE.x;
+	//vec2 position = gl_FragCoord.xy/RENDERSIZE.xx*2.-vec2(1.0 + shifth, 0.5 + shiftv);
 
 	float angle = atan(position.y,position.x)/(2.*3.14159265359);
 	angle -= floor(angle);
 	float rad = length(position);
 
 	float color = 0.0;
-	float brightness = vel * 0.06;
+	float brightness = vel * 0.04;
 
 	for (int i = 0; i < 10; i++) {
 		float angleRnd = floor(angle*14.)+1.;
@@ -76,5 +98,5 @@ void main( void ) {
 		angle = fract(angle+.1);
 	}
 	//gl_FragColor = vec4(color,color,color,1.0)*vec4(light_color,1.0);
-	gl_FragColor = vec4(color,color,color,1.0);
+	gl_FragColor = vec4(color,color,color,1.0)*vec4(light_color,1.0);
 }

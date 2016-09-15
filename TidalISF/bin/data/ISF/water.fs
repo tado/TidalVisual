@@ -91,6 +91,8 @@ void main()
 	c /= float(MAX_ITER);
 	c = 1.17 - pow(c, 1.4);
 	colour.b = pow(abs(c), 8.0);
+	
+	float colmix = (colour.r + colour.g + colour.b) / 2.0;
 
-	gl_FragColor = vec4(colour.r * r, colour.g * g, colour.b * b, 1.0);
+	gl_FragColor = vec4(colmix * r, colmix * g, colmix * b, 1.0);
 }
