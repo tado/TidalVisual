@@ -44,7 +44,28 @@
 		"MIN": 0.0,
 		"MAX": 1.0,
 		"DEFAULT": 0.0
-    }
+    },
+    {
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
   ]
 }
 */
@@ -62,5 +83,5 @@ void main()
 		sin(texey/abs(depth)*(1000.0 - waveResolution)+time*16.0)*(depth)*xband
 	);
 
-	gl_FragColor = vec4(-final*colorShift, final * (1.0 - colorShift), final*colorShift-final*(1.0 - colorShift), 1.0)*1.5;
+	gl_FragColor = vec4(vec3(final*r, final * g, final * b), 1.0)*1.5;
 }

@@ -5,17 +5,26 @@
   ],
   "INPUTS" : [
     {
-      "NAME" : "mouse",
-      "TYPE" : "point2D",
-      "MAX" : [
-        1,
-        1
-      ],
-      "MIN" : [
-        0,
-        0
-      ]
-    }
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
   ]
 }
 */
@@ -48,7 +57,7 @@ void main( void ) {
 	
 	vec3 ray = normalize(vec3(myPos, 1.0));
 	
-	float radiansToRotateAlongYAxis = (mouse.x / RENDERSIZE.x) * 6.28;
+	float radiansToRotateAlongYAxis = 6.28;
 	ray.xz *= mat2(cos(radiansToRotateAlongYAxis), -sin(radiansToRotateAlongYAxis), sin(radiansToRotateAlongYAxis), cos(radiansToRotateAlongYAxis));
 	
 	float distanceToIntersectionPoint = trace(camPos, ray);
@@ -57,6 +66,6 @@ void main( void ) {
 	
 	vec3 pixelColor = vec3(brightnessValueOfPixel);
 	
-	gl_FragColor = vec4(pixelColor, 1.0);
+	gl_FragColor = vec4(pixelColor.r * r, pixelColor.g * g, pixelColor.b * b, 1.0);
 
 }

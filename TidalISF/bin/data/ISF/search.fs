@@ -9,14 +9,14 @@
  "TYPE": "float",
  "MAX" : 0.05,
  "MIN" : 0.0001,
- "DEFAULT":0.01
+ "DEFAULT":0.2
  },
  {
  "NAME": "modVal",
  "TYPE": "float",
  "MAX" : 10.0,
  "MIN" : 0.2,
- "DEFAULT":1.0
+ "DEFAULT":0.5
  },
  {
  "NAME": "zAdder",
@@ -45,7 +45,28 @@
  "MAX" : 1.0,
  "MIN" : 0.0,
  "DEFAULT":0.7
- }
+ },
+ {
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
   ]
 }
 */
@@ -74,5 +95,6 @@ void main()
 		uv+=p/l*(cos(z)+cosinAdder)*(sin(l*9.-z*2.)+sinAdder);
 		c[i]=scale/length(abs(mod(uv,modVal)-modVal/2.));
 	}
-	gl_FragColor=vec4(c/l*finalMulti);
+	vec4 fin = vec4(c/l*finalMulti);
+	gl_FragColor=vec4(fin.r * r, fin.g * g, fin.b * b, 1.0);
 }

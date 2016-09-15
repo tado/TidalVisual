@@ -4,8 +4,27 @@
     "Automatically Converted"
   ],
   "INPUTS" : [
-    {
-          }
+    	{
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
   ]
 }
 */
@@ -14,7 +33,8 @@ void main( void ) {
 
 	vec2 position = ( gl_FragCoord.xy / RENDERSIZE.xy ) / 4.0;
 
-	float r, g;
+	//float r, g;
+	float mix1, mix2;
 	
 	vec4 t = gl_FragCoord;
 	
@@ -24,17 +44,17 @@ void main( void ) {
 	}
 	
 	if (1.5 > mod(t.x, 10.0))
-		r = 1.;
+		mix1 = 1.;
 	else
-		r = 0.0;
+		mix1 = 0.0;
 	
 	if (1.5 > mod(t.y, 10.0))
-		g = 1.;
+		mix2 = 1.;
 	else
-		g = 0.0;
+		mix2 = 0.0;
 		
-    float a = r+g;
+    float a = mix1 + mix2;
 
-	gl_FragColor = vec4(a, a, a, 1.0);
+	gl_FragColor = vec4(a*r, a*g, a*b, 1.0);
 
 }
