@@ -43,12 +43,12 @@ void main( void ) {
 		t.y += sin(t.x/60.0 - TIME) * 10.0;
 	}
 	
-	if (1.5 > mod(t.x, 10.0))
+	if (1.5 > mod(t.x, 20.0))
 		mix1 = 1.;
 	else
 		mix1 = 0.0;
 	
-	if (1.5 > mod(t.y, 10.0))
+	if (1.5 > mod(t.y, 20.0))
 		mix2 = 1.;
 	else
 		mix2 = 0.0;

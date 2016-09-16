@@ -28,14 +28,14 @@
 		{
 			"NAME": "vel",
 			"TYPE": "float",
-			"DEFAULT": 0.5,
+			"DEFAULT": 0.3,
 			"MIN": 0.0,
 			"MAX": 1.0
 		},
 		{
 			"NAME": "depth",
 			"TYPE": "float",
-			"DEFAULT": 0.05,
+			"DEFAULT": 0.03,
 			"MIN": 0.0,
 			"MAX": 0.3
 		},

@@ -23,7 +23,28 @@
  "MIN": 0.0,
  "MAX": 1.0,
  "DEFAULT": 0.2
- }
+ },
+ {
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
  ],
  }
  */
@@ -58,7 +79,7 @@ void main() {
     float colB = rings(pos3,TIME);
     float col = colR/3.0 + colB/3.0 + colB/3.0;
     //gl_FragColor = vec4(colR, colG, colB, 1.0);
-    gl_FragColor = vec4(col, col, col, 1.0);
+    gl_FragColor = vec4(col, col, col, 1.0) * vec4(r, g, b, 1.0);
 
     //float col = (colR + colG + colB) / 3.0;
     //gl_FragColor = vec4(col, col, col, 1.0);

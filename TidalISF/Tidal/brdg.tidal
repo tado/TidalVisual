@@ -1,0 +1,33 @@
+cps(0.5)
+
+o1 $s "[n n n n n n n n n]*2"
+--o1 $s "[n stripe n n topo n n n ripple n n n spiral]"
+--o1 $s "[topo [meta planes cube]] [[meta dots stripe]]"
+--o1 $s "[check ripple [grid wave]]"
+--o1 $s "dots [pers stripe n flower topo] planes"
+--o1 $s "[[flower spiral stripe grid ripple] [grid  none planes topo]]"
+--o1 $s "[[n n water n n spiral] [n spiral n search]*2]"
+--o1 $s "cube [stripe [planes topo] pers]"
+--o1 $s "planes*4 [grid ripple]*2 dots*3"
+--o1 $s "fur*4 [grid flower]*2 dots*3"
+--o1 $s "[n planes n tunnel n light]*6"
+--o1 $s "[[dots planes] [topo tunnel]*3]"
+--o1 $s "[ripple [light planes]*2]*3 [planes fur planes flower]*2"
+--o1 $s "[stripe fur topo]*8 [dots tunnel planes]*8"
+-- #r "1" #g "1" #b "1"
+-- #r (rand) #g (scale 0.5 1.0 $slow 4 $rand) #b (sine1)
+#r (scale 0.8 1.0 $slow 3 $sine1) #g (scale 0.8 1.0 $slow 7 $sine1) #b (scale 0.8 1.0 $slow 13 $sine1)
+#gain "1.0"
+
+
+p1 $s "none"
+
+p1 $s "rgb bloom"
+
+p1 $s "[rgb noise kaleido bloom]*3"
+
+p1 $s "[rgb [noise kaleido] bloom]*3"
+
+p1 $s "[kaleido dof rgb noise edge]*4"
+
+hush

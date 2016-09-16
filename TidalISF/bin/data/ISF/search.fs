@@ -1,15 +1,12 @@
 /*
 {
-  "CATEGORIES": [
-    "Automatically Converted"
-  ],
   "INPUTS": [
    {
  "NAME": "scale",
  "TYPE": "float",
  "MAX" : 0.05,
  "MIN" : 0.0001,
- "DEFAULT":0.02
+ "DEFAULT":0.015
  },
  {
  "NAME": "modVal",
@@ -95,6 +92,7 @@ void main()
 		uv+=p/l*(cos(z)+cosinAdder)*(sin(l*9.-z*2.)+sinAdder);
 		c[i]=scale/length(abs(mod(uv,modVal)-modVal/2.));
 	}
-	vec4 fin = vec4(c/l*finalMulti);
-	gl_FragColor=vec4(fin.r * r, fin.g * g, fin.b * b, 1.0);
+	//vec4 fin = vec4(c/l*finalMulti);
+	//gl_FragColor=vec4(fin.r * r, fin.g * g, fin.b * b, 1.0);
+	gl_FragColor = vec4(c/l*finalMulti) * vec4(r, g, b, 1.0);
 }
