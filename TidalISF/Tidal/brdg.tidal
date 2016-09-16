@@ -1,7 +1,7 @@
-cps(0.5)
+cps(0.65)
 
-o1 $s "[n n n n n n n n n]*2"
---o1 $s "[n stripe n n topo n n n ripple n n n spiral]"
+--o1 $s "[n n n n n n n n n]*2"
+o1 $s "[n  n n n n n n topo n n n n n n n spiral]"
 --o1 $s "[topo [meta planes cube]] [[meta dots stripe]]"
 --o1 $s "[check ripple [grid wave]]"
 --o1 $s "dots [pers stripe n flower topo] planes"

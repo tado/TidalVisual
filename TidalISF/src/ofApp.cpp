@@ -5,7 +5,7 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
     tidalISF = new ofxTidalISF(8000);
-    ofSetWindowPosition(0, -20);
+    ofSetWindowPosition(0, 0);
 }
 
 //--------------------------------------------------------------
