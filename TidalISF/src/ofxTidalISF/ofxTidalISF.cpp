@@ -33,6 +33,7 @@ ofxTidalISF::ofxTidalISF(int _port){
     rgb = post.createPass<RGBShiftPass>();
     edge = post.createPass<EdgePass>();
     pixel = post.createPass<PixelatePass>();
+    pixel->resolution = ofVec2f(40.0, 40.0);
     darken = post.createPass<LimbDarkeningPass>();
     contrast = post.createPass<ContrastPass>();
     conv = post.createPass<ConvolutionPass>();
