@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #include "ofxThreadedOSCReceiver.h"
+#include "TidalPulse.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -28,7 +29,7 @@ public:
     bool started;
     float startTime;
     float preTime;
-    vector<float> currents;
+    vector<TidalPulse *> pulses;
     vector<string> instNames;
     float span;
 };

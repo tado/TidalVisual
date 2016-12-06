@@ -5,7 +5,7 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
     //ofDisableSmoothing();
-    ofSetLineWidth(3.0);
+    ofSetLineWidth(4.0);
     //OSC
     receiver.setup(3333);
     ofAddListener(receiver.messageReceived, this, &ofApp::oscReceiveEvent);
@@ -24,10 +24,11 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetColor(255);
-    for (int i = 0; i < currents.size(); i++) {
-        ofDrawLine(currents[i]*span, 0, currents[i]*span, 100);
-        if(currents[i]*span > ofGetWidth()){
-            currents.clear();
+    for (int i = 0; i < pulses.size(); i++) {
+        cout << "Pulse Num = " << i << endl;
+        pulses[i]->draw();
+        if(pulses[i]->time * pulses[i]->span > ofGetWidth()){
+            pulses.clear();
             startTime = ofGetElapsedTimeMillis();
             break;
         }
@@ -35,13 +36,16 @@ void ofApp::draw(){
 }
 
 void ofApp::oscReceiveEvent(ofxOscMessage &m){
-    //ISF
     if(m.getAddress() == "/play2"){
+        TidalPulse *p = new TidalPulse(span);
+
+        //calc currentTime
         if (startTime == 0) {
             startTime = ofGetElapsedTimeMillis();
         }
         float currentTime = ofGetElapsedTimeMillis() - startTime;
-        currents.push_back(currentTime);
+        p->time = currentTime;
+        
         string inst = "";
         for (int i = 0; i < m.getNumArgs(); i++) {
             if(m.getArgAsString(i) == "s"){
@@ -52,12 +56,16 @@ void ofApp::oscReceiveEvent(ofxOscMessage &m){
         for (int i = 0; i < instNames.size(); i++) {
             if(instNames[i] == inst){
                 instNameFounded = i;
+                cout << "instNameFounded = " << i << endl;
             }
         }
         if (instNameFounded == -1) {
             instNames.push_back(inst);
+            instNameFounded = instNames.size()-1;
         }
-        
+        p->instNum = instNameFounded;
+        pulses.push_back(p);
+      
         for (int i = 0; i < instNames.size(); i++) {
             cout << instNames[i] << " ";
         }
