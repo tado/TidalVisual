@@ -10,4 +10,5 @@ public:
     float time;
     int instNum;
     int totalNum;
+    ofColor col;
 };

@@ -31,5 +31,6 @@ public:
     float preTime;
     vector<TidalPulse *> pulses;
     vector<string> instNames;
+    vector<string> instNamesBuffer;
     float span;
 };
