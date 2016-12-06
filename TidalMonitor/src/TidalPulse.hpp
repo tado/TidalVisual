@@ -9,4 +9,5 @@ public:
     float span;
     float time;
     int instNum;
+    int totalNum;
 };

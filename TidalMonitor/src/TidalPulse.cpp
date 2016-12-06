@@ -5,5 +5,6 @@ TidalPulse::TidalPulse(float _span){
 }
 
 void TidalPulse::draw(){
-    ofDrawLine(time*span, ofGetHeight()/4*instNum, time*span, ofGetHeight()/4*(instNum+1));
+    ofDrawLine(time*span, ofGetHeight()/totalNum*instNum,
+    time*span, ofGetHeight()/totalNum*(instNum+1));
 }

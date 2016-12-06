@@ -5,14 +5,14 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
     //ofDisableSmoothing();
-    ofSetLineWidth(4.0);
+    ofSetLineWidth(3.0);
     //OSC
     receiver.setup(3333);
     ofAddListener(receiver.messageReceived, this, &ofApp::oscReceiveEvent);
     receiver.start();
     started = false;
     startTime = 0;
-    span = 0.08;
+    span = 0.1;
     ofSetLogLevel(OF_LOG_SILENT);
 }
 
@@ -64,11 +64,14 @@ void ofApp::oscReceiveEvent(ofxOscMessage &m){
             instNameFounded = instNames.size()-1;
         }
         p->instNum = instNameFounded;
+        p->totalNum = instNames.size();
         pulses.push_back(p);
       
         for (int i = 0; i < instNames.size(); i++) {
             cout << instNames[i] << " ";
         }
+        
+        
         cout << endl;
         /*
          << " " << m.getArgAsString(0)
