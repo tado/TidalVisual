@@ -12,7 +12,7 @@ void ofApp::setup(){
     receiver.start();
     started = false;
     startTime = 0;
-    span = 0.04;
+    span = 0.08;
     ofSetLogLevel(OF_LOG_SILENT);
 }
 
@@ -92,7 +92,7 @@ void ofApp::oscReceiveEvent(ofxOscMessage &m){
         
         //set instnameBuffer
         instNamesBuffer.push_back(inst);
-        if(instNamesBuffer.size()>16){
+        if(instNamesBuffer.size()>instNames.size()*4){
             instNamesBuffer.erase(instNamesBuffer.begin());
         }
     }
