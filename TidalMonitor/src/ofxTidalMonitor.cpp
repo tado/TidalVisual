@@ -13,24 +13,23 @@ ofxTidalMonitor::ofxTidalMonitor(){
 }
 
 void ofxTidalMonitor::update(){
-    bool bufferFound = false;
     for (int i = 0; i < instNames.size(); i++) {
-        for (int j = 0; j < instNamesBuffer.size(); j++) {
-            if (instNames[i] == instNamesBuffer[j]) {
-                bufferFound = true;
-            }
-        }
-        if (bufferFound == false) {
+        //serch inst name in instNamesBuffer
+        vector<string>::iterator iter = find(instNamesBuffer.begin(), instNamesBuffer.end(), instNames[i]);
+        size_t index = std::distance(instNamesBuffer.begin(), iter);
+        //if not erase it
+        if(index == instNamesBuffer.size()){
             instNames.erase(instNames.begin() + i);
         }
-        bufferFound = false;
+    }
+    if(instNamesBuffer.size()>instNames.size() * 4){
+        instNamesBuffer.erase(instNamesBuffer.begin());
     }
 }
 
 void ofxTidalMonitor::draw(){
     ofSetColor(255);
     for (int i = 0; i < pulses.size(); i++) {
-        // tcout << "Pulse Num = " << i << endl;
         pulses[i]->draw();
         if(pulses[i]->time * pulses[i]->span > ofGetWidth()){
             pulses.clear();
@@ -43,6 +42,11 @@ void ofxTidalMonitor::draw(){
     cout << "instNames : ";
     for (int i = 0; i < instNames.size(); i++) {
         cout << instNames[i] << ", ";
+    }
+    cout << endl;
+    cout << "instNamesBuffer : ";
+    for (int i = 0; i < instNamesBuffer.size(); i++) {
+        cout << instNamesBuffer[i] << ", ";
     }
     cout << endl;
 }
@@ -82,11 +86,7 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
         
         //push vector
         pulses.push_back(p);
-        
-        //set instnameBuffer
+
         instNamesBuffer.push_back(inst);
-        if(instNamesBuffer.size()>instNames.size()*4){
-            instNamesBuffer.erase(instNamesBuffer.begin());
-        }
     }
 }
