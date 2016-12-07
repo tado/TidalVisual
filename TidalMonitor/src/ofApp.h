@@ -1,9 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxOsc.h"
-#include "ofxThreadedOSCReceiver.h"
-#include "TidalPulse.hpp"
+#include "ofxTidalMonitor.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -11,7 +9,6 @@ public:
     void setup();
     void update();
     void draw();
-    void oscReceiveEvent(ofxOscMessage &m);
     
     void keyPressed(int key);
     void keyReleased(int key);
@@ -25,12 +22,5 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofxThreadedOSCReceiver receiver;
-    bool started;
-    float startTime;
-    float preTime;
-    vector<TidalPulse *> pulses;
-    vector<string> instNames;
-    vector<string> instNamesBuffer;
-    float span;
+    ofxTidalMonitor *tidalMonitor;
 };

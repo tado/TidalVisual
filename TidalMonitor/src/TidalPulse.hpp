@@ -10,5 +10,6 @@ public:
     float time;
     int instNum;
     int totalNum;
+    int rectWidth;
     ofColor col;
 };

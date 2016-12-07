@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
+		18A2CA951DF79B1D00F8C9DD /* ofxTidalMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */; };
 		18A560291DF65FC500CFA128 /* TidalPulse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A560271DF65FC500CFA128 /* TidalPulse.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
@@ -58,6 +59,8 @@
 		00D6D32B84B099226431108C /* ofxOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOsc.h; path = ../../../addons/ofxOsc/src/ofxOsc.h; sourceTree = SOURCE_ROOT; };
 		029684CF678F70F6D3537A29 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscOutboundPacketStream.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.h; sourceTree = SOURCE_ROOT; };
 		0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
+		18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalMonitor.cpp; sourceTree = "<group>"; };
+		18A2CA941DF79B1D00F8C9DD /* ofxTidalMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalMonitor.hpp; sourceTree = "<group>"; };
 		18A560271DF65FC500CFA128 /* TidalPulse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TidalPulse.cpp; sourceTree = "<group>"; };
 		18A560281DF65FC500CFA128 /* TidalPulse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TidalPulse.hpp; sourceTree = "<group>"; };
 		20F35AFADAF0068B067E713F /* OscReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscReceivedElements.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h; sourceTree = SOURCE_ROOT; };
@@ -245,6 +248,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				18A560271DF65FC500CFA128 /* TidalPulse.cpp */,
 				18A560281DF65FC500CFA128 /* TidalPulse.hpp */,
+				18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */,
+				18A2CA941DF79B1D00F8C9DD /* ofxTidalMonitor.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -375,6 +380,7 @@
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				18A560291DF65FC500CFA128 /* TidalPulse.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
+				18A2CA951DF79B1D00F8C9DD /* ofxTidalMonitor.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
