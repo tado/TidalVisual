@@ -14,5 +14,5 @@ void TidalPulse::draw(){
     }
     */
     ofSetColor(255);
-    ofDrawRectangle(time*span, ofGetHeight()/totalNum*instNum, 4, ofGetHeight()/totalNum);
+    ofDrawRectangle(time*span, ofGetHeight()/totalNum*instNum, 4, ofGetHeight()/totalNum-4);
 }

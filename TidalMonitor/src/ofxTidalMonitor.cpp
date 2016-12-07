@@ -8,32 +8,48 @@ ofxTidalMonitor::ofxTidalMonitor(){
     receiver.start();
     started = false;
     startTime = 0;
-    span = 0.1;
+    span = ofGetWidth()/8000.0;
     ofSetLogLevel(OF_LOG_SILENT);
 }
 
 void ofxTidalMonitor::update(){
-    for (int i = 0; i < instNames.size(); i++) {
-        //serch inst name in instNamesBuffer
-        vector<string>::iterator iter = find(instNamesBuffer.begin(), instNamesBuffer.end(), instNames[i]);
-        size_t index = std::distance(instNamesBuffer.begin(), iter);
-        //if not erase it
-        if(index == instNamesBuffer.size()){
-            instNames.erase(instNames.begin() + i);
+    /*
+     for (int i = 0; i < instNames.size(); i++) {
+     //serch inst name in instBuffer
+     vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), instNames[i]);
+     size_t index = std::distance(instBuffer.begin(), iter);
+     //if not erase it
+     if(index == instBuffer.size()){
+     instNames.erase(instNames.begin() + i);
+     }
+     }
+     if(instBuffer.size()>instNames.size() * 4){
+     instBuffer.erase(instBuffer.begin());
+     }
+     */
+    if(instBuffer.size() >= instNames.size()){
+        for (int i = 0; i < instNames.size(); i++) {
+            //serch inst name in instBuffer
+            vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), instNames[i]);
+            size_t index = std::distance(instBuffer.begin(), iter);
+            //if not erase it
+            if(index == instBuffer.size()){
+                instNames.erase(instNames.begin() + i);
+            }
         }
-    }
-    if(instNamesBuffer.size()>instNames.size() * 4){
-        instNamesBuffer.erase(instNamesBuffer.begin());
     }
 }
 
 void ofxTidalMonitor::draw(){
+    drawGrid();
+
     ofSetColor(255);
     for (int i = 0; i < pulses.size(); i++) {
         pulses[i]->draw();
-        if(pulses[i]->time * pulses[i]->span > ofGetWidth()){
+        if(pulses[i]->time * pulses[i]->span > (ofGetWidth()-20)){
             pulses.clear();
             startTime = ofGetElapsedTimeMillis();
+            instBuffer.clear();
             break;
         }
     }
@@ -44,11 +60,31 @@ void ofxTidalMonitor::draw(){
         cout << instNames[i] << ", ";
     }
     cout << endl;
-    cout << "instNamesBuffer : ";
-    for (int i = 0; i < instNamesBuffer.size(); i++) {
-        cout << instNamesBuffer[i] << ", ";
+    cout << "instBuffer : ";
+    for (int i = 0; i < instBuffer.size(); i++) {
+        cout << instBuffer[i] << ", ";
     }
     cout << endl;
+}
+
+void ofxTidalMonitor::drawGrid(){
+    ofDisableAlphaBlending();
+    ofSetColor(60);
+    for (int i = 0; i < 64; i++) {
+        ofDrawLine(ofGetWidth()/64 * i, 0, ofGetWidth()/64 * i, ofGetHeight());
+    }
+    ofSetColor(80);
+    for (int i = 0; i < 32; i++) {
+        ofDrawLine(ofGetWidth()/32 * i, 0, ofGetWidth()/32 * i, ofGetHeight());
+    }
+    ofSetColor(80, 80, 200);
+    for (int i = 0; i < 16; i++) {
+        ofDrawLine(ofGetWidth()/16 * i, 0, ofGetWidth()/16 * i, ofGetHeight());
+    }
+    ofSetColor(220, 80, 80);
+    for (int i = 0; i < 8; i++) {
+        ofDrawLine(ofGetWidth()/8 * i, 0, ofGetWidth()/8 * i, ofGetHeight());
+    }
 }
 
 void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
@@ -69,7 +105,6 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
                 inst = m.getArgAsString(i+1);
             }
         }
-        
         //search instname from list
         int instNameFounded = -1;
         for (int i = 0; i < instNames.size(); i++) {
@@ -83,10 +118,9 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
         }
         p->instNum = instNameFounded;
         p->totalNum = instNames.size();
-        
         //push vector
         pulses.push_back(p);
-
-        instNamesBuffer.push_back(inst);
+        
+        instBuffer.push_back(inst);
     }
 }

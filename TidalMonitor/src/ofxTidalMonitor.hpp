@@ -10,6 +10,7 @@ public:
     ofxTidalMonitor();
     void update();
     void draw();
+    void drawGrid();
     void oscReceiveEvent(ofxOscMessage &m);
 
     ofxThreadedOSCReceiver receiver;
@@ -18,6 +19,6 @@ public:
     float preTime;
     vector<TidalPulse *> pulses;
     vector<string> instNames;
-    vector<string> instNamesBuffer;
+    vector<string> instBuffer;
     float span;
 };
