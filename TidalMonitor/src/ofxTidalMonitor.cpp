@@ -8,25 +8,12 @@ ofxTidalMonitor::ofxTidalMonitor(){
     receiver.start();
     started = false;
     startTime = 0;
-    span = ofGetWidth()/8000.0;
+    span = ofGetWidth()/4000.0;
     ofSetLogLevel(OF_LOG_SILENT);
+    beatCount = 0;
 }
 
 void ofxTidalMonitor::update(){
-    /*
-     for (int i = 0; i < instNames.size(); i++) {
-     //serch inst name in instBuffer
-     vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), instNames[i]);
-     size_t index = std::distance(instBuffer.begin(), iter);
-     //if not erase it
-     if(index == instBuffer.size()){
-     instNames.erase(instNames.begin() + i);
-     }
-     }
-     if(instBuffer.size()>instNames.size() * 4){
-     instBuffer.erase(instBuffer.begin());
-     }
-     */
     if(instBuffer.size() >= instNames.size()){
         for (int i = 0; i < instNames.size(); i++) {
             //serch inst name in instBuffer
@@ -42,19 +29,14 @@ void ofxTidalMonitor::update(){
 
 void ofxTidalMonitor::draw(){
     drawGrid();
-
+    
     ofSetColor(255);
     for (int i = 0; i < pulses.size(); i++) {
         pulses[i]->draw();
-        if(pulses[i]->time * pulses[i]->span > (ofGetWidth()-20)){
-            pulses.clear();
-            startTime = ofGetElapsedTimeMillis();
-            instBuffer.clear();
-            break;
-        }
     }
     
     //log
+    /*
     cout << "instNames : ";
     for (int i = 0; i < instNames.size(); i++) {
         cout << instNames[i] << ", ";
@@ -65,6 +47,7 @@ void ofxTidalMonitor::draw(){
         cout << instBuffer[i] << ", ";
     }
     cout << endl;
+    */
 }
 
 void ofxTidalMonitor::drawGrid(){
@@ -77,11 +60,11 @@ void ofxTidalMonitor::drawGrid(){
     for (int i = 0; i < 32; i++) {
         ofDrawLine(ofGetWidth()/32 * i, 0, ofGetWidth()/32 * i, ofGetHeight());
     }
-    ofSetColor(80, 80, 200);
+    ofSetColor(127);
     for (int i = 0; i < 16; i++) {
         ofDrawLine(ofGetWidth()/16 * i, 0, ofGetWidth()/16 * i, ofGetHeight());
     }
-    ofSetColor(220, 80, 80);
+    ofSetColor(255);
     for (int i = 0; i < 8; i++) {
         ofDrawLine(ofGetWidth()/8 * i, 0, ofGetWidth()/8 * i, ofGetHeight());
     }
@@ -89,13 +72,22 @@ void ofxTidalMonitor::drawGrid(){
 
 void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/play2"){
+        float currentTime = ofGetElapsedTimeMillis() - startTime;
+
+        if (currentTime >= 4000) {
+            pulses.clear();
+            startTime = 0;
+            currentTime = 0;
+            instBuffer.clear();
+        }
+        
         TidalPulse *p = new TidalPulse(span);
         
         //calc currentTime
         if (startTime == 0) {
             startTime = ofGetElapsedTimeMillis();
         }
-        float currentTime = ofGetElapsedTimeMillis() - startTime;
+        
         p->time = currentTime;
         
         //get inst name
