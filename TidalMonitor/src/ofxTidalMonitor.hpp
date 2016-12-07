@@ -21,5 +21,5 @@ public:
     vector<string> instNames;
     vector<string> instBuffer;
     float span;
-    int beatCount;
+    int syncCount;
 };

@@ -10,7 +10,7 @@ ofxTidalMonitor::ofxTidalMonitor(){
     startTime = 0;
     span = ofGetWidth()/4000.0;
     ofSetLogLevel(OF_LOG_SILENT);
-    beatCount = 0;
+    syncCount = 0;
 }
 
 void ofxTidalMonitor::update(){
@@ -37,17 +37,17 @@ void ofxTidalMonitor::draw(){
     
     //log
     /*
-    cout << "instNames : ";
-    for (int i = 0; i < instNames.size(); i++) {
-        cout << instNames[i] << ", ";
-    }
-    cout << endl;
-    cout << "instBuffer : ";
-    for (int i = 0; i < instBuffer.size(); i++) {
-        cout << instBuffer[i] << ", ";
-    }
-    cout << endl;
-    */
+     cout << "instNames : ";
+     for (int i = 0; i < instNames.size(); i++) {
+     cout << instNames[i] << ", ";
+     }
+     cout << endl;
+     cout << "instBuffer : ";
+     for (int i = 0; i < instBuffer.size(); i++) {
+     cout << instBuffer[i] << ", ";
+     }
+     cout << endl;
+     */
 }
 
 void ofxTidalMonitor::drawGrid(){
@@ -72,23 +72,14 @@ void ofxTidalMonitor::drawGrid(){
 
 void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/play2"){
-        float currentTime = ofGetElapsedTimeMillis() - startTime;
-
+        /*
         if (currentTime >= 4000-50) {
             pulses.clear();
             startTime = 0;
             currentTime = 0;
             instBuffer.clear();
         }
-        
-        TidalPulse *p = new TidalPulse(span);
-        
-        //calc currentTime
-        if (startTime == 0) {
-            startTime = ofGetElapsedTimeMillis();
-        }
-        
-        p->time = currentTime;
+        */
         
         //get inst name
         string inst = "";
@@ -97,22 +88,45 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
                 inst = m.getArgAsString(i+1);
             }
         }
-        //search instname from list
-        int instNameFounded = -1;
-        for (int i = 0; i < instNames.size(); i++) {
-            if(instNames[i] == inst){
-                instNameFounded = i;
-            }
-        }
-        if (instNameFounded == -1) {
-            instNames.push_back(inst);
-            instNameFounded = instNames.size()-1;
-        }
-        p->instNum = instNameFounded;
-        p->totalNum = instNames.size();
-        //push vector
-        pulses.push_back(p);
         
-        instBuffer.push_back(inst);
+        if (inst == "sync") {
+            syncCount++;
+            if (syncCount == 4) {
+                startTime = 0;
+                syncCount = 0;
+            }
+        } else {
+            //calc currentTime
+            float currentTime;
+            if (startTime == 0) {
+                startTime = ofGetElapsedTimeMillis();
+                currentTime = 0;
+                pulses.clear();
+                instBuffer.clear();
+            } else {
+                currentTime = ofGetElapsedTimeMillis() - startTime;
+            }
+            
+            TidalPulse *p = new TidalPulse(span);
+            p->time = currentTime;
+            
+            //search instname from list
+            int instNameFounded = -1;
+            for (int i = 0; i < instNames.size(); i++) {
+                if(instNames[i] == inst){
+                    instNameFounded = i;
+                }
+            }
+            if (instNameFounded == -1) {
+                instNames.push_back(inst);
+                instNameFounded = instNames.size()-1;
+            }
+            p->instNum = instNameFounded;
+            p->totalNum = instNames.size();
+            //push vector
+            pulses.push_back(p);
+            
+            instBuffer.push_back(inst);
+        }
     }
 }
