@@ -74,7 +74,7 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/play2"){
         float currentTime = ofGetElapsedTimeMillis() - startTime;
 
-        if (currentTime >= 4000-10) {
+        if (currentTime >= 4000-50) {
             pulses.clear();
             startTime = 0;
             currentTime = 0;
