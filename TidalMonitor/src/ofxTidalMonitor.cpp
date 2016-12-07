@@ -14,17 +14,7 @@ ofxTidalMonitor::ofxTidalMonitor(){
 }
 
 void ofxTidalMonitor::update(){
-    if(instBuffer.size() >= instNames.size()){
-        for (int i = 0; i < instNames.size(); i++) {
-            //serch inst name in instBuffer
-            vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), instNames[i]);
-            size_t index = std::distance(instBuffer.begin(), iter);
-            //if not erase it
-            if(index == instBuffer.size()){
-                instNames.erase(instNames.begin() + i);
-            }
-        }
-    }
+
 }
 
 void ofxTidalMonitor::draw(){
@@ -71,16 +61,7 @@ void ofxTidalMonitor::drawGrid(){
 }
 
 void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
-    if(m.getAddress() == "/play2"){
-        /*
-        if (currentTime >= 4000-50) {
-            pulses.clear();
-            startTime = 0;
-            currentTime = 0;
-            instBuffer.clear();
-        }
-        */
-        
+    if(m.getAddress() == "/play2"){        
         //get inst name
         string inst = "";
         for (int i = 0; i < m.getNumArgs(); i++) {
@@ -95,6 +76,19 @@ void ofxTidalMonitor::oscReceiveEvent(ofxOscMessage &m){
                 startTime = 0;
                 syncCount = 0;
             }
+            
+            if(instBuffer.size() >= instNames.size()){
+                for (int i = 0; i < instNames.size(); i++) {
+                    //serch inst name in instBuffer
+                    vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), instNames[i]);
+                    size_t index = std::distance(instBuffer.begin(), iter);
+                    //if not erase it
+                    if(index == instBuffer.size()){
+                        instNames.erase(instNames.begin() + i);
+                    }
+                }
+            }
+            
         } else {
             //calc currentTime
             float currentTime;
