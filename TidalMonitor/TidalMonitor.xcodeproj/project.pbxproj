@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
+		185849851DF83D61008B7775 /* ofxTidalDrop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185849831DF83D61008B7775 /* ofxTidalDrop.cpp */; };
+		185849881DF83DF6008B7775 /* TidalDrop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185849861DF83DF6008B7775 /* TidalDrop.cpp */; };
 		18A2CA951DF79B1D00F8C9DD /* ofxTidalMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */; };
 		18A560291DF65FC500CFA128 /* TidalPulse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A560271DF65FC500CFA128 /* TidalPulse.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
@@ -59,6 +61,10 @@
 		00D6D32B84B099226431108C /* ofxOsc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOsc.h; path = ../../../addons/ofxOsc/src/ofxOsc.h; sourceTree = SOURCE_ROOT; };
 		029684CF678F70F6D3537A29 /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscOutboundPacketStream.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.h; sourceTree = SOURCE_ROOT; };
 		0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxOscParameterSync.cpp; path = ../../../addons/ofxOsc/src/ofxOscParameterSync.cpp; sourceTree = SOURCE_ROOT; };
+		185849831DF83D61008B7775 /* ofxTidalDrop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalDrop.cpp; sourceTree = "<group>"; };
+		185849841DF83D61008B7775 /* ofxTidalDrop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalDrop.hpp; sourceTree = "<group>"; };
+		185849861DF83DF6008B7775 /* TidalDrop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TidalDrop.cpp; sourceTree = "<group>"; };
+		185849871DF83DF6008B7775 /* TidalDrop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TidalDrop.hpp; sourceTree = "<group>"; };
 		18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalMonitor.cpp; sourceTree = "<group>"; };
 		18A2CA941DF79B1D00F8C9DD /* ofxTidalMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalMonitor.hpp; sourceTree = "<group>"; };
 		18A560271DF65FC500CFA128 /* TidalPulse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TidalPulse.cpp; sourceTree = "<group>"; };
@@ -250,6 +256,10 @@
 				18A560281DF65FC500CFA128 /* TidalPulse.hpp */,
 				18A2CA931DF79B1D00F8C9DD /* ofxTidalMonitor.cpp */,
 				18A2CA941DF79B1D00F8C9DD /* ofxTidalMonitor.hpp */,
+				185849861DF83DF6008B7775 /* TidalDrop.cpp */,
+				185849871DF83DF6008B7775 /* TidalDrop.hpp */,
+				185849831DF83D61008B7775 /* ofxTidalDrop.cpp */,
+				185849841DF83D61008B7775 /* ofxTidalDrop.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -373,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185849851DF83D61008B7775 /* ofxTidalDrop.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
@@ -385,6 +396,7 @@
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
+				185849881DF83DF6008B7775 /* TidalDrop.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,

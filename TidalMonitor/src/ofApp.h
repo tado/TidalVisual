@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxTidalMonitor.hpp"
+#include "ofxTidalDrop.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -22,5 +23,6 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofxTidalMonitor *tidalMonitor;
+    //ofxTidalMonitor *tidalMonitor;
+    ofxTidalDrop *tidalDrop;
 };
