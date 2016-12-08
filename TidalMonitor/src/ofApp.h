@@ -1,8 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxTidalMonitor.hpp"
-#include "ofxTidalDrop.hpp"
+#include "ofxStateMachine.h"
+#include "SharedData.h"
+#include "TidalOsc.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -10,6 +11,7 @@ public:
     void setup();
     void update();
     void draw();
+    void oscEvent();
     
     void keyPressed(int key);
     void keyReleased(int key);
@@ -23,6 +25,6 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    //ofxTidalMonitor *tidalMonitor;
-    ofxTidalDrop *tidalDrop;
+    TidalOsc *osc;
+    itg::ofxStateMachine<SharedData> stateMachine;
 };

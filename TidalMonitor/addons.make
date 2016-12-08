@@ -1,2 +1,3 @@
 ofxOsc
+ofxStateMachine
 ofxThreadedOSCReceiver

@@ -3,26 +3,22 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-    ofSetBackgroundAuto(false);
     ofSetFrameRate(60);
-    //ofSetVerticalSync(false);
-    
-    //tidalMonitor = new ofxTidalMonitor();
-    tidalDrop = new ofxTidalDrop();
+    ofSetLogLevel(OF_LOG_SILENT);
+    osc = new TidalOsc(3333);
 }
 
-//--------------------------------------------------------------
 void ofApp::update(){
-    //tidalMonitor->update();
-    tidalDrop->update();
+
 }
 
-//--------------------------------------------------------------
 void ofApp::draw(){
     ofSetColor(0, 32);
     ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-    //tidalMonitor->draw();
-    tidalDrop->draw();
+}
+
+void ofApp::oscEvent(){
+ 
 }
 
 //--------------------------------------------------------------
