@@ -9,6 +9,7 @@ public:
     virtual void setup();
     void update();
     void draw();
+    void drawGrid();
     void stateExit();
     void stateEnter();
     string getName();
