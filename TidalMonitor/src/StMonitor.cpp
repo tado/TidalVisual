@@ -17,7 +17,7 @@ void StMonitor::draw(){
         //float y = ofMap(app->osc->notes[i].instNum, 0, app->osc->instNames.size(), 0, ofGetWidth());
         float height = ofGetHeight() / app->osc->instNames.size();
         float y = height * app->osc->notes[i].instNum;
-        ofDrawRectangle(x, y, 2, height);
+        ofDrawRectangle(x, y, ofGetWidth()/256.0, height);
     }
     
 }

@@ -31,7 +31,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
         } else {
             //calculate beat count
             TidalNote n;
-            n.beatCount = (syncCount * 4) + round((ofGetElapsedTimeMillis() - syncTime) * 32.0 / float(syncLength)) / 8.0;
+            n.beatCount = (syncCount * 4) + round((ofGetElapsedTimeMillis() - syncTime) * 64.0 / float(syncLength)) / 16.0;
             
             //generate inst name list
             vector<string>::iterator iter = find(instNames.begin(), instNames.end(), inst);
