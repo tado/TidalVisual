@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "StMonitor.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -6,6 +7,9 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofSetLogLevel(OF_LOG_SILENT);
     osc = new TidalOsc(3333);
+    
+    stateMachine.addState<StMonitor>();
+    stateMachine.changeState("StMonitor");
 }
 
 void ofApp::update(){
@@ -13,8 +17,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    ofSetColor(0, 32);
-    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+
 }
 
 void ofApp::oscEvent(){
