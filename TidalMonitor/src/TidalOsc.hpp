@@ -16,10 +16,7 @@ public:
     void oscReceiveEvent(ofxOscMessage &m);
     void showLog();
 
-    string inst;
-    //int instNum;
-    //float beatCount;
-    
+    string inst;    
     int lastSyncTime;
     int syncTime;
     int syncCount;

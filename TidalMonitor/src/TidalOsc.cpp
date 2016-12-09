@@ -19,12 +19,12 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             }
         }
         if (inst == "sync") {
+            //calculate sync length
             syncCount++;
             syncCount = syncCount % 8;
             if (syncCount == 0) {
                 notes.clear();
             }
-            //cout << "--------------- sync -------------" << endl;
             syncTime = ofGetElapsedTimeMillis();
             syncLength = syncTime - lastSyncTime;
             lastSyncTime = syncTime;
