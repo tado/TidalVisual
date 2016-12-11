@@ -26,4 +26,7 @@ public:
     
     ofxThreadedOSCReceiver receiver;
     vector<TidalNote> notes;
+    
+    int noteCount;
+    int totalNoteCount;
 };

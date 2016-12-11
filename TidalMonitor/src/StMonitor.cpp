@@ -6,7 +6,7 @@ void StMonitor::setup(){
     top = 20;
     left= 20;
     width = ofGetWidth() - (left * 2);
-    height = ofGetHeight() - (top * 2);
+    height = ofGetHeight()/2 - (top * 2);
 }
 
 void StMonitor::update(){
@@ -27,6 +27,8 @@ void StMonitor::draw(){
         ofDrawRectangle(x, y, width/256.0, h);
     }
     ofPopMatrix();
+    
+    ofDrawBitmapString("Note Num = " + ofToString(app->osc->totalNoteCount), 20, ofGetHeight()/2);
 }
 
 void StMonitor::drawGrid(){

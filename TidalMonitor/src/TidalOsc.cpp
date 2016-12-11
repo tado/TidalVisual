@@ -9,6 +9,9 @@ TidalOsc::TidalOsc(int port){
     syncCount = 0;
     resolution = 1024.0;
     inst = "";
+    
+    noteCount = 0;
+    totalNoteCount = 0;
 }
 
 void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
@@ -24,7 +27,11 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             syncCount++;
             syncCount = syncCount % 8;
             
+            totalNoteCount = noteCount;
+            noteCount = 0;
+
             if (syncCount == 0) {
+
                 notes.clear();
                 instNames.clear();
             }
@@ -50,6 +57,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
                 }
             }
             notes.push_back(n);
+            noteCount++;
         }
     }
 }
