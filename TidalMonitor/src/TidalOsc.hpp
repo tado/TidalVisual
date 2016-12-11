@@ -23,6 +23,8 @@ public:
     int syncCount;
     int syncLength;
     float resolution;
+    vector<float> cycleBeatCounts;
+    int cycleNoteNum;
     vector<string> instNames;
     
     ofxThreadedOSCReceiver receiver;

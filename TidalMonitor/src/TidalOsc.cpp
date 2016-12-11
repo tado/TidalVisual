@@ -29,6 +29,8 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             if(n.beatCount > 32){
                 n.beatCount -= 32;
             }
+            cycleBeatCounts.push_back(n.beatCount);
+            cycleNoteNum++;
             
             //generate inst name list
             vector<string>::iterator iter = find(instNames.begin(), instNames.end(), inst);
@@ -50,35 +52,37 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             syncCount++;
             syncCount = syncCount % 8;
             
+            //calculate note stats
+            calcStat();
+
             //clear notes and inst names
-            if (syncCount == 0) {
-                //calculate note stats
-                calcStat();
-                
+            if (syncCount % 8 == 0) {
                 notes.clear();
                 instNames.clear();
             }
+            
             //calc sync length
             syncTime = ofGetElapsedTimeMillis();
             syncLength = syncTime - lastSyncTime;
             lastSyncTime = syncTime;
-
         }
     }
 }
 
 void TidalOsc::calcStat(){
     float syncopation[] = {0, 3, 2, 3, 1, 3, 2, 3};
-    totalNoteCount = noteCount / 8;
+    totalNoteCount = noteCount;
     noteCount = 0;
     syncopationScore = 0;
     int currentSyncopation = 0;
     int score;
-    for (int i = 0; i < notes.size(); i++) {
-        score =  int(round(round(notes[i].beatCount * 8) / 4.0)) % 8;
+    for (int i = 0; i < cycleBeatCounts.size(); i++) {
+        score =  int(round(round(cycleBeatCounts[i] * 8) / 4.0)) % 8;
         currentSyncopation += syncopation[score];
     }
-    syncopationScore = currentSyncopation / float(notes.size());
+    syncopationScore = currentSyncopation / float(cycleNoteNum);
+    cycleBeatCounts.clear();
+    cycleNoteNum = 0;
 }
 
 void TidalOsc::showLog(){
