@@ -28,7 +28,8 @@ void StMonitor::draw(){
     }
     ofPopMatrix();
     
-    ofDrawBitmapString("Note Num = " + ofToString(app->osc->totalNoteCount), 20, ofGetHeight()/2);
+    ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->osc->totalNoteCount), 20, ofGetHeight()/2);
+    ofDrawBitmapString("Syncopation score = " + ofToString(app->osc->syncopationScore), 20, ofGetHeight()/2 + 20);
 }
 
 void StMonitor::drawGrid(){

@@ -14,6 +14,7 @@ class TidalOsc {
 public:
     TidalOsc(int port);
     void oscReceiveEvent(ofxOscMessage &m);
+    void calcStat();
     void showLog();
 
     string inst;    
@@ -29,4 +30,5 @@ public:
     
     int noteCount;
     int totalNoteCount;
+    float syncopationScore;
 };
