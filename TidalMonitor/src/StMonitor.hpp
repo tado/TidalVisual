@@ -16,4 +16,8 @@ public:
     
     string name;
     ofApp *app;
+    int top;
+    int left;
+    int width;
+    int height;
 };

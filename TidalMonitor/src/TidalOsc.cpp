@@ -47,7 +47,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
                 }
             }
             notes.push_back(n);
-            showLog();
+            //showLog();
         }
     }
 }
