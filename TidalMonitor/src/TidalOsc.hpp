@@ -21,6 +21,7 @@ public:
     int syncTime;
     int syncCount;
     int syncLength;
+    float resolution;
     vector<string> instNames;
     
     ofxThreadedOSCReceiver receiver;

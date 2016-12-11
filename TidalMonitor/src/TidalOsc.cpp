@@ -7,6 +7,7 @@ TidalOsc::TidalOsc(int port){
     receiver.start();
     lastSyncTime = 0;
     syncCount = 0;
+    resolution = 1024.0;
     inst = "";
 }
 
@@ -22,8 +23,10 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             //calculate sync length
             syncCount++;
             syncCount = syncCount % 8;
+            
             if (syncCount == 0) {
                 notes.clear();
+                instNames.clear();
             }
             syncTime = ofGetElapsedTimeMillis();
             syncLength = syncTime - lastSyncTime;
@@ -31,7 +34,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
         } else {
             //calculate beat count
             TidalNote n;
-            n.beatCount = (syncCount * 4) + round((ofGetElapsedTimeMillis() - syncTime) * 64.0 / float(syncLength)) / 16.0;
+            n.beatCount = (syncCount * 4) + round((ofGetElapsedTimeMillis() - syncTime) * (resolution * 4.0) / float(syncLength)) / resolution;
             
             //generate inst name list
             vector<string>::iterator iter = find(instNames.begin(), instNames.end(), inst);
@@ -47,7 +50,6 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
                 }
             }
             notes.push_back(n);
-            //showLog();
         }
     }
 }
