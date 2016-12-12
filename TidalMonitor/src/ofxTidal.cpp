@@ -4,7 +4,7 @@ ofxTidal::ofxTidal(int port){
     receiver.setup(port);
     ofAddListener(receiver.messageReceived, this, &ofxTidal::oscReceiveEvent);
     receiver.start();
-    resolution = 32;
+    resolution = 16;
 }
 
 
@@ -42,7 +42,6 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
                 syncTime = ofGetElapsedTimeMillis();
                 syncLength = syncTime - lastSyncTime;
                 lastSyncTime = syncTime;
-                //syncCount = syncCount % 8;
             } else {
                 int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
                 //set inst num
@@ -55,7 +54,8 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
                 }
                 
                 TidalNote n;
-                n.beatCount = ((syncCount*resolution) + beatCount) % (resolution*8);
+                //n.beatCount = ((syncCount*resolution) + beatCount) % (resolution*8);
+                n.beatCount = ((syncCount*resolution) + beatCount);
                 n.instNum = instNum;
                 notes.push_back(n);
             }

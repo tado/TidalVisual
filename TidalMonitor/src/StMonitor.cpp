@@ -30,7 +30,7 @@ void StMonitor::draw(){
             h = height / app->tidal->instBuffer.size();
         }
         float y = h * app->tidal->notes[i].instNum;
-        ofDrawRectangle(x, y, width/app->tidal->resolution/16.0, h);
+        ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
     }
 
     ofPopMatrix();
