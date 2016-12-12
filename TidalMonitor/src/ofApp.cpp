@@ -6,7 +6,7 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetFrameRate(60);
     ofSetLogLevel(OF_LOG_SILENT);
-    osc = new TidalOsc(3333);
+    tidal = new ofxTidal(3333);
     
     stateMachine.addState<StMonitor>();
     stateMachine.changeState("StMonitor");

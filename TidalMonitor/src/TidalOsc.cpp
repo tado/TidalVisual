@@ -15,6 +15,35 @@ TidalOsc::TidalOsc(int port){
 }
 
 void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
+    if(m.getAddress() == "/n_go"){
+        //calculate beat count
+        TidalNote n;
+        int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * 32.0);
+        n.beatCount = beatCount + syncCount * 32;
+        
+        cycleBeatCounts.push_back(beatCount % 32);
+        cycleNoteNum++;
+        
+        //generate inst name list
+        vector<string>::iterator iter = find(instNames.begin(), instNames.end(), inst);
+        size_t index = std::distance(instNames.begin(), iter);
+        if(index == instNames.size()){
+            instNames.push_back(inst);
+        }
+        /*
+        //set inst num
+        for (int i = 0; i < instNames.size(); i++) {
+            if (inst == instNames[i]){
+                n.instNum = i;
+                break;
+            }
+        }
+        */
+        n.instNum = 0;
+        //notes.push_back(n);
+        noteCount++;
+    }
+
     if(m.getAddress() == "/play2"){
         //get inst name
         for (int i = 0; i < m.getNumArgs(); i++) {
@@ -31,7 +60,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             
             //clear notes and inst names
             if (syncCount % 8 == 0) {
-                notes.clear();
+                //notes.clear();
                 instNames.clear();
             }
             
@@ -40,14 +69,11 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             syncLength = syncTime - lastSyncTime;
             lastSyncTime = syncTime;
         } else {
+            /*
             //calculate beat count
             TidalNote n;
             int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * 16.0);
-            /*
-            if(beatCount >= 16){
-                beatCount -= 16;
-            }
-            */
+
             if(cycleBeatCounts.size() > 0){
                 if (cycleBeatCounts[cycleBeatCounts.size()-1] == beatCount) {
                     beatCount++;
@@ -76,6 +102,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             notes.push_back(n);
             noteCount++;
             showLog();
+            */
         }
     }
 }
@@ -105,14 +132,13 @@ void TidalOsc::showLog(){
      cout << instNames[i] << ", ";
      }
      cout << endl;
-     */
+    
     cout << "notes = ";
     for (int i = 0; i < notes.size(); i++) {
         cout << notes[i].beatCount << ", ";
     }
     cout << endl;
-    
-    /*
+
      cout << "inst: " << inst
      //<< ", inst num : " << instNum
      << ", time : " << ofGetElapsedTimeMillis()

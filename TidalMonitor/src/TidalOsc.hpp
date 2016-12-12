@@ -4,11 +4,13 @@
 #include "ofxOsc.h"
 #include "ofxThreadedOSCReceiver.h"
 
+/*
 class TidalNote {
 public:
     int instNum;
     float beatCount;
 };
+*/
 
 class TidalOsc {
 public:
@@ -28,7 +30,7 @@ public:
     vector<string> instNames;
     
     ofxThreadedOSCReceiver receiver;
-    vector<TidalNote> notes;
+    //vector<TidalNote> notes;
     
     int noteCount;
     int totalNoteCount;
