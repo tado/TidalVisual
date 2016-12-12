@@ -21,15 +21,37 @@ void StMonitor::draw(){
 
     ofSetColor(255);
     for (int i = 0; i < app->osc->notes.size(); i++) {
-        float x = ofMap(app->osc->notes[i].beatCount, 0, 32, 0, width);
+        float x = ofMap(app->osc->notes[i].beatCount, 0, 64, 0, width);
         float h = height / app->osc->instNames.size();
         float y = h * app->osc->notes[i].instNum;
         ofDrawRectangle(x, y, width/256.0, h);
     }
     ofPopMatrix();
     
-    ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->osc->totalNoteCount), 20, ofGetHeight()/2);
-    ofDrawBitmapString("Syncopation score = " + ofToString(app->osc->syncopationScore), 20, ofGetHeight()/2 + 20);
+    float x, y, width, height;
+    float graphWidth;
+    
+    x = 20;
+    y = ofGetHeight()/2 + 20;
+    width = ofGetWidth() - 40;
+    height = 20;
+    
+    graphWidth = ofMap(app->osc->totalNoteCount, 0, 200, 0, width);
+    ofSetColor(63);
+    ofDrawRectangle(x, y, width, height);
+    ofSetColor(63, 127, 255);
+    ofDrawRectangle(x, y, graphWidth, height);
+    
+    y = ofGetHeight()/2 + 70;
+    graphWidth = ofMap(app->osc->syncopationScore, 5.0, 0.0, 0, width);
+    ofSetColor(63);
+    ofDrawRectangle(x, y, width, height);
+    ofSetColor(255, 127, 63);
+    ofDrawRectangle(x, y, graphWidth, height);
+    
+    ofSetColor(255);
+    ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->osc->totalNoteCount), 20, ofGetHeight()/2 + 15);
+    ofDrawBitmapString("Syncopation score = " + ofToString(5 - app->osc->syncopationScore), 20, ofGetHeight()/2 + 65);
 }
 
 void StMonitor::drawGrid(){
