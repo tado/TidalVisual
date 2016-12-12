@@ -22,14 +22,40 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
                 inst = m.getArgAsString(i+1);
             }
         }
-        if (inst != "sync") {
+        if (inst == "sync") {
+            syncCount++;
+            syncCount = syncCount % 8;
+            
+            //calculate note stats
+            calcStat();
+            
+            //clear notes and inst names
+            if (syncCount % 8 == 0) {
+                notes.clear();
+                instNames.clear();
+            }
+            
+            //calc sync length
+            syncTime = ofGetElapsedTimeMillis();
+            syncLength = syncTime - lastSyncTime;
+            lastSyncTime = syncTime;
+        } else {
             //calculate beat count
             TidalNote n;
-            int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * 8.0);
-            n.beatCount = beatCount + syncCount * 8;
-            if(n.beatCount > 63){
-                n.beatCount -= 64;
+            int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * 16.0);
+            /*
+            if(beatCount >= 16){
+                beatCount -= 16;
             }
+            */
+            if(cycleBeatCounts.size() > 0){
+                if (cycleBeatCounts[cycleBeatCounts.size()-1] == beatCount) {
+                    beatCount++;
+                }
+            }
+            
+            n.beatCount = beatCount + syncCount * 16;
+            
             cycleBeatCounts.push_back(beatCount % 16);
             cycleNoteNum++;
             
@@ -49,26 +75,7 @@ void TidalOsc::oscReceiveEvent(ofxOscMessage &m){
             }
             notes.push_back(n);
             noteCount++;
-            //showLog();
-        } else {
-            syncCount++;
-            syncCount = syncCount % 8;
-            
-            //calculate note stats
-            //if (syncCount % 2 == 0) {
-            calcStat();
-            //}
-            
-            //clear notes and inst names
-            if (syncCount % 8 == 0) {
-                notes.clear();
-                instNames.clear();
-            }
-            
-            //calc sync length
-            syncTime = ofGetElapsedTimeMillis();
-            syncLength = syncTime - lastSyncTime;
-            lastSyncTime = syncTime;
+            showLog();
         }
     }
 }
@@ -81,11 +88,11 @@ void TidalOsc::calcStat(){
     int currentSyncopation = 0;
     int score;
     for (int i = 0; i < cycleBeatCounts.size(); i++) {
-        cout << cycleBeatCounts[i] << ", ";
+        //cout << cycleBeatCounts[i] << ", ";
         score =  cycleBeatCounts[i];
         currentSyncopation += syncopation[score];
     }
-    cout << endl;
+    //cout << endl;
     syncopationScore = currentSyncopation / float(cycleNoteNum);
     cycleBeatCounts.clear();
     cycleNoteNum = 0;

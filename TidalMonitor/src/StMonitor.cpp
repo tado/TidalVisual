@@ -21,7 +21,7 @@ void StMonitor::draw(){
 
     ofSetColor(255);
     for (int i = 0; i < app->osc->notes.size(); i++) {
-        float x = ofMap(app->osc->notes[i].beatCount, 0, 64, 0, width);
+        float x = ofMap(app->osc->notes[i].beatCount, 0, 128, 0, width);
         float h = height / app->osc->instNames.size();
         float y = h * app->osc->notes[i].instNum;
         ofDrawRectangle(x, y, width/256.0, h);
