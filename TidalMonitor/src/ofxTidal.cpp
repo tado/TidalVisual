@@ -25,23 +25,24 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
         if(index == instBuffer.size() && inst != "sync"){
             instBuffer.push_back(inst);
         }
+        if(inst == "sync"){
+            syncCount++;
+            if (syncCount == 8) {
+                notes.clear();
+                instBuffer.clear();
+                syncCount = 0;
+            }
+        }
     }
 
     //que inst
     if(m.getAddress() == "/n_go"){
         if (instNames.size() > 0) {
             if (instNames[0] == "sync") {
-                syncCount++;
-                syncCount = syncCount % 8;
-
                 syncTime = ofGetElapsedTimeMillis();
                 syncLength = syncTime - lastSyncTime;
                 lastSyncTime = syncTime;
-                
-                if (syncCount % 8 == 0) {
-                    notes.clear();
-                    //instBuffer.clear();
-                }
+                //syncCount = syncCount % 8;
             } else {
                 int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
                 //set inst num
