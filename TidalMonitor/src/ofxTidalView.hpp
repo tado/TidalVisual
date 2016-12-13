@@ -11,9 +11,9 @@ public:
 };
 
 
-class ofxTidal {
+class ofxTidalView {
 public:
-    ofxTidal(int port);
+    ofxTidalView(int port);
     void oscReceiveEvent(ofxOscMessage &m);
     void calcStat();
     

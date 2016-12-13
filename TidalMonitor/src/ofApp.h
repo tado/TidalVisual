@@ -4,7 +4,7 @@
 #include "ofxStateMachine.h"
 #include "SharedData.h"
 //#include "TidalOsc.hpp"
-#include "ofxTidal.hpp"
+#include "ofxTidalView.hpp"
 
 class ofApp : public ofBaseApp{
     
@@ -26,6 +26,6 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofxTidal *tidal;
+    ofxTidalView *tidal;
     itg::ofxStateMachine<SharedData> stateMachine;
 };

@@ -1,8 +1,8 @@
-#include "ofxTidal.hpp"
+#include "ofxTidalView.hpp"
 
-ofxTidal::ofxTidal(int port){
+ofxTidalView::ofxTidalView(int port){
     receiver.setup(port);
-    ofAddListener(receiver.messageReceived, this, &ofxTidal::oscReceiveEvent);
+    ofAddListener(receiver.messageReceived, this, &ofxTidalView::oscReceiveEvent);
     receiver.start();
     resolution = 16;
     notePerCycle = 0;
@@ -11,7 +11,7 @@ ofxTidal::ofxTidal(int port){
 }
 
 
-void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
+void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     //buffer inst name
     string inst;
     if(m.getAddress() == "/play2"){
@@ -75,7 +75,7 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
     }
 }
 
-void ofxTidal::calcStat(){
+void ofxTidalView::calcStat(){
     notePerCycle = noteCount;
     noteCount = 0;
     syncopationPerCycle = 0;
