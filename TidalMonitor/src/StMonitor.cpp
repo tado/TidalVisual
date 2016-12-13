@@ -32,7 +32,7 @@ void StMonitor::draw(){
         float y = h * app->tidal->notes[i].instNum;
         ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
     }
-
+    
     ofPopMatrix();
     
     float x, y, width, height;
@@ -43,24 +43,22 @@ void StMonitor::draw(){
     width = ofGetWidth() - 40;
     height = 20;
     
-    /*
-     graphWidth = ofMap(app->tidal->totalNoteCount, 0, 200, 0, width);
-     ofSetColor(63);
-     ofDrawRectangle(x, y, width, height);
-     ofSetColor(63, 127, 255);
-     ofDrawRectangle(x, y, graphWidth, height);
-     
+    graphWidth = ofMap(app->tidal->notePerCycle, 0, 100, 0, width);
+    ofSetColor(63);
+    ofDrawRectangle(x, y, width, height);
+    ofSetColor(63, 127, 255);
+    ofDrawRectangle(x, y, graphWidth, height);
+    ofSetColor(255);
+    ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->tidal->notePerCycle), 20, ofGetHeight()/2 + 15);
+    
      y = ofGetHeight()/2 + 70;
-     graphWidth = ofMap(app->tidal->syncopationScore, 5.0, 0.0, 0, width);
+     graphWidth = ofMap(app->tidal->syncopationPerCycle, 5.0, 1.0, 0, width);
      ofSetColor(63);
      ofDrawRectangle(x, y, width, height);
      ofSetColor(255, 127, 63);
      ofDrawRectangle(x, y, graphWidth, height);
-     
      ofSetColor(255);
-     ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->tidal->totalNoteCount), 20, ofGetHeight()/2 + 15);
-     ofDrawBitmapString("Syncopation score = " + ofToString(5 - app->tidal->syncopationScore), 20, ofGetHeight()/2 + 65);
-     */
+     ofDrawBitmapString("Syncopation score = " + ofToString(app->tidal->syncopationPerCycle), 20, ofGetHeight()/2 + 65);
 }
 
 void StMonitor::drawGrid(){

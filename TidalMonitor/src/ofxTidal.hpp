@@ -15,6 +15,7 @@ class ofxTidal {
 public:
     ofxTidal(int port);
     void oscReceiveEvent(ofxOscMessage &m);
+    void calcStat();
     
     ofxThreadedOSCReceiver receiver;
     vector<string> instNames;
@@ -25,6 +26,10 @@ public:
     int syncTime;
     int syncCount;
     int syncLength;
-    
     int resolution;
+    
+    int noteCount;
+    int notePerCycle;
+    vector<float> syncopations;
+    float syncopationPerCycle;
 };

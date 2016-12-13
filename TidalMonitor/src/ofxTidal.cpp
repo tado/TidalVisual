@@ -5,6 +5,9 @@ ofxTidal::ofxTidal(int port){
     ofAddListener(receiver.messageReceived, this, &ofxTidal::oscReceiveEvent);
     receiver.start();
     resolution = 16;
+    notePerCycle = 0;
+    noteCount = 0;
+    syncopationPerCycle = 0;
 }
 
 
@@ -27,6 +30,7 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
         }
         if(inst == "sync"){
             syncCount++;
+            calcStat();
             if (syncCount == 8) {
                 notes.clear();
                 instBuffer.clear();
@@ -34,7 +38,7 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
             }
         }
     }
-
+    
     //que inst
     if(m.getAddress() == "/n_go"){
         if (instNames.size() > 0) {
@@ -44,6 +48,12 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
                 lastSyncTime = syncTime;
             } else {
                 int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
+                beatCount = beatCount % resolution;
+                
+                //calc syncopation
+                float syncopation[16] = {5,1,2,1,3,1,2,1,4,1,2,1,3,1,2,1};
+                syncopations.push_back(syncopation[beatCount]);
+                
                 //set inst num
                 int instNum;
                 for (int i = 0; i < instBuffer.size(); i++) {
@@ -58,8 +68,23 @@ void ofxTidal::oscReceiveEvent(ofxOscMessage &m){
                 n.beatCount = ((syncCount*resolution) + beatCount);
                 n.instNum = instNum;
                 notes.push_back(n);
+                noteCount++;
             }
             instNames.erase(instNames.begin());
         }
     }
 }
+
+void ofxTidal::calcStat(){
+    notePerCycle = noteCount;
+    noteCount = 0;
+    syncopationPerCycle = 0;
+    for (int i = 0; i < syncopations.size(); i++) {
+        cout << syncopations[i] << ",";
+        syncopationPerCycle += syncopations[i];
+    }
+    cout << endl;
+    syncopationPerCycle /= notePerCycle;
+    syncopations.clear();
+}
+
