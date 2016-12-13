@@ -7,6 +7,7 @@
 class TidalNote {
 public:
     int instNum;
+    string instName;
     float beatCount;
 };
 

@@ -64,9 +64,9 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 }
                 
                 TidalNote n;
-                //n.beatCount = ((syncCount*resolution) + beatCount) % (resolution*8);
                 n.beatCount = ((syncCount*resolution) + beatCount);
                 n.instNum = instNum;
+                n.instName = instNames[instNum];
                 notes.push_back(n);
                 noteCount++;
             }

@@ -6,7 +6,7 @@
 
 class StMonitor : public itg::ofxState<SharedData> {
 public:
-    virtual void setup();
+    void setup();
     void update();
     void draw();
     void drawGrid();
