@@ -17,6 +17,7 @@ public:
     ofxTidalView(int port);
     void oscReceiveEvent(ofxOscMessage &m);
     void calcStat();
+    void beatMonitor();
     
     ofxThreadedOSCReceiver receiver;
     vector<string> instNames;

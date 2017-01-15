@@ -8,8 +8,8 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_SILENT);
     tidal = new ofxTidalView(3333);
     
-    stateMachine.addState<StMonitor>();
-    stateMachine.changeState("StMonitor");
+    //stateMachine.addState<StMonitor>();
+    //stateMachine.changeState("StMonitor");
 }
 
 void ofApp::update(){

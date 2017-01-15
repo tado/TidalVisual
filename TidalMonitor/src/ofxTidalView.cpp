@@ -32,7 +32,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             instBuffer.push_back(inst);
         } else if(inst == "sync"){
             syncCount++;
-            calcStat();
+            //calcStat();
             for (int i = 0; i < 16; i++) {
                 beats[i] = 0;
             }
