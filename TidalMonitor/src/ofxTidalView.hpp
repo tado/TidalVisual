@@ -9,6 +9,7 @@ public:
     int instNum;
     string instName;
     int beatCount;
+    int syncCount;
 };
 
 

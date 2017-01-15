@@ -32,7 +32,6 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             instBuffer.push_back(inst);
         } else if(inst == "sync"){
             syncCount++;
-            //calcStat();
             beatMonitor();
             
             if (syncCount == 4) {
@@ -68,6 +67,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 
                 TidalNote n;
                 n.beatCount = ((syncCount*resolution) + beatCount);
+                n.syncCount = syncCount;
                 n.instNum = instNum;
                 //n.instName = instNames[instNum];
                 notes.push_back(n);
