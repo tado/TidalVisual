@@ -1,7 +1,6 @@
 #include "ofxTidalView.hpp"
 
 int weights[16] = {0, -4, -3, -4, -2, -4, -3, -4, -1, -4, -3, -4, -2, -4, -3, -4};
-int beats[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 ofxTidalView::ofxTidalView(int port){
     receiver.setup(port);
@@ -38,7 +37,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             notes.clear();
             instBuffer.clear();
             
-            if (syncCount == 8) {
+            if (syncCount == 4) {
                 syncCount = 0;
             }
         }
@@ -56,7 +55,6 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 beatCount = beatCount % resolution;
                 
                 //calc syncopation
-                beats[beatCount] = 1;
                 syncopations.push_back(weights[beatCount]);
                 
                 //set inst num
@@ -117,11 +115,7 @@ void ofxTidalView::calcStat(){
         cout << syncopations[i] << ",";
     }
     cout << endl;
-    
-    for (int i = 0; i < 16; i++) {
-        cout << beats[i] << ",";
-    }
-    cout << endl;
+
 
     //calcurate grain
     for (int i = 0; i < syncopations.size(); i++) {
@@ -152,6 +146,7 @@ void ofxTidalView::calcStat(){
             break;
     }
     
+    /*
     //calculate syncopation
     for (int i = 0; i < 16; i += skip) {
         if(beats[i] == 0){
@@ -164,6 +159,7 @@ void ofxTidalView::calcStat(){
             }
         }
     }
+    */
     cout << "syncopation : " << syncopationPerCycle << endl;
     syncopations.clear();
 }

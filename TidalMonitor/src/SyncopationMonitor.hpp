@@ -21,5 +21,6 @@ public:
     int width;
     int height;
     
-    int count;
+    int lastCount;
+    int noteViewMatrix[128][64];
 };
