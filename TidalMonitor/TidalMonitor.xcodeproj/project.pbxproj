@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
+		1867FC081E2B5A5000D7ABCF /* SyncopationMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */; };
 		187AEDBC1DFEC63D006AE149 /* ofxTidalView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 187AEDBA1DFEC63D006AE149 /* ofxTidalView.cpp */; };
 		187AEDBF1DFED431006AE149 /* StMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 187AEDBD1DFED431006AE149 /* StMonitor.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
@@ -62,6 +63,8 @@
 		18238F601DFF8B21004FE3B2 /* ofxThreadedOSCReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxThreadedOSCReceiver.h; path = src/ofxThreadedOSCReceiver.h; sourceTree = "<group>"; };
 		184DE24C1DF9573D009F39AB /* SharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
 		185527997F0B73A279912DB2 /* ofxStateMachine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxStateMachine.h; path = ../../../addons/ofxStateMachine/src/ofxStateMachine.h; sourceTree = SOURCE_ROOT; };
+		1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyncopationMonitor.cpp; sourceTree = "<group>"; };
+		1867FC071E2B5A5000D7ABCF /* SyncopationMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncopationMonitor.hpp; sourceTree = "<group>"; };
 		187AEDBA1DFEC63D006AE149 /* ofxTidalView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalView.cpp; sourceTree = "<group>"; };
 		187AEDBB1DFEC63D006AE149 /* ofxTidalView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalView.hpp; sourceTree = "<group>"; };
 		187AEDBD1DFED431006AE149 /* StMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StMonitor.cpp; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				187AEDBB1DFEC63D006AE149 /* ofxTidalView.hpp */,
 				187AEDBD1DFED431006AE149 /* StMonitor.cpp */,
 				187AEDBE1DFED431006AE149 /* StMonitor.hpp */,
+				1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */,
+				1867FC071E2B5A5000D7ABCF /* SyncopationMonitor.hpp */,
 				184DE24C1DF9573D009F39AB /* SharedData.h */,
 			);
 			path = src;
@@ -393,6 +398,7 @@
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
+				1867FC081E2B5A5000D7ABCF /* SyncopationMonitor.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 			);

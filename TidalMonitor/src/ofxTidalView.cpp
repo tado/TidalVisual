@@ -11,6 +11,7 @@ ofxTidalView::ofxTidalView(int port){
     notePerCycle = 0;
     noteCount = 0;
     syncopationPerCycle = 0;
+    syncCount = 0;
 }
 
 
@@ -34,12 +35,12 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             syncCount++;
             //calcStat();
             beatMonitor();
+            notes.clear();
+            instBuffer.clear();
             
-            //if (syncCount == 8) {
-                notes.clear();
-                instBuffer.clear();
+            if (syncCount == 8) {
                 syncCount = 0;
-            //}
+            }
         }
     }
     
@@ -95,7 +96,6 @@ void ofxTidalView::beatMonitor(){
     for (int i = 0; i < notes.size(); i++) {
         noteMatrix[notes[i].instNum][int(notes[i].beatCount) % 16] = 1;
     }
-    
     for (int i = 0; i <= instNumMax; i++) {
         cout << "part " << i << " : ";
         for (int j = 0; j < 16; j++) {
