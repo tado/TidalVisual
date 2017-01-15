@@ -11,7 +11,8 @@ void SyncopationMonitor::setup(){
 }
 
 void SyncopationMonitor::update(){
-    
+    width = ofGetWidth() - (left * 2);
+    height = ofGetHeight()/2 - (top * 2);
 }
 
 void SyncopationMonitor::draw(){
@@ -51,23 +52,23 @@ void SyncopationMonitor::draw(){
     ofPopMatrix();
 
     //draw graph
-    float x, y, width, height, graphX;
+    float x, y, gwidth, gheight, graphX;
     float graphWidth;
     x = 20;
     y = ofGetHeight()/2 + 20;
     graphX = 50;
-    width = ofGetWidth() - 40 - graphX;
-    height = 15;
+    gwidth = ofGetWidth() - 40 - graphX;
+    gheight = 15;
     
     ofTranslate(x, y);
     ofPushMatrix();
     for (int i = 0; i <= app->tidal->instNumMax; i++) {
         ofTranslate(0, 20);
-        graphWidth = ofMap(app->tidal->syncopation[i], 0, 15, 0, width);
+        graphWidth = ofMap(app->tidal->syncopation[i], 0, 15, 0, gwidth);
         ofSetColor(63);
-        ofDrawRectangle(graphX, 0, width, height);
+        ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);
-        ofDrawRectangle(graphX, 0, graphWidth, height);
+        ofDrawRectangle(graphX, 0, graphWidth, gheight);
         ofSetColor(255);
         ofDrawBitmapString("S"
                            + ofToString(i) + ":"
