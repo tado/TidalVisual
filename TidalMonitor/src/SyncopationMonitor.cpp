@@ -21,29 +21,35 @@ void SyncopationMonitor::draw(){
     drawGrid();
     
     ofSetColor(255);
-    /*
-    if (app->tidal->syncCount < lastCount) {
-        //init matrix
-        for (int i = 0; i < 128; i++) {
-            for (int j = 0; j < 64; j++) {
-                app->tidal->noteMatrix[i][j] = 0;
-            }
-        }
-    }
-    lastCount = app->tidal->syncCount;
-    */
 
     //draw matrix
-    for (int i = 0; i < app->tidal->instNumMax+1; i++) {
-        for (int j = 0; j < 64; j++) {
-            if (app->tidal->noteMatrix[i][j] == 1) {
-                int x = ofMap(j, 0, 64, 0, width);
-                int h = height / (app->tidal->instNumMax + 1);
-                float y = h * i;
-                ofDrawRectangle(x, y, 3, h-2);
+    if (app->tidal->syncCount > 0) {
+        for (int i = 0; i < app->tidal->instNumMax+1; i++) {
+            for (int j = 0; j < 64; j++) {
+                if (app->tidal->noteMatrix[i][j] == 1) {
+                    int x = ofMap(j, 0, 64, 0, width);
+                    int h = height / (app->tidal->instNumMax + 1);
+                    float y = h * i;
+                    ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+                }
             }
         }
     }
+        
+    ofPushMatrix();
+    for (int i = 0; i < app->tidal->notes.size(); i++) {
+        float x = ofMap(app->tidal->notes[i].beatCount, 0, app->tidal->resolution*4, 0, width);
+        float h;
+        if(app->tidal->instBuffer.size() == 0){
+            h = 0;
+        } else {
+            h = height / app->tidal->instBuffer.size();
+        }
+        float y = h * app->tidal->notes[i].instNum;
+        ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+    }
+    ofPopMatrix();
+    
     ofPopMatrix();
     
     float x, y, width, height;

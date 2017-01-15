@@ -34,6 +34,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             syncCount++;
             //calcStat();
             beatMonitor();
+            
             if (syncCount == 4) {
                 syncCount = 0;
                 instBuffer.clear();
