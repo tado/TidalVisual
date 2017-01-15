@@ -11,6 +11,9 @@ ofxTidalView::ofxTidalView(int port){
     noteCount = 0;
     syncopationPerCycle = 0;
     syncCount = 0;
+    for (int i = 0; i < max1; i++) {
+        syncopation[i] = 0;
+    }
 }
 
 
@@ -33,7 +36,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
         } else if(inst == "sync"){
             syncCount++;
             beatMonitor();
-            
+            calcStat();
             if (syncCount == 4) {
                 syncCount = 0;
                 instBuffer.clear();
@@ -105,62 +108,67 @@ void ofxTidalView::beatMonitor(){
 }
 
 void ofxTidalView::calcStat(){
-    notePerCycle = noteCount;
-    noteCount = 0;
-    syncopationPerCycle = 0;
-    int grain = 0;
-    
+    /*
     //show log
     for (int i = 0; i < syncopations.size(); i++) {
         cout << syncopations[i] << ",";
     }
     cout << endl;
-
-
-    //calcurate grain
-    for (int i = 0; i < syncopations.size(); i++) {
-        if (grain > syncopations[i]) {
-            grain = syncopations[i];
+     */
+    
+    for (int i = 0; i < max1; i++) {
+        syncopation[i] = 0;
+    }
+    
+    for (int i = 0; i <= instNumMax; i++) {
+        int n[16] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        int grain = 0;
+        int skip = 1;
+        for (int j = 0; j < 16; j++) {
+            //cout << noteMatrix[i][(syncCount-1) * 16 + j] << ",";
+            if (noteMatrix[i][(syncCount-1) * 16 + j] == 1) {
+                n[j] = weights[j];
+                if (grain > n[j]) {
+                    grain = n[j];
+                }
+            }
+            //cout << n[j] << ",";
         }
-    }
-    grain = grain + 1;
-    
-    cout << "grain : " << grain << endl;
-
-    int skip = 1;
-    switch (grain) {
-        case -3:
-            skip = 1;
-            break;
-        case -2:
-            skip = 2;
-            break;
-        case -1:
-            skip = 4;
-            break;
-        case 0:
-            skip = 8;
-            break;
-        default:
-            skip = 16;
-            break;
-    }
-    
-    /*
-    //calculate syncopation
-    for (int i = 0; i < 16; i += skip) {
-        if(beats[i] == 0){
-            for (int j = i; j >= 0; j--) {
-                j = abs(j % 16);
-                if (beats[j] == 1 && weights[i] - weights[j] > 0) {
-                    syncopationPerCycle += weights[i] - weights[j % 16];
-                    break;
+        //cout << endl;
+        grain = grain + 1;
+        switch (grain) {
+            case -3:
+                skip = 1;
+                break;
+            case -2:
+                skip = 2;
+                break;
+            case -1:
+                skip = 4;
+                break;
+            case 0:
+                skip = 8;
+                break;
+            default:
+                skip = 16;
+                break;
+        }
+        
+        //calculate syncopation
+        for (int j = 0; j < 16; j += skip) {
+            if(n[j] == 1){
+                for (int k = j; k >= 0; k--) {
+                    k = abs(k % 16);
+                    if (n[k] <= 0 && weights[j] - weights[k] > 0) {
+                        syncopation[i] += weights[j] - weights[k];
+                        break;
+                    }
                 }
             }
         }
+        //cout << ", grain : " << grain;
+        cout << "syncopation " << i << " : " << syncopation[i] << endl;
+
     }
-    */
-    cout << "syncopation : " << syncopationPerCycle << endl;
-    syncopations.clear();
 }
 

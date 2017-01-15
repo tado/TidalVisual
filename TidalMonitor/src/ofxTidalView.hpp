@@ -40,4 +40,5 @@ public:
     static const int max2 = 64;
     int noteMatrix[max1][max2];
     int instNumMax;
+    int syncopation[max1];
 };
