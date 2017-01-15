@@ -28,7 +28,7 @@ public:
     int syncCount;
     int syncLength;
     int resolution;
-    
+   
     int noteCount;
     int notePerCycle;
     vector<float> syncopations;

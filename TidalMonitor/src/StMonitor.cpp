@@ -52,7 +52,7 @@ void StMonitor::draw(){
     ofDrawBitmapString("Note num (per cycle) = " + ofToString(app->tidal->notePerCycle), 20, ofGetHeight()/2 + 15);
     
      y = ofGetHeight()/2 + 70;
-     graphWidth = ofMap(app->tidal->syncopationPerCycle, 5.0, 1.0, 0, width);
+     graphWidth = ofMap(app->tidal->syncopationPerCycle, 0.0, 8.0, 0, width);
      ofSetColor(63);
      ofDrawRectangle(x, y, width, height);
      ofSetColor(255, 127, 63);
