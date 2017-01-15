@@ -33,15 +33,13 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
         } else if(inst == "sync"){
             syncCount++;
             //calcStat();
-            for (int i = 0; i < 16; i++) {
-                beats[i] = 0;
-            }
+            beatMonitor();
             
-            if (syncCount == 8) {
+            //if (syncCount == 8) {
                 notes.clear();
                 instBuffer.clear();
                 syncCount = 0;
-            }
+            //}
         }
     }
     
@@ -72,13 +70,40 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 TidalNote n;
                 n.beatCount = ((syncCount*resolution) + beatCount);
                 n.instNum = instNum;
-                n.instName = instNames[instNum];
+                //n.instName = instNames[instNum];
                 notes.push_back(n);
                 noteCount++;
             }
             instNames.erase(instNames.begin());
         }
     }
+}
+
+void ofxTidalView::beatMonitor(){
+    cout << "-------------------------" << endl;
+    for (int i = 0; i < max1; i++) {
+        for (int j = 0; j < max2; j++) {
+            noteMatrix[i][j] = 0;
+        }
+    }
+    instNumMax = 0;
+    for (int i = 0; i < notes.size(); i++) {
+        if (notes[i].instNum > instNumMax) {
+            instNumMax = notes[i].instNum;
+        }
+    }
+    for (int i = 0; i < notes.size(); i++) {
+        noteMatrix[notes[i].instNum][int(notes[i].beatCount) % 16] = 1;
+    }
+    
+    for (int i = 0; i <= instNumMax; i++) {
+        cout << "part " << i << " : ";
+        for (int j = 0; j < 16; j++) {
+            cout << noteMatrix[i][j];
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 
 void ofxTidalView::calcStat(){

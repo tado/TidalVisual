@@ -8,7 +8,7 @@ class TidalNote {
 public:
     int instNum;
     string instName;
-    float beatCount;
+    int beatCount;
 };
 
 
@@ -34,4 +34,9 @@ public:
     int notePerCycle;
     vector<float> syncopations;
     float syncopationPerCycle;
+    
+    static const int max1 = 128;
+    static const int max2 = 16;
+    int noteMatrix[max1][max2];
+    int instNumMax;
 };
