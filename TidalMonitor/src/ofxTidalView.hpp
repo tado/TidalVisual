@@ -36,7 +36,7 @@ public:
     float syncopationPerCycle;
     
     static const int max1 = 128;
-    static const int max2 = 16;
+    static const int max2 = 64;
     int noteMatrix[max1][max2];
     int instNumMax;
 };
