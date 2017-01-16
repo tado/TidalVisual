@@ -26,13 +26,13 @@ void SyncopationMonitor::draw(){
     for (int i = 0; i < app->tidal->notes.size(); i++) {
         if(app->tidal->notes[i].syncCount == app->tidal->syncCount % 4){
             float x = ofMap(app->tidal->notes[i].beatCount, 0, app->tidal->resolution*4, 0, width);
-            //float h;
-            //if(app->tidal->instBuffer.size() == 0){
-            //    h = 0;
-            //} else {
-            // h = height / app->tidal->instBuffer.size();
-            //}
-            int h = height / (app->tidal->instNumMax + 1);
+            float h;
+            if(app->tidal->instBuffer.size() == 0){
+                h = 0;
+            } else {
+             h = height / app->tidal->instBuffer.size();
+            }
+            //int h = height / (app->tidal->instNumMax + 1);
             float y = h * app->tidal->notes[i].instNum;
             ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
         }
