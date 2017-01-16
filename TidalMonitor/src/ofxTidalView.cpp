@@ -11,8 +11,14 @@ ofxTidalView::ofxTidalView(int port){
     noteCount = 0;
     syncopationPerCycle = 0;
     syncCount = 0;
+    instNumMax = 1;
     for (int i = 0; i < max1; i++) {
         syncopation[i] = 0;
+    }
+    for (int i = 0; i < max1; i++) {
+        for (int j = 0; j < max2 ; j++) {
+            noteMatrix[i][j] = 0;
+        }
     }
 }
 
@@ -37,10 +43,11 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             syncCount++;
             beatMonitor();
             calcStat();
+            notes.clear();
             if (syncCount == 4) {
                 syncCount = 0;
                 instBuffer.clear();
-                notes.clear();
+                //notes.clear();
             }
         }
     }
@@ -84,7 +91,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
 void ofxTidalView::beatMonitor(){
     cout << "-------------------------" << endl;
     for (int i = 0; i < max1; i++) {
-        for (int j = 0; j < max2; j++) {
+        for (int j = (syncCount % 4) * 16; j < max2 ; j++) {
             noteMatrix[i][j] = 0;
         }
     }
@@ -157,6 +164,15 @@ void ofxTidalView::calcStat(){
         //calculate syncopation
         for (int j = 0; j < 16; j += skip) {
             if(n[j] == 1){
+                int k = abs((j - skip) % 16);
+                if (n[k] <= 0 && weights[j] - weights[k] > 0) {
+                    syncopation[i] += weights[j] - weights[k];
+                }
+            }
+        }
+        /*
+        for (int j = 0; j < 16; j += skip) {
+            if(n[j] == 1){
                 for (int k = j; k >= 0; k--) {
                     k = abs(k % 16);
                     if (n[k] <= 0 && weights[j] - weights[k] > 0) {
@@ -166,6 +182,7 @@ void ofxTidalView::calcStat(){
                 }
             }
         }
+        */
         //cout << ", grain : " << grain;
         cout << "syncopation " << i << " : " << syncopation[i] << endl;
 

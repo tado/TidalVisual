@@ -241,7 +241,6 @@
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
-				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
 				E4B69B5B0A3A1756003C02F2 /* TidalMonitorDebug.app */,
@@ -260,6 +259,7 @@
 				187AEDBE1DFED431006AE149 /* StMonitor.hpp */,
 				1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */,
 				1867FC071E2B5A5000D7ABCF /* SyncopationMonitor.hpp */,
+				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				184DE24C1DF9573D009F39AB /* SharedData.h */,
 			);
 			path = src;
@@ -272,6 +272,7 @@
 				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
 			);
 			name = openFrameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E6053AB7FEC63D5F83825B88 /* ofxOsc */ = {
