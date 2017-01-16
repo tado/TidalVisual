@@ -10,12 +10,9 @@ ofxTidalView::ofxTidalView(int port){
     notePerCycle = 0;
     noteCount = 0;
     syncopationPerCycle = 0;
-    syncCount = 0;
     instNumMax = 1;
     for (int i = 0; i < max1; i++) {
         syncopation[i] = 0;
-    }
-    for (int i = 0; i < max1; i++) {
         for (int j = 0; j < max2 ; j++) {
             noteMatrix[i][j] = 0;
         }
@@ -40,15 +37,11 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
         if(index == instBuffer.size() && inst != "sync"){
             instBuffer.push_back(inst);
         } else if(inst == "sync"){
-            syncCount++;
             beatMonitor();
             calcStat();
             notes.clear();
-            if (syncCount == 4) {
-                syncCount = 0;
-                instBuffer.clear();
-                //notes.clear();
-            }
+            beatShift();
+            instBuffer.clear();
         }
     }
     
@@ -76,8 +69,8 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 }
                 
                 TidalNote n;
-                n.beatCount = ((syncCount*resolution) + beatCount);
-                n.syncCount = syncCount;
+                n.beatCount = beatCount;
+                //n.syncCount = syncCount;
                 n.instNum = instNum;
                 //n.instName = instNames[instNum];
                 notes.push_back(n);
@@ -88,13 +81,26 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     }
 }
 
-void ofxTidalView::beatMonitor(){
-    cout << "-------------------------" << endl;
+void ofxTidalView::beatShift(){
     for (int i = 0; i < max1; i++) {
-        for (int j = (syncCount % 4) * 16; j < max2 ; j++) {
+        for (int j = 16; j < max2 ; j++) {
+            noteMatrix[i][j - 16] = noteMatrix[i][j];
+        }
+        for (int j = max2-16; j < max2 ; j++) {
             noteMatrix[i][j] = 0;
         }
     }
+}
+
+void ofxTidalView::beatMonitor(){
+    cout << "-------------------------" << endl;
+    /*
+     for (int i = 0; i < max1; i++) {
+     for (int j = (syncCount % 4) * 16; j < max2 ; j++) {
+     noteMatrix[i][j] = 0;
+     }
+     }
+     */
     instNumMax = 0;
     for (int i = 0; i < notes.size(); i++) {
         if (notes[i].instNum > instNumMax) {
@@ -102,7 +108,7 @@ void ofxTidalView::beatMonitor(){
         }
     }
     for (int i = 0; i < notes.size(); i++) {
-        noteMatrix[notes[i].instNum][int(notes[i].beatCount)] = 1;
+        noteMatrix[notes[i].instNum][int(notes[i].beatCount) + max2-16] = 1;
     }
     for (int i = 0; i <= instNumMax; i++) {
         cout << "part " << i << " : ";
@@ -116,11 +122,11 @@ void ofxTidalView::beatMonitor(){
 
 void ofxTidalView::calcStat(){
     /*
-    //show log
-    for (int i = 0; i < syncopations.size(); i++) {
-        cout << syncopations[i] << ",";
-    }
-    cout << endl;
+     //show log
+     for (int i = 0; i < syncopations.size(); i++) {
+     cout << syncopations[i] << ",";
+     }
+     cout << endl;
      */
     
     for (int i = 0; i < max1; i++) {
@@ -133,7 +139,7 @@ void ofxTidalView::calcStat(){
         int skip = 1;
         for (int j = 0; j < 16; j++) {
             //cout << noteMatrix[i][(syncCount-1) * 16 + j] << ",";
-            if (noteMatrix[i][(syncCount-1) * 16 + j] == 1) {
+            if (noteMatrix[i][max2 - 16 + j] == 1) {
                 n[j] = weights[j];
                 if (grain > n[j]) {
                     grain = n[j];
@@ -165,27 +171,28 @@ void ofxTidalView::calcStat(){
         for (int j = 0; j < 16; j += skip) {
             if(n[j] == 1){
                 int k = abs((j - skip) % 16);
+                //int k = j - skip;
                 if (n[k] <= 0 && weights[j] - weights[k] > 0) {
                     syncopation[i] += weights[j] - weights[k];
                 }
             }
         }
         /*
-        for (int j = 0; j < 16; j += skip) {
-            if(n[j] == 1){
-                for (int k = j; k >= 0; k--) {
-                    k = abs(k % 16);
-                    if (n[k] <= 0 && weights[j] - weights[k] > 0) {
-                        syncopation[i] += weights[j] - weights[k];
-                        break;
-                    }
-                }
-            }
-        }
-        */
+         for (int j = 0; j < 16; j += skip) {
+         if(n[j] == 1){
+         for (int k = j; k >= 0; k--) {
+         k = abs(k % 16);
+         if (n[k] <= 0 && weights[j] - weights[k] > 0) {
+         syncopation[i] += weights[j] - weights[k];
+         break;
+         }
+         }
+         }
+         }
+         */
         //cout << ", grain : " << grain;
         cout << "syncopation " << i << " : " << syncopation[i] << endl;
-
+        
     }
 }
 

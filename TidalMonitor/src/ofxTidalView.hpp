@@ -17,8 +17,9 @@ class ofxTidalView {
 public:
     ofxTidalView(int port);
     void oscReceiveEvent(ofxOscMessage &m);
-    void calcStat();
+    void beatShift();
     void beatMonitor();
+    void calcStat();
     
     ofxThreadedOSCReceiver receiver;
     vector<string> instNames;
@@ -27,7 +28,7 @@ public:
     
     int lastSyncTime;
     int syncTime;
-    int syncCount;
+    //int syncCount;
     int syncLength;
     int resolution;
    
@@ -39,6 +40,6 @@ public:
     static const int max1 = 128;
     static const int max2 = 64;
     int noteMatrix[max1][max2];
-    int instNumMax;
     int syncopation[max1];
+    int instNumMax;
 };
