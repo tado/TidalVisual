@@ -46,7 +46,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     //que inst
     if(m.getAddress() == "/n_go"){
         if (instNames.size() > 0) {
-            //if (instNames[0] == "sync") {
+            
             for (int i = 0; i < instNames.size(); i++) {
                 if (instNames[i] == "sync") {
                     syncTime = ofGetElapsedTimeMillis();
@@ -55,8 +55,6 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                 }
             }
             
-            //} else {
-            //int beatCount =  floor((ofGetElapsedTimeMillis() - syncTime) / float(syncLength)) * resolution;
             int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
             beatCount = beatCount % resolution;
             
@@ -74,7 +72,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             n.instNum = instNum;
             notes.push_back(n);
             noteCount++;
-            //}
+            
             instNames.erase(instNames.begin());
         }
     }
