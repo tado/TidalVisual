@@ -40,7 +40,6 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             instCleanup();
             notes.clear();
             beatShift();
-            //instBuffer.clear();
         }
     }
     
@@ -108,17 +107,9 @@ void ofxTidalView::beatShift(){
 
 void ofxTidalView::beatMonitor(){
     cout << "-------------------------" << endl;
-    /*
-     instNumMax = 0;
-     for (int i = 0; i < notes.size(); i++) {
-     if (notes[i].instNum > instNumMax) {
-     instNumMax = notes[i].instNum;
-     }
-     }
-     */
     instNumMax = instBuffer.size();
     for (int i = 0; i < notes.size(); i++) {
-        noteMatrix[notes[i].instNum][int(notes[i].beatCount) + max2-16] = 1;
+        noteMatrix[notes[i].instNum][int(notes[i].beatCount) + max2 - resolution] = 1;
     }
     for (int i = 0; i < instNumMax; i++) {
         cout << "part " << i << " : ";

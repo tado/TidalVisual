@@ -20,6 +20,4 @@ public:
     int left;
     int width;
     int height;
-    
-    //int lastCount;
 };
