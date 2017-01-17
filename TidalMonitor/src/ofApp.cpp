@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "SyncopationMonitor.hpp"
+#include "StSyncopationMonitor.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -8,8 +8,8 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_SILENT);
     tidal = new ofxTidalView(3333);
     
-    stateMachine.addState<SyncopationMonitor>();
-    stateMachine.changeState("SyncopationMonitor");
+    stateMachine.addState<StSyncopationMonitor>();
+    stateMachine.changeState("StSyncopationMonitor");
 }
 
 void ofApp::update(){

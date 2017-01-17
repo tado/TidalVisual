@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BF3AA0D4FAA89D0F8A0E545 /* OscReceivedElements.cpp */; };
-		1867FC081E2B5A5000D7ABCF /* SyncopationMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */; };
+		1867FC081E2B5A5000D7ABCF /* StSyncopationMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1867FC061E2B5A5000D7ABCF /* StSyncopationMonitor.cpp */; };
 		187AEDBC1DFEC63D006AE149 /* ofxTidalView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 187AEDBA1DFEC63D006AE149 /* ofxTidalView.cpp */; };
-		187AEDBF1DFED431006AE149 /* StMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 187AEDBD1DFED431006AE149 /* StMonitor.cpp */; };
+		1896DF601E2DAD3C00A4E01C /* StISFView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1896DF5E1E2DAD3C00A4E01C /* StISFView.cpp */; };
 		4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AED834CE4DEC5260AF302A2 /* ofxOscParameterSync.cpp */; };
 		510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6DEF695B88BA5FAACEAA937 /* UdpSocket.cpp */; };
 		5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF49D76C45D5DB505A234880 /* ofxOscMessage.cpp */; };
@@ -63,12 +63,12 @@
 		18238F601DFF8B21004FE3B2 /* ofxThreadedOSCReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxThreadedOSCReceiver.h; path = src/ofxThreadedOSCReceiver.h; sourceTree = "<group>"; };
 		184DE24C1DF9573D009F39AB /* SharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
 		185527997F0B73A279912DB2 /* ofxStateMachine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxStateMachine.h; path = ../../../addons/ofxStateMachine/src/ofxStateMachine.h; sourceTree = SOURCE_ROOT; };
-		1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyncopationMonitor.cpp; sourceTree = "<group>"; };
-		1867FC071E2B5A5000D7ABCF /* SyncopationMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncopationMonitor.hpp; sourceTree = "<group>"; };
+		1867FC061E2B5A5000D7ABCF /* StSyncopationMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StSyncopationMonitor.cpp; sourceTree = "<group>"; };
+		1867FC071E2B5A5000D7ABCF /* StSyncopationMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StSyncopationMonitor.hpp; sourceTree = "<group>"; };
 		187AEDBA1DFEC63D006AE149 /* ofxTidalView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTidalView.cpp; sourceTree = "<group>"; };
 		187AEDBB1DFEC63D006AE149 /* ofxTidalView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofxTidalView.hpp; sourceTree = "<group>"; };
-		187AEDBD1DFED431006AE149 /* StMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StMonitor.cpp; sourceTree = "<group>"; };
-		187AEDBE1DFED431006AE149 /* StMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StMonitor.hpp; sourceTree = "<group>"; };
+		1896DF5E1E2DAD3C00A4E01C /* StISFView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StISFView.cpp; sourceTree = "<group>"; };
+		1896DF5F1E2DAD3C00A4E01C /* StISFView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StISFView.hpp; sourceTree = "<group>"; };
 		20F35AFADAF0068B067E713F /* OscReceivedElements.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscReceivedElements.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h; sourceTree = SOURCE_ROOT; };
 		23640F57DF6C4BB6BFC5DA4C /* PacketListener.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PacketListener.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/PacketListener.h; sourceTree = SOURCE_ROOT; };
 		2FD4B0329909D3527F003494 /* UdpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = UdpSocket.h; path = ../../../addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h; sourceTree = SOURCE_ROOT; };
@@ -255,10 +255,10 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				187AEDBA1DFEC63D006AE149 /* ofxTidalView.cpp */,
 				187AEDBB1DFEC63D006AE149 /* ofxTidalView.hpp */,
-				187AEDBD1DFED431006AE149 /* StMonitor.cpp */,
-				187AEDBE1DFED431006AE149 /* StMonitor.hpp */,
-				1867FC061E2B5A5000D7ABCF /* SyncopationMonitor.cpp */,
-				1867FC071E2B5A5000D7ABCF /* SyncopationMonitor.hpp */,
+				1867FC061E2B5A5000D7ABCF /* StSyncopationMonitor.cpp */,
+				1867FC071E2B5A5000D7ABCF /* StSyncopationMonitor.hpp */,
+				1896DF5E1E2DAD3C00A4E01C /* StISFView.cpp */,
+				1896DF5F1E2DAD3C00A4E01C /* StISFView.hpp */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				184DE24C1DF9573D009F39AB /* SharedData.h */,
 			);
@@ -390,16 +390,16 @@
 				187AEDBC1DFEC63D006AE149 /* ofxTidalView.cpp in Sources */,
 				72A929D3561B8232A182ABFC /* ofxOscBundle.cpp in Sources */,
 				5864AD82E20F15536D054EA3 /* ofxOscMessage.cpp in Sources */,
-				187AEDBF1DFED431006AE149 /* StMonitor.cpp in Sources */,
 				4ADB88E2FB52E76A471065DE /* ofxOscParameterSync.cpp in Sources */,
 				640279EE111671BD026CB013 /* ofxOscReceiver.cpp in Sources */,
 				8F5205AEF8861EF234F0651A /* ofxOscSender.cpp in Sources */,
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
+				1896DF601E2DAD3C00A4E01C /* StISFView.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
 				62545D179C94265CA1389D4A /* OscOutboundPacketStream.cpp in Sources */,
 				C4782ECC372420ACE0615B74 /* OscPrintReceivedElements.cpp in Sources */,
-				1867FC081E2B5A5000D7ABCF /* SyncopationMonitor.cpp in Sources */,
+				1867FC081E2B5A5000D7ABCF /* StSyncopationMonitor.cpp in Sources */,
 				0546D1A38E13BD319CC9755B /* OscReceivedElements.cpp in Sources */,
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 			);

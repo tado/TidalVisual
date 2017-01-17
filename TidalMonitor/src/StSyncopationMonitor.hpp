@@ -4,7 +4,7 @@
 #include "SharedData.h"
 #include "ofApp.h"
 
-class SyncopationMonitor : public itg::ofxState<SharedData> {
+class StSyncopationMonitor : public itg::ofxState<SharedData> {
 public:
     void setup();
     void update();
@@ -21,5 +21,5 @@ public:
     int width;
     int height;
     
-    int lastCount;
+    //int lastCount;
 };

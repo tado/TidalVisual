@@ -1,57 +1,45 @@
-#include "SyncopationMonitor.hpp"
+#include "StSyncopationMonitor.hpp"
 
-void SyncopationMonitor::setup(){
-    name = "SyncopationMonitor";
+void StSyncopationMonitor::setup(){
+    name = "StSyncopationMonitor";
     app = ((ofApp*)ofGetAppPtr());
     top = 20;
     left= 20;
     width = ofGetWidth() - (left * 2);
     height = ofGetHeight()/2 - (top * 2);
-    lastCount = 0;
+    //lastCount = 0;
 }
 
-void SyncopationMonitor::update(){
+void StSyncopationMonitor::update(){
     width = ofGetWidth() - (left * 2);
     height = ofGetHeight()/2 - (top * 2);
 }
 
-void SyncopationMonitor::draw(){
+void StSyncopationMonitor::draw(){
     ofPushMatrix();
     ofTranslate(top, left);
-    
     drawGrid();
-    
     //draw matrix
-    ofSetColor(255, 127, 127);
-    for (int i = 0; i < app->tidal->notes.size(); i++) {
-        //if(app->tidal->notes[i].syncCount == app->tidal->syncCount % 4){
+    if (app->tidal->instNumMax > 0) {
+        ofSetColor(255, 127, 127);
+        for (int i = 0; i < app->tidal->notes.size(); i++) {
             float x = ofMap(app->tidal->notes[i].beatCount+48, 0, app->tidal->resolution*4, 0, width);
-            /*
-            float h;
-            if(app->tidal->instBuffer.size() == 0){
-                h = 0;
-            } else {
-                h = height / app->tidal->instBuffer.size();
-            }
-            */
-            int h = height / (app->tidal->instNumMax + 1);
+            int h = height / (app->tidal->instNumMax);
             float y = (h * app->tidal->notes[i].instNum) % height;
             ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
-       //}
-    }
-    ofSetColor(255);
-    //if (app->tidal->syncCount > 0) {
-    for (int i = 0; i <= app->tidal->instNumMax; i++) {
-        for (int j = 0; j < app->tidal->max2; j++) {
-            if (app->tidal->noteMatrix[i][j] == 1) {
-                int x = ofMap(j, 0, app->tidal->max2, 0, width);
-                int h = height / (app->tidal->instNumMax + 1);
-                float y = h * i;
-                ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+        }
+        ofSetColor(255);
+        for (int i = 0; i < app->tidal->instNumMax; i++) {
+            for (int j = 0; j < app->tidal->max2; j++) {
+                if (app->tidal->noteMatrix[i][j] == 1) {
+                    int x = ofMap(j, 0, app->tidal->max2, 0, width);
+                    int h = height / (app->tidal->instNumMax);
+                    float y = h * i;
+                    ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+                }
             }
         }
     }
-    //}
     ofPopMatrix();
     
     //draw graph
@@ -65,7 +53,7 @@ void SyncopationMonitor::draw(){
     
     ofTranslate(x, y);
     ofPushMatrix();
-    for (int i = 0; i <= app->tidal->instNumMax; i++) {
+    for (int i = 0; i < app->tidal->instNumMax; i++) {
         ofTranslate(0, 20);
         graphWidth = ofMap(app->tidal->syncopation[i], 0, 15, 0, gwidth);
         ofSetColor(63);
@@ -80,7 +68,7 @@ void SyncopationMonitor::draw(){
     ofPopMatrix();
 }
 
-void SyncopationMonitor::drawGrid(){
+void StSyncopationMonitor::drawGrid(){
     ofSetColor(63);
     for (int i = 0; i < 32; i++) {
         float x = ofMap(i, 0, 32, 0, width);
@@ -97,14 +85,14 @@ void SyncopationMonitor::drawGrid(){
     ofFill();
 }
 
-void SyncopationMonitor::stateExit(){
+void StSyncopationMonitor::stateExit(){
     
 }
 
-void SyncopationMonitor::stateEnter(){
+void StSyncopationMonitor::stateEnter(){
     
 }
 
-string SyncopationMonitor::getName(){
+string StSyncopationMonitor::getName(){
     return name;
 }
