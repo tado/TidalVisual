@@ -1,0 +1,79 @@
+/*
+{
+"INPUTS" : [
+		{
+			"NAME": "r",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "g",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		},
+		{
+			"NAME": "b",
+			"TYPE": "float",
+			"DEFAULT": 1.0,
+			"MIN": 0.0,
+			"MAX": 1.0
+		}
+  ]
+}
+*/
+
+float stripe(float x) {
+    return float(mod(x, .2) > .1) * floor(x * 10. + 1.) * .1;
+}
+
+vec3 degree_to_rgb(float h) {
+    float h1 = mod(h, 360.) / 60.;
+    float x = 1. - abs(mod(h1, 2.) - 1.);
+    
+    if (0. <= h1 && h1 < 1.) {
+        return vec3(1, x, 0);
+    }
+    if (1. <= h1 && h1 < 2.) {
+        return vec3(x, 1, 0);
+    }
+    if (2. <= h1 && h1 < 3.) {
+        return vec3(0, 1, x);
+    }
+    if (3. <= h1 && h1 < 4.) {
+        return vec3(0, x, 1);
+    }
+    if (4. <= h1 && h1 < 5.) {
+        return vec3(x, 0, 1);
+    }
+    if (5. <= h1 && h1 < 6.) {
+        return vec3(1, 0, x);
+    }
+    
+    return vec3(0);
+}
+
+float test(float x, float y) {
+    return (floor(abs(.5 - x) * 20.) * .1) * float(mod(y - x, .5) > .3);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy/128.;
+    float movetime = TIME * .25;
+	
+    float rr = stripe(mod(st.x + movetime, 1.));
+    float gg = stripe(mod(st.y + movetime, 1.));
+    // float b = (1. - (step(mod(st.y, .2), .1) * float(st.x >= st.y) + step(mod(st.x, .2), .1) * float(st.x <= st.y) * floor(st.y * 10.))) * min(floor(st.x * 10.) * .1, floor(st.y * 10.) * .1);
+    float bb = test(mod(st.x - movetime * 1.75, 1.), mod(st.y - movetime, 1.)) * 1.5;
+    
+    vec3 col1 = degree_to_rgb(TIME * 12.) * rr * r;
+    vec3 col2 = degree_to_rgb(TIME * 30. + 60.) * gg *g;
+    vec3 col3 = degree_to_rgb(TIME * 42. + 180.) * bb * b;
+    
+    vec3 color = col1 + col2 + col3;
+    
+    gl_FragColor = vec4(color, 1.);
+}

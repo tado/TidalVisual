@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "StSyncopationMonitor.hpp"
+#include "StISFView.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -9,7 +10,9 @@ void ofApp::setup(){
     tidal = new ofxTidalView(3333);
     
     stateMachine.addState<StSyncopationMonitor>();
+    stateMachine.addState<StISFView>();
     stateMachine.changeState("StSyncopationMonitor");
+    //stateMachine.changeState("StISFView");
 }
 
 void ofApp::update(){
@@ -26,7 +29,13 @@ void ofApp::oscEvent(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    
+    if (key == '1') {
+        stateMachine.changeState("StSyncopationMonitor");
+
+    }
+    if (key == '2') {
+        stateMachine.changeState("StISFView");
+    }
 }
 
 //--------------------------------------------------------------
