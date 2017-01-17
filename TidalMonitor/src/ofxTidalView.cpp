@@ -46,30 +46,35 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     //que inst
     if(m.getAddress() == "/n_go"){
         if (instNames.size() > 0) {
-            if (instNames[0] == "sync") {
-                syncTime = ofGetElapsedTimeMillis();
-                syncLength = syncTime - lastSyncTime;
-                lastSyncTime = syncTime;
-            } else {
-                //int beatCount =  floor((ofGetElapsedTimeMillis() - syncTime) / float(syncLength)) * resolution;
-                int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
-                beatCount = beatCount % resolution;
-                
-                //set inst num
-                int instNum;
-                for (int i = 0; i < instBuffer.size(); i++) {
-                    if (instNames[0] == instBuffer[i]){
-                        instNum = i;
-                        break;
-                    }
+            //if (instNames[0] == "sync") {
+            for (int i = 0; i < instNames.size(); i++) {
+                if (instNames[i] == "sync") {
+                    syncTime = ofGetElapsedTimeMillis();
+                    syncLength = syncTime - lastSyncTime;
+                    lastSyncTime = syncTime;
                 }
-                
-                TidalNote n;
-                n.beatCount = beatCount;
-                n.instNum = instNum;
-                notes.push_back(n);
-                noteCount++;
             }
+            
+            //} else {
+            //int beatCount =  floor((ofGetElapsedTimeMillis() - syncTime) / float(syncLength)) * resolution;
+            int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
+            beatCount = beatCount % resolution;
+            
+            //set inst num
+            int instNum;
+            for (int i = 0; i < instBuffer.size(); i++) {
+                if (instNames[0] == instBuffer[i]){
+                    instNum = i;
+                    break;
+                }
+            }
+            
+            TidalNote n;
+            n.beatCount = beatCount;
+            n.instNum = instNum;
+            notes.push_back(n);
+            noteCount++;
+            //}
             instNames.erase(instNames.begin());
         }
     }
@@ -89,13 +94,13 @@ void ofxTidalView::beatShift(){
 void ofxTidalView::beatMonitor(){
     cout << "-------------------------" << endl;
     /*
-    instNumMax = 0;
-    for (int i = 0; i < notes.size(); i++) {
-        if (notes[i].instNum > instNumMax) {
-            instNumMax = notes[i].instNum;
-        }
-    }
-    */
+     instNumMax = 0;
+     for (int i = 0; i < notes.size(); i++) {
+     if (notes[i].instNum > instNumMax) {
+     instNumMax = notes[i].instNum;
+     }
+     }
+     */
     instNumMax = instBuffer.size();
     for (int i = 0; i < notes.size(); i++) {
         noteMatrix[notes[i].instNum][int(notes[i].beatCount) + max2-16] = 1;
