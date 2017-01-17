@@ -37,6 +37,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
         } else if(inst == "sync"){
             beatMonitor();
             calcStat();
+            instCleanup();
             notes.clear();
             beatShift();
             //instBuffer.clear();
@@ -46,34 +47,50 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     //que inst
     if(m.getAddress() == "/n_go"){
         if (instNames.size() > 0) {
-            
-            for (int i = 0; i < instNames.size(); i++) {
-                if (instNames[i] == "sync") {
-                    syncTime = ofGetElapsedTimeMillis();
-                    syncLength = syncTime - lastSyncTime;
-                    lastSyncTime = syncTime;
+            if (instNames[0] == "sync") {
+                syncTime = ofGetElapsedTimeMillis();
+                syncLength = syncTime - lastSyncTime;
+                lastSyncTime = syncTime;
+                instNames.erase(instNames.begin());
+            } else {
+                int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
+                beatCount = beatCount % resolution;
+                
+                //set inst num
+                int instNum;
+                for (int i = 0; i < instBuffer.size(); i++) {
+                    if (instNames[0] == instBuffer[i]){
+                        instNum = i;
+                        break;
+                    }
                 }
+                TidalNote n;
+                n.beatCount = beatCount;
+                n.instNum = instNum;
+                notes.push_back(n);
+                noteCount++;
+                instNames.erase(instNames.begin());
             }
-            
-            int beatCount =  round((ofGetElapsedTimeMillis() - syncTime) / float(syncLength) * resolution);
-            beatCount = beatCount % resolution;
-            
-            //set inst num
-            int instNum;
-            for (int i = 0; i < instBuffer.size(); i++) {
-                if (instNames[0] == instBuffer[i]){
-                    instNum = i;
-                    break;
-                }
+        }
+    }
+}
+
+void ofxTidalView::instCleanup(){
+    vector<int > trackExist;
+    for (int i = 0; i < instBuffer.size(); i++) {
+        trackExist.push_back(0);
+    }
+    for (int i = 0; i < instBuffer.size(); i++) {
+        for (int j = 0; j < notes.size(); j++) {
+            if (notes[j].instNum == i) {
+                trackExist[i] = 1;
             }
-            
-            TidalNote n;
-            n.beatCount = beatCount;
-            n.instNum = instNum;
-            notes.push_back(n);
-            noteCount++;
-            
-            instNames.erase(instNames.begin());
+        }
+    }
+    for (int i = 0; i < instBuffer.size(); i++) {
+        if (trackExist[i] == 0) {
+            instBuffer.erase(instBuffer.begin()+i);
+            i--;
         }
     }
 }

@@ -20,6 +20,7 @@ public:
     void beatShift();
     void beatMonitor();
     void calcStat();
+    void instCleanup();
     
     ofxThreadedOSCReceiver receiver;
     vector<string> instNames;
