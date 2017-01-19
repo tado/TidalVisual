@@ -25,7 +25,10 @@ void StSyncopationMonitor::draw(){
         for (int i = 0; i < app->tidal->notes.size(); i++) {
             float x = ofMap(app->tidal->notes[i].beatCount+48, 0, app->tidal->resolution*4, 0, width);
             int h = height / (app->tidal->instNumMax);
-            float y = (h * app->tidal->notes[i].instNum) % height;
+            float y = (h * app->tidal->notes[i].instNum);
+            if (y + h > height) {
+                y = 0;
+            }
             ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
         }
         ofSetColor(255);
