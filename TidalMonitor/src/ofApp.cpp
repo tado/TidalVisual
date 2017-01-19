@@ -5,14 +5,13 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
-    ofSetFrameRate(60);
+    ofSetFrameRate(30);
     ofSetLogLevel(OF_LOG_SILENT);
     tidal = new ofxTidalView(3333);
     
     stateMachine.addState<StSyncopationMonitor>();
     stateMachine.addState<StISFView>();
     stateMachine.changeState("StSyncopationMonitor");
-    //stateMachine.changeState("StISFView");
 }
 
 void ofApp::update(){
