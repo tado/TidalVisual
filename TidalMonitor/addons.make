@@ -1,5 +1,6 @@
 ofxIO
 ofxISF
+ofxMIToolBox
 ofxOsc
 ofxStateMachine
 ofxThreadedOSCReceiver

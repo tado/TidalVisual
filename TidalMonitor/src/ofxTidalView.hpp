@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxOsc.h"
 #include "ofxThreadedOSCReceiver.h"
+#include "ofxMIToolBox.h"
 
 class TidalNote {
 public:
@@ -39,5 +40,6 @@ public:
     static const int max2 = 64;
     int noteMatrix[max1][max2];
     int syncopation[max1];
+    double entropy[max1];
     int instNumMax;
 };

@@ -128,6 +128,7 @@ void ofxTidalView::calcStat(){
     }
     
     for (int i = 0; i < instNumMax; i++) {
+        //calculate syncopation
         int n[16] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         int grain = 0;
         int skip = 1;
@@ -157,8 +158,6 @@ void ofxTidalView::calcStat(){
                 skip = 16;
                 break;
         }
-        
-        //calculate syncopation
         for (int j = 0; j < 16; j += skip) {
             if(n[j] == 1){
                 int k = abs((j - skip) % 16);
@@ -168,6 +167,18 @@ void ofxTidalView::calcStat(){
             }
         }
         cout << "syncopation " << i << " : " << syncopation[i] << endl;
+        
+        //calc entropy
+        uint firstVector[16];
+        uint socondVector[16];
+        for (int j = 0; j < 16; j++) {
+            firstVector[j] = uint(noteMatrix[i][max2 - 32 + j]);
+        }
+        for (int j = 0; j < 16; j++) {
+            socondVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
+        }
+        entropy[i] = calcEntropy(firstVector, 16);
+        cout << "entropy " << i << " : " << entropy[i] << endl;
     }
 }
 
