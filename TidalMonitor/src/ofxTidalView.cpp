@@ -166,19 +166,20 @@ void ofxTidalView::calcStat(){
                 }
             }
         }
-        cout << "syncopation " << i << " : " << syncopation[i] << endl;
+        //cout << "syncopation " << i << " : " << syncopation[i] << endl;
         
         //calc entropy
         uint firstVector[16];
-        uint socondVector[16];
+        uint secondVector[16];
         for (int j = 0; j < 16; j++) {
             firstVector[j] = uint(noteMatrix[i][max2 - 32 + j]);
         }
         for (int j = 0; j < 16; j++) {
-            socondVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
+            secondVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
         }
-        entropy[i] = calcEntropy(firstVector, 16);
-        cout << "entropy " << i << " : " << entropy[i] << endl;
+        entropy[i] = calcJointEntropy(firstVector, secondVector, 16);
+        //entropy[i] = calcMutualInformation(firstVector, secondVector, 16);
+        //cout << "entropy " << i << " : " << entropy[i] << endl;
     }
 }
 

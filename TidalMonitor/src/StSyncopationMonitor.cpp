@@ -21,7 +21,7 @@ void StSyncopationMonitor::draw(){
     drawGrid();
     //draw matrix
     if (app->tidal->instNumMax > 0) {
-        ofSetColor(255, 127, 127);
+        ofSetColor(255, 127, 63);
         for (int i = 0; i < app->tidal->notes.size(); i++) {
             float x = ofMap(app->tidal->notes[i].beatCount+48, 0, app->tidal->resolution*4, 0, width);
             int h = height / (app->tidal->instNumMax);
@@ -64,7 +64,7 @@ void StSyncopationMonitor::draw(){
         graphWidth = ofMap(app->tidal->syncopation[i], 0, 13, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
-        ofSetColor(255, 127, 63);
+        ofSetColor(63, 127, 255);
         ofDrawRectangle(graphX, 0, graphWidth, gheight);
         ofSetColor(255);
         ofDrawBitmapString("S"
@@ -72,11 +72,11 @@ void StSyncopationMonitor::draw(){
                            + ofToString(app->tidal->syncopation[i]), 0, 12);
     }
     ofTranslate(0, 60);
-    ofDrawBitmapString("Entropy", 0, 0);
+    ofDrawBitmapString("Joint Entropy", 0, 0);
     ofTranslate(0, -10);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
         ofTranslate(0, 20);
-        graphWidth = ofMap(app->tidal->entropy[i], 0, 1, 0, gwidth);
+        graphWidth = ofMap(app->tidal->entropy[i], 0, 2, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);
