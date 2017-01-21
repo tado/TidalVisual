@@ -71,12 +71,13 @@ void StSyncopationMonitor::draw(){
                            + ofToString(i) + ":"
                            + ofToString(app->tidal->syncopation[i]), 0, 12);
     }
+
     ofTranslate(0, 60);
     ofDrawBitmapString("Joint Entropy", 0, 0);
     ofTranslate(0, -10);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
         ofTranslate(0, 20);
-        graphWidth = ofMap(app->tidal->entropy[i], 0, 2, 0, gwidth);
+        graphWidth = ofMap(app->tidal->jointEntropy[i], 0, 2, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);
@@ -84,7 +85,7 @@ void StSyncopationMonitor::draw(){
         ofSetColor(255);
         ofDrawBitmapString("E"
                            + ofToString(i) + ":"
-                           + ofToString(app->tidal->entropy[i], 2), 0, 12);
+                           + ofToString(app->tidal->jointEntropy[i], 2), 0, 12);
     }
     ofPopMatrix();
 }

@@ -127,6 +127,17 @@ void ofxTidalView::calcStat(){
         syncopation[i] = 0;
     }
     
+    //calclate all part matrix for joint entropy
+    uint allVector[16];
+    for (int i = 0; i < instNumMax; i++) {
+        for (int j = 0; j < 16; j++) {
+            allVector[j] += uint(noteMatrix[i][max2 - 16 + j]);
+            if(allVector[j] > 1) {
+                allVector[j] = 1;
+            }
+        }
+    }
+    
     for (int i = 0; i < instNumMax; i++) {
         //calculate syncopation
         int n[16] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
@@ -169,16 +180,13 @@ void ofxTidalView::calcStat(){
         //cout << "syncopation " << i << " : " << syncopation[i] << endl;
         
         //calc entropy
-        uint firstVector[16];
-        uint secondVector[16];
+        uint partVector[16];
         for (int j = 0; j < 16; j++) {
-            firstVector[j] = uint(noteMatrix[i][max2 - 32 + j]);
+            partVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
         }
-        for (int j = 0; j < 16; j++) {
-            secondVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
-        }
-        entropy[i] = calcJointEntropy(firstVector, secondVector, 16);
-        //entropy[i] = calcMutualInformation(firstVector, secondVector, 16);
+        entropy[i] = calcEntropy(partVector, 16);
+        jointEntropy[i] = calcJointEntropy(partVector, allVector, 16);
+        mutualInformation[i] = calcMutualInformation(partVector, allVector, 16);
         //cout << "entropy " << i << " : " << entropy[i] << endl;
     }
 }

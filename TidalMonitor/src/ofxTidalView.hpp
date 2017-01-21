@@ -41,5 +41,7 @@ public:
     int noteMatrix[max1][max2];
     int syncopation[max1];
     double entropy[max1];
+    double jointEntropy[max1];
+    double mutualInformation[max1];
     int instNumMax;
 };
