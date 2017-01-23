@@ -20,4 +20,5 @@ public:
     int left;
     int width;
     int height;
+    string instNames[128];
 };

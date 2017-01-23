@@ -8,6 +8,9 @@ void StSyncopationMonitor::setup(){
     width = ofGetWidth() - (left * 2);
     height = ofGetHeight()/2 - (top * 2);
     //lastCount = 0;
+    for (int i = 0; i < 128; i++) {
+        instNames[i] = "";
+    }
 }
 
 void StSyncopationMonitor::update(){
@@ -19,6 +22,7 @@ void StSyncopationMonitor::draw(){
     ofPushMatrix();
     ofTranslate(top, left);
     drawGrid();
+    
     //draw matrix
     if (app->tidal->instNumMax > 0) {
         ofSetColor(255, 127, 63);
@@ -30,17 +34,22 @@ void StSyncopationMonitor::draw(){
                 y = 0;
             }
             ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+            //ofDrawBitmapString(app->tidal->notes[i].instName, x, y);
+            instNames[app->tidal->notes[i].instNum] = app->tidal->notes[i].instName;
         }
+        
         ofSetColor(255);
         for (int i = 0; i < app->tidal->instNumMax; i++) {
+            float x, y, h;
             for (int j = 0; j < app->tidal->max2; j++) {
                 if (app->tidal->noteMatrix[i][j] == 1) {
-                    int x = ofMap(j, 0, app->tidal->max2, 0, width);
-                    int h = height / (app->tidal->instNumMax);
+                    x = ofMap(j, 0, app->tidal->max2, 0, width);
+                    h = height / (app->tidal->instNumMax);
                     float y = h * i;
                     ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
                 }
             }
+            ofDrawBitmapStringHighlight(instNames[i], 10, height / (app->tidal->instNumMax) * i + 20);
         }
     }
     ofPopMatrix();
@@ -52,41 +61,61 @@ void StSyncopationMonitor::draw(){
     y = ofGetHeight()/2 + 20;
     graphX = 70;
     gwidth = ofGetWidth() - 40 - graphX;
-    gheight = 15;
+    gheight = 10;
     
     ofTranslate(x, y);
     ofPushMatrix();
     ofSetColor(255);
     ofDrawBitmapString("Syncopation Degree", 0, 0);
-    ofTranslate(0, -10);
+    ofTranslate(0, -8);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
-        ofTranslate(0, 20);
+        ofTranslate(0, 14);
         graphWidth = ofMap(app->tidal->syncopation[i], 0, 13, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);
         ofDrawRectangle(graphX, 0, graphWidth, gheight);
         ofSetColor(255);
-        ofDrawBitmapString("S"
-                           + ofToString(i) + ":"
-                           + ofToString(app->tidal->syncopation[i]), 0, 12);
+        //ofDrawBitmapString("S"
+        //                   + ofToString(i) + ":"
+        //                   + ofToString(app->tidal->syncopation[i]), 0, 12);
+        ofDrawBitmapString(instNames[i], 0, 10);
+        ofDrawBitmapString(ofToString(app->tidal->syncopation[i]), graphX + 5, 10);
     }
-
-    ofTranslate(0, 60);
-    ofDrawBitmapString("Joint Entropy", 0, 0);
-    ofTranslate(0, -10);
+    ofTranslate(0, 40);
+    ofDrawBitmapString("Entropy", 0, 0);
+    ofTranslate(0, -8);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
-        ofTranslate(0, 20);
-        graphWidth = ofMap(app->tidal->jointEntropy[i], 0, 2, 0, gwidth);
+        ofTranslate(0, 14);
+        graphWidth = ofMap(powf(app->tidal->entropy[i], 8), 0, 1, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);
         ofDrawRectangle(graphX, 0, graphWidth, gheight);
         ofSetColor(255);
-        ofDrawBitmapString("E"
-                           + ofToString(i) + ":"
-                           + ofToString(app->tidal->jointEntropy[i], 2), 0, 12);
+        //ofDrawBitmapString("E"
+        //                   + ofToString(i) + ":"
+        //                   + ofToString(app->tidal->entropy[i], 2), 0, 10);
+        ofDrawBitmapString(instNames[i], 0, 10);
+        ofDrawBitmapString(ofToString(app->tidal->entropy[i]), graphX + 5, 10);
     }
+    /*
+    ofTranslate(0, 40);
+    ofDrawBitmapString("Renyies Entropy", 0, 0);
+    ofTranslate(0, -8);
+    for (int i = 0; i < app->tidal->instNumMax; i++) {
+        ofTranslate(0, 14);
+        graphWidth = ofMap(app->tidal->renyiEntropy[i], 0, 2, 0, gwidth);
+        ofSetColor(63);
+        ofDrawRectangle(graphX, 0, gwidth, gheight);
+        ofSetColor(63, 127, 255);
+        ofDrawRectangle(graphX, 0, graphWidth, gheight);
+        ofSetColor(255);
+        ofDrawBitmapString("J"
+                           + ofToString(i) + ":"
+                           + ofToString(app->tidal->renyiEntropy[i], 2), 0, 12);
+    }
+    */
     ofPopMatrix();
 }
 

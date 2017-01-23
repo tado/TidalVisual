@@ -59,6 +59,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             
             //set inst num
             int instNum;
+            string instName;
             for (int i = 0; i < instBuffer.size(); i++) {
                 if (instNames[0] == instBuffer[i]){
                     instNum = i;
@@ -68,6 +69,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             TidalNote n;
             n.beatCount = beatCount;
             n.instNum = instNum;
+            n.instName = instNames[0];
             notes.push_back(n);
             noteCount++;
             instNames.erase(instNames.begin());
@@ -128,7 +130,7 @@ void ofxTidalView::calcStat(){
     }
     
     //calclate all part matrix for joint entropy
-    uint allVector[16];
+    uint *allVector = (uint *) calloc(16,sizeof(uint));
     for (int i = 0; i < instNumMax; i++) {
         for (int j = 0; j < 16; j++) {
             allVector[j] += uint(noteMatrix[i][max2 - 16 + j]);
@@ -166,7 +168,7 @@ void ofxTidalView::calcStat(){
                 skip = 8;
                 break;
             default:
-                skip = 16;
+                skip = 2;
                 break;
         }
         for (int j = 0; j < 16; j += skip) {
@@ -180,13 +182,13 @@ void ofxTidalView::calcStat(){
         //cout << "syncopation " << i << " : " << syncopation[i] << endl;
         
         //calc entropy
-        uint partVector[16];
+        uint *partVector = (uint *) calloc(16,sizeof(uint));
         for (int j = 0; j < 16; j++) {
             partVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
         }
         entropy[i] = calcEntropy(partVector, 16);
-        jointEntropy[i] = calcJointEntropy(partVector, allVector, 16);
-        mutualInformation[i] = calcMutualInformation(partVector, allVector, 16);
+        //jointEntropy[i] = calcJointEntropy(partVector, allVector, 16/skip);
+        //mutualInformation[i] = calcMutualInformation(partVector, allVector, 16/skip);
         //cout << "entropy " << i << " : " << entropy[i] << endl;
     }
 }
