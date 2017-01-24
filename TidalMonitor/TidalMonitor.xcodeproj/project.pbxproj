@@ -11,6 +11,7 @@
 		0D29775C1B09F81C07C7BC87 /* Entropy.c in Sources */ = {isa = PBXBuildFile; fileRef = E24651D54D13DCCAEE742274 /* Entropy.c */; };
 		1298066D39CE7EC3DA60256A /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2FB74FF42B08FC378F74B2B7 /* snappy-stubs-internal.cc */; };
 		135E94A6FC6A121E2551A62A /* RenyiEntropy.c in Sources */ = {isa = PBXBuildFile; fileRef = 120B735E4A8115191D7F6420 /* RenyiEntropy.c */; };
+		181D08E81E375D4B00CA2CA9 /* St3DVisalizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181D08E61E375D4B00CA2CA9 /* St3DVisalizer.cpp */; };
 		18B962E61E314F18001F561D /* StISFView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B962E41E314F18001F561D /* StISFView.cpp */; };
 		1CC07C1A616F29EB8EEC3D21 /* SearchPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B424A6DF4D70AACCDBAE /* SearchPath.cpp */; };
 		347D67CCF4C7C7725118DD59 /* ByteBufferStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6C68D431AF8FD1A9E2DCFF2 /* ByteBufferStream.cpp */; };
@@ -108,6 +109,8 @@
 		139B5E83C7DA63BC5C5F6D9D /* Shader.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Shader.h; path = ../../../addons/ofxISF/src/ofxISF/Shader.h; sourceTree = SOURCE_ROOT; };
 		13D68F0C2CAE7809D621924C /* RegexPathFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = RegexPathFilter.cpp; path = ../../../addons/ofxIO/libs/ofxIO/src/RegexPathFilter.cpp; sourceTree = SOURCE_ROOT; };
 		14290ED8DE68778AE3023FBC /* LinkFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = LinkFilter.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/IO/LinkFilter.h; sourceTree = SOURCE_ROOT; };
+		181D08E61E375D4B00CA2CA9 /* St3DVisalizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = St3DVisalizer.cpp; sourceTree = "<group>"; };
+		181D08E71E375D4B00CA2CA9 /* St3DVisalizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = St3DVisalizer.hpp; sourceTree = "<group>"; };
 		181F02B531162F6039F6ADC2 /* DirectoryWatcher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DirectoryWatcher.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/DirectoryWatcher.h; sourceTree = SOURCE_ROOT; };
 		185527997F0B73A279912DB2 /* ofxStateMachine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxStateMachine.h; path = ../../../addons/ofxStateMachine/src/ofxStateMachine.h; sourceTree = SOURCE_ROOT; };
 		18B962E31E314D3D001F561D /* ofxMIToolBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxMIToolBox.h; path = ../../../addons/ofxMIToolBox/ofxMIToolBox.h; sourceTree = "<group>"; };
@@ -669,6 +672,8 @@
 				1FA9D61F3B576B11B543B993 /* ofxTidalView.hpp */,
 				400577BC2D3A2F3E134CE779 /* StSyncopationMonitor.cpp */,
 				C7BEA49171A5A74097AF0833 /* StSyncopationMonitor.hpp */,
+				181D08E61E375D4B00CA2CA9 /* St3DVisalizer.cpp */,
+				181D08E71E375D4B00CA2CA9 /* St3DVisalizer.hpp */,
 				18B962E41E314F18001F561D /* StISFView.cpp */,
 				18B962E51E314F18001F561D /* StISFView.hpp */,
 			);
@@ -845,6 +850,7 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				181D08E81E375D4B00CA2CA9 /* St3DVisalizer.cpp in Sources */,
 				C91310A505422F234E6FFEBA /* ofxTidalView.cpp in Sources */,
 				998401D1F794511BF0DB6B47 /* StSyncopationMonitor.cpp in Sources */,
 				3BFC7CF50BEB0307821B90A6 /* lz4.c in Sources */,

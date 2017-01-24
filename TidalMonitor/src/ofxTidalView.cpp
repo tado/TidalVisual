@@ -12,6 +12,8 @@ ofxTidalView::ofxTidalView(int port){
     instNumMax = 1;
     for (int i = 0; i < max1; i++) {
         syncopation[i] = 0;
+        entropy[i] = 0;
+        noteNum[i] = 0;
         for (int j = 0; j < max2 ; j++) {
             noteMatrix[i][j] = 0;
         }
@@ -127,6 +129,7 @@ void ofxTidalView::beatMonitor(){
 void ofxTidalView::calcStat(){
     for (int i = 0; i < max1; i++) {
         syncopation[i] = 0;
+        noteNum[i] = 0;
     }
     
     //calclate all part matrix for joint entropy
@@ -188,6 +191,13 @@ void ofxTidalView::calcStat(){
         entropy[i] = calcEntropy(currentVector, 16);
         //jointEntropy[i] = calcJointEntropy(currentVector, allVector, 16/skip);
         //mutualInformation[i] = calcMutualInformation(currentVector, allVector, 16/skip);
+        
+        //notenum
+        for (int j = 0; j < max2; j++) {
+            if (noteMatrix[i][j] == 1) {
+                noteNum[i]++;
+            }
+        }
     }
 }
 

@@ -43,5 +43,6 @@ public:
     double entropy[max1];
     double jointEntropy[max1];
     double mutualInformation[max1];
+    int noteNum[max1];
     int instNumMax;
 };

@@ -1,6 +1,7 @@
 #include "ofApp.h"
 #include "StSyncopationMonitor.hpp"
 #include "StISFView.hpp"
+#include "St3DVisalizer.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -11,6 +12,7 @@ void ofApp::setup(){
     
     stateMachine.addState<StSyncopationMonitor>();
     stateMachine.addState<StISFView>();
+    stateMachine.addState<St3DVisalizer>();
     stateMachine.changeState("StSyncopationMonitor");
 }
 
@@ -34,6 +36,9 @@ void ofApp::keyPressed(int key){
     }
     if (key == '2') {
         stateMachine.changeState("StISFView");
+    }
+    if (key == '3') {
+        stateMachine.changeState("St3DVisalizer");
     }
 }
 
