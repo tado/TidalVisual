@@ -16,9 +16,9 @@ public:
     
     string name;
     ofApp *app;
-    int top;
-    int left;
-    int width;
-    int height;
+    float top;
+    float left;
+    float width;
+    float height;
     string instNames[128];
 };
