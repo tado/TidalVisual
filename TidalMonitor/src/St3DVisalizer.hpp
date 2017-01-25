@@ -3,6 +3,7 @@
 #include "ofxState.h"
 #include "SharedData.h"
 #include "ofApp.h"
+#include "ofVbo.h"
 
 class instPath {
 public:
@@ -17,6 +18,8 @@ public:
     void stateExit();
     void stateEnter();
     string getName();
+    void billboardBegin();
+    void billboardEnd();
     
     string name;
     ofApp *app;
@@ -25,7 +28,14 @@ public:
     float width;
     float height;
     ofEasyCam cam;
-    ofMesh mesh;
     vector<instPath> path;
-    ofVec3f currentLoc[128];
+
+    // billboard particles
+    static const int NUM_BILLBOARDS  = 128;
+    float billboardSizeTarget[NUM_BILLBOARDS];
+    ofVec3f currentLoc[NUM_BILLBOARDS];
+    ofVec3f loc[NUM_BILLBOARDS];
+    ofShader billboardShader;
+    ofImage texture;
+    ofVboMesh billboards;
 };
