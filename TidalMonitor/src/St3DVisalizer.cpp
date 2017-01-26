@@ -12,7 +12,7 @@ void St3DVisalizer::setup(){
         path.push_back(p);
         currentLoc[i] = ofVec3f(0, 0, 0);
     }
-    //billboards.setUsage( GL_DYNAMIC_DRAW );
+    billboards.setUsage( GL_DYNAMIC_DRAW );
     billboards.setMode(OF_PRIMITIVE_POINTS);
     //billboardVbo.setVertexData(billboardVerts, NUM_BILLBOARDS, GL_DYNAMIC_DRAW);
     //billboardVbo.setColorData(billboardColor, NUM_BILLBOARDS, GL_DYNAMIC_DRAW);
@@ -20,7 +20,7 @@ void St3DVisalizer::setup(){
     ofDisableArbTex();
     texture.load("particle.png");
     ofEnableAlphaBlending();
-    glPointSize(80.0);
+    glPointSize(160.0);
 }
 
 void St3DVisalizer::update(){
@@ -39,7 +39,7 @@ void St3DVisalizer::update(){
         if (path[i].locs.size() > 0) {
             if (loc[i] != path[i].locs[path[i].locs.size()-1]) {
                 path[i].locs.push_back(loc[i]);
-                if (path[i].locs.size() > 16) {
+                if (path[i].locs.size() > 256) {
                     path[i].locs.erase(path[i].locs.begin());
                 }
             }
@@ -55,20 +55,17 @@ void St3DVisalizer::update(){
 }
 
 void St3DVisalizer::draw(){
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    //ofBackgroundGradient(ofColor(255), ofColor(230, 240, 255));
     cam.begin();
     ofSetLineWidth(2.0);
-    //ofEnableDepthTest();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofRotateX(30);
     ofRotateY(ofGetElapsedTimef());
-    ofSetColor(127);
-    ofDrawLine(-width*4, 0, 0, width*4, 0, 0);
-    ofDrawLine(0, -width*4, 0, 0, width*4, 0);
-    ofDrawLine(0, 0, -width*4, 0, 0, width*4);
+    ofSetColor(100);
+    ofDrawLine(-width, 0, 0, width, 0, 0);
+    ofDrawLine(0, -width, 0, 0, width, 0);
+    ofDrawLine(0, 0, -width, 0, 0, width);
     
-    ofSetColor(255);
+    ofSetColor(127);
     billboardShader.begin();
     ofEnablePointSprites(); // not needed for GL3/4
     texture.getTexture().bind();
@@ -76,19 +73,17 @@ void St3DVisalizer::draw(){
     texture.getTexture().unbind();
     ofDisablePointSprites(); // not needed for GL3/4
     billboardShader.end();
-    
-    ofSetColor(127);
+
+    ofSetColor(63);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
         ofNoFill();
         ofBeginShape();
         ofCurveVertices(path[i].locs);
+        ofVertex(currentLoc[i]);
         ofEndShape();
-        if (path[i].locs.size() > 1) {
-            ofDrawLine(path[i].locs[path[i].locs.size()-2], currentLoc[i]);
-        }
         ofFill();
     }
-    //ofDisableDepthTest();
+    ofDisableDepthTest();
     ofSetLineWidth(1.0);
     cam.end();
 }
