@@ -22,6 +22,7 @@ void StSyncopationMonitor::draw(){
     ofPushMatrix();
     ofTranslate(top, left);
     drawGrid();
+    ofDisableAlphaBlending();
     
     //draw matrix
     if (app->tidal->instNumMax > 0) {

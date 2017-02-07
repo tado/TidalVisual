@@ -86,6 +86,7 @@ void St3DVisalizer::draw(){
     ofDisableDepthTest();
     ofSetLineWidth(1.0);
     cam.end();
+    ofDisableAlphaBlending();
 }
 
 void St3DVisalizer::stateExit(){
