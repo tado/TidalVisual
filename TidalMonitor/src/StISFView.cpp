@@ -22,10 +22,33 @@ void StISFView::setup(){
 
 void StISFView::update(){
     /*
+    for (int i = 0; i < app->tidal->notes.size(); i++) {
+        //isfNum = app->tidal->notes[i].instNum % isfs.size();
+        isfNum = ofRandom(isfs.size());
+    }
+    */
+    
+    if (app->tidal->instNumMax > 0 && app->tidal->notes.size() > 0){
+        if (lastNum != app->tidal->noteCount) {
+            isfNum = ofRandom(app->tidal->instNumMax % isfs.size());
+            /*
+            while(1){
+                isfNum = ofRandom(app->tidal->instNumMax % isfs.size());
+                if (isfNum != lastNum) {
+                    break;
+                }
+            }
+            */
+        }
+        lastNum = app->tidal->noteCount;
+    }
+    isfs[isfNum]->update();
+
+    /*
      if (app->tidal->instNumMax > 0 && app->tidal->notes.size() > 0) {
      isfNum = app->tidal->notes[app->tidal->notes.size()-1].instNum;
      }
-     */
+     
     if (app->tidal->instNumMax > 0 && app->tidal->notes.size() > 0){
         if (lastNum != app->tidal->noteCount) {
             while(1){
@@ -37,7 +60,8 @@ void StISFView::update(){
         }
         lastNum = app->tidal->noteCount;
     }
-    isfs[isfNum]->update();
+    */
+    
 }
 
 void StISFView::draw(){
