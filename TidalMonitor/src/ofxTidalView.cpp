@@ -208,6 +208,13 @@ void ofxTidalView::calcStat(){
         int digit = stoi(bitStr, nullptr, 2);
         cout << "digit " << i << " : " << digit << endl;
         syncopation[i] = SG[digit];
+        
+        //calc entropy
+        uint *currentVector = (uint *) calloc(16,sizeof(uint));
+        for (int j = 0; j < 16; j++) {
+            currentVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
+        }
+        entropy[i] = calcEntropy(currentVector, 16);
     }
     
     /*
