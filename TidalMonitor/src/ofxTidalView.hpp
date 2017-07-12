@@ -28,9 +28,10 @@ public:
     vector<string> instBuffer;
     vector<TidalNote> notes;
     
-    int lastSyncTime;
-    int syncTime;
-    int syncLength;
+    float lastCycle;
+    //double lastSyncTime;
+    //double syncTime;
+    //double syncLength;
     int resolution;
    
     int noteCount;
@@ -39,7 +40,7 @@ public:
     static const int max1 = 128;
     static const int max2 = 64;
     int noteMatrix[max1][max2];
-    int syncopation[max1];
+    float syncopation[max1];
     double entropy[max1];
     double jointEntropy[max1];
     double mutualInformation[max1];

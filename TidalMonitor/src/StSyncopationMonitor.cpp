@@ -73,7 +73,7 @@ void StSyncopationMonitor::draw(){
     ofTranslate(0, -8);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
         ofTranslate(0, 14);
-        graphWidth = ofMap(app->tidal->syncopation[i], 0, 13, 0, gwidth);
+        graphWidth = ofMap(app->tidal->syncopation[i], 0, 20, 0, gwidth);
         ofSetColor(63);
         ofDrawRectangle(graphX, 0, gwidth, gheight);
         ofSetColor(63, 127, 255);

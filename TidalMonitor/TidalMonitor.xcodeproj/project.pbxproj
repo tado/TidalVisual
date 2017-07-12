@@ -113,6 +113,7 @@
 		181D08E71E375D4B00CA2CA9 /* St3DVisalizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = St3DVisalizer.hpp; sourceTree = "<group>"; };
 		181F02B531162F6039F6ADC2 /* DirectoryWatcher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DirectoryWatcher.h; path = ../../../addons/ofxIO/libs/ofxIO/include/ofx/DirectoryWatcher.h; sourceTree = SOURCE_ROOT; };
 		185527997F0B73A279912DB2 /* ofxStateMachine.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxStateMachine.h; path = ../../../addons/ofxStateMachine/src/ofxStateMachine.h; sourceTree = SOURCE_ROOT; };
+		187A4AF01F164D0C009CC733 /* SyncopationData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SyncopationData.hpp; sourceTree = "<group>"; };
 		18B962E31E314D3D001F561D /* ofxMIToolBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxMIToolBox.h; path = ../../../addons/ofxMIToolBox/ofxMIToolBox.h; sourceTree = "<group>"; };
 		18B962E41E314F18001F561D /* StISFView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StISFView.cpp; sourceTree = "<group>"; };
 		18B962E51E314F18001F561D /* StISFView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StISFView.hpp; sourceTree = "<group>"; };
@@ -676,6 +677,7 @@
 				181D08E71E375D4B00CA2CA9 /* St3DVisalizer.hpp */,
 				18B962E41E314F18001F561D /* StISFView.cpp */,
 				18B962E51E314F18001F561D /* StISFView.hpp */,
+				187A4AF01F164D0C009CC733 /* SyncopationData.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
