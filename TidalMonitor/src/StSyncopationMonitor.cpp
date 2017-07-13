@@ -25,6 +25,7 @@ void StSyncopationMonitor::draw(){
     ofDisableAlphaBlending();
     
     //draw matrix
+    ofDisableSmoothing();
     if (app->tidal->instNumMax > 0) {
         /*
         ofSetColor(255, 127, 63);
@@ -49,7 +50,8 @@ void StSyncopationMonitor::draw(){
                     h = height / (app->tidal->instNumMax);
                     float y = h * i;
                     ofSetColor(255);
-                    ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+                    //ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+                    ofDrawRectangle(x, y, 3, h);
                 }
             }
             ofDrawBitmapStringHighlight(instNames[i], 4, height / (app->tidal->instNumMax) * i + 14, ofColor(63));
@@ -59,6 +61,7 @@ void StSyncopationMonitor::draw(){
             }
         }
     }
+    ofEnableSmoothing();
     ofPopMatrix();
     
     //draw graph
@@ -69,7 +72,7 @@ void StSyncopationMonitor::draw(){
     graphX = 70;
     gwidth = ofGetWidth() - 40 - graphX;
     gheight = 10;
-    
+
     ofTranslate(x, y);
     ofPushMatrix();
     ofSetColor(255);
@@ -90,6 +93,24 @@ void StSyncopationMonitor::draw(){
         ofDrawBitmapString(ofToString(app->tidal->syncopation[i]), graphX + 5, 10);
     }
     ofTranslate(0, 40);
+    ofDrawBitmapString("Note Number", 0, 0);
+    ofTranslate(0, -8);
+    for (int i = 0; i < app->tidal->instNumMax; i++) {
+        ofTranslate(0, 14);
+        graphWidth = ofMap(app->tidal->noteNum[i], 0, 32, 0, gwidth);
+        ofSetColor(63);
+        ofDrawRectangle(graphX, 0, gwidth, gheight);
+        ofSetColor(63, 127, 255);
+        ofDrawRectangle(graphX, 0, graphWidth, gheight);
+        ofSetColor(255);
+        //ofDrawBitmapString("E"
+        //                   + ofToString(i) + ":"
+        //                   + ofToString(app->tidal->entropy[i], 2), 0, 10);
+        ofDrawBitmapString(instNames[i], 0, 10);
+        ofDrawBitmapString(ofToString(app->tidal->noteNum[i]), graphX + 5, 10);
+    }
+    /*
+    ofTranslate(0, 40);
     ofDrawBitmapString("Entropy", 0, 0);
     ofTranslate(0, -8);
     for (int i = 0; i < app->tidal->instNumMax; i++) {
@@ -106,24 +127,29 @@ void StSyncopationMonitor::draw(){
         ofDrawBitmapString(instNames[i], 0, 10);
         ofDrawBitmapString(ofToString(app->tidal->entropy[i]), graphX + 5, 10);
     }
+    */
     ofPopMatrix();
 }
 
 void StSyncopationMonitor::drawGrid(){
-    ofSetColor(94);
-    for (int i = 0; i < 32; i++) {
-        float x = ofMap(i, 0, 32, 0, width);
+    ofDisableSmoothing();
+    int div1 = app->tidal->max2;
+    int div2 = app->tidal->max2 / 8;
+    ofSetColor(63);
+    for (int i = 0; i < div1; i++) {
+        float x = ofMap(i, 0, div1, 0, width);
         ofDrawLine(x, 0, x, height);
     }
     ofSetColor(191);
-    for (int i = 0; i < 8; i++) {
-        float x = ofMap(i, 0, 8, 0, width);
+    for (int i = 0; i < div2; i++) {
+        float x = ofMap(i, 0, div2, 0, width);
         ofDrawLine(x, 0, x, height);
     }
     ofSetColor(220);
     ofNoFill();
     ofDrawRectangle(0, 0, width, height);
     ofFill();
+    ofEnableSmoothing();
 }
 
 void StSyncopationMonitor::stateExit(){

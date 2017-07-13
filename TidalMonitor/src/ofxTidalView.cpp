@@ -86,65 +86,6 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             notes.clear();
         }
     }
-    
-    /*
-     //buffer inst name
-     string inst;
-     if(m.getAddress() == "/play2"){
-     //get inst name
-     for (int i = 0; i < m.getNumArgs(); i++) {
-     if(m.getArgAsString(i) == "s"){
-     inst = m.getArgAsString(i+1);
-     instNames.push_back(inst);
-     }
-     }
-     //create unique instname list
-     vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), inst);
-     size_t index = std::distance(instBuffer.begin(), iter);
-     if(index == instBuffer.size() && inst != "sync"){
-     instBuffer.push_back(inst);
-     } else if(inst == "sync"){
-     beatMonitor();
-     calcStat();
-     instCleanup();
-     notes.clear();
-     beatShift();
-     }
-     }
-     
-     //que inst
-     if(m.getAddress() == "/n_go"){
-     for (int i = 0; i < instNames.size(); i++) {
-     if (instNames[i] == "sync") {
-     syncTime = ofGetElapsedTimef();
-     syncLength = (syncTime - lastSyncTime) / resolution;
-     lastSyncTime = syncTime;
-     instNames.erase(instNames.begin() + i);
-     }
-     }
-     if (instNames.size() > 0) {
-     int beatCount =  round((ofGetElapsedTimef() - syncTime) / syncLength);
-     beatCount = beatCount % resolution;
-     
-     //set inst num
-     int instNum;
-     string instName;
-     for (int i = 0; i < instBuffer.size(); i++) {
-     if (instNames[0] == instBuffer[i]){
-     instNum = i;
-     break;
-     }
-     }
-     TidalNote n;
-     n.beatCount = beatCount;
-     n.instNum = instNum;
-     n.instName = instNames[0];
-     notes.push_back(n);
-     noteCount++;
-     instNames.erase(instNames.begin());
-     }
-     }
-     */
 }
 
 void ofxTidalView::instCleanup(){
@@ -169,10 +110,10 @@ void ofxTidalView::instCleanup(){
 
 void ofxTidalView::beatShift(){
     for (int i = 0; i < max1; i++) {
-        for (int j = 16; j < max2 ; j++) {
-            noteMatrix[i][j - 16] = noteMatrix[i][j];
+        for (int j = resolution; j < max2 ; j++) {
+            noteMatrix[i][j - resolution] = noteMatrix[i][j];
         }
-        for (int j = max2-16; j < max2 ; j++) {
+        for (int j = max2-resolution; j < max2 ; j++) {
             noteMatrix[i][j] = 0;
         }
     }
@@ -203,10 +144,10 @@ void ofxTidalView::calcStat(){
     }
     
     //calclate all part matrix for joint entropy
-    uint *allVector = (uint *) calloc(16,sizeof(uint));
+    uint *allVector = (uint *) calloc(resolution,sizeof(uint));
     for (int i = 0; i < instNumMax; i++) {
-        for (int j = 0; j < 16; j++) {
-            allVector[j] += uint(noteMatrix[i][max2 - 16 + j]);
+        for (int j = 0; j < resolution; j++) {
+            allVector[j] += uint(noteMatrix[i][max2 - resolution + j]);
             if(allVector[j] > 1) {
                 allVector[j] = 1;
             }
@@ -216,19 +157,32 @@ void ofxTidalView::calcStat(){
     for (int i = 0; i < instNumMax; i++) {
         //calculate syncopation
         string bitStr;
-        for (int j = 0; j < 16; j++) {
-            bitStr += to_string(noteMatrix[i][max2 - 16 + j]);
+        for (int j = 0; j < resolution; j++) {
+            bitStr += to_string(noteMatrix[i][max2 - resolution + j]);
         }
         int digit = stoi(bitStr, nullptr, 2);
-        cout << "digit " << i << " : " << bitStr << " : "  << digit << endl;
         syncopation[i] = SG[digit];
+
+        cout << "digit " << i << " : "
+        << bitStr << " : "  << digit
+        << " syncopation : " << SG[digit]
+        << endl;
         
         //calc entropy
-        uint *currentVector = (uint *) calloc(16,sizeof(uint));
-        for (int j = 0; j < 16; j++) {
-            currentVector[j] = uint(noteMatrix[i][max2 - 16 + j]);
+        uint *currentVector = (uint *) calloc(resolution,sizeof(uint));
+        for (int j = 0; j < resolution; j++) {
+            currentVector[j] = uint(noteMatrix[i][max2 - resolution + j]);
         }
-        entropy[i] = calcEntropy(currentVector, 16);
+        entropy[i] = calcEntropy(currentVector, resolution);
+        
+        //calc note count
+        int num = 0;
+        for (int j = 0; j < resolution; j++) {
+            if (noteMatrix[i][max2 - resolution + j] == 1) {
+                num++;
+            }
+        }
+        noteNum[i] = num;
     }
 }
 
