@@ -3,13 +3,13 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 7,
-			"minor" : 2,
-			"revision" : 4,
+			"minor" : 3,
+			"revision" : 1,
 			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 978.0, 652.0, 640.0, 480.0 ],
+		"rect" : [ 657.0, 127.0, 542.0, 456.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -114,7 +114,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 44.75, 56.0, 107.0, 23.0 ],
 					"style" : "",
-					"text" : "udpreceive 8000"
+					"text" : "udpreceive 3333"
 				}
 
 			}

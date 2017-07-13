@@ -26,6 +26,7 @@ void StSyncopationMonitor::draw(){
     
     //draw matrix
     if (app->tidal->instNumMax > 0) {
+        /*
         ofSetColor(255, 127, 63);
         for (int i = 0; i < app->tidal->notes.size(); i++) {
             float x = ofMap(app->tidal->notes[i].beatCount+48, 0, app->tidal->resolution*4, 0, width);
@@ -35,6 +36,9 @@ void StSyncopationMonitor::draw(){
                 y = 0;
             }
             ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
+        }
+        */
+        for (int i = 0; i < app->tidal->notes.size(); i++) {
             instNames[app->tidal->notes[i].instNum] = app->tidal->notes[i].instName;
         }
         for (int i = 0; i < app->tidal->instNumMax; i++) {

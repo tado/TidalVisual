@@ -30,9 +30,7 @@ public:
     
     float lastCycle;
     int resolution;
-   
     int noteCount;
-    int notePerCycle;
     
     static const int max1 = 128;
     static const int max2 = 64;
