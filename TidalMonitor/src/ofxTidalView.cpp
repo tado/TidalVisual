@@ -62,10 +62,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             }
             
             //calc beat count
-            int beatCount =  floor((cycle - lastCycle) * resolution);
-            if (beatCount > resolution) {
-                beatCount -= resolution;
-            }
+            int beatCount =  int((cycle - lastCycle) * resolution) % resolution;
             
             //set inst num
             int instNum;
@@ -217,7 +214,7 @@ void ofxTidalView::calcStat(){
             bitStr += to_string(noteMatrix[i][max2 - 16 + j]);
         }
         int digit = stoi(bitStr, nullptr, 2);
-        cout << "digit " << i << " : " << digit << endl;
+        cout << "digit " << i << " : " << bitStr << " : "  << digit << endl;
         syncopation[i] = SG[digit];
         
         //calc entropy
