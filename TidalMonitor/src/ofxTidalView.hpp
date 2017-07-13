@@ -29,9 +29,6 @@ public:
     vector<TidalNote> notes;
     
     float lastCycle;
-    //double lastSyncTime;
-    //double syncTime;
-    //double syncLength;
     int resolution;
    
     int noteCount;

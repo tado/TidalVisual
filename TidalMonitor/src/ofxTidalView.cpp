@@ -3,7 +3,7 @@
 #include<iostream>
 #include<bitset>
 
-int weights[16] = {0, -4, -3, -4, -2, -4, -3, -4, -1, -4, -3, -4, -2, -4, -3, -4};
+//int weights[16] = {0, -4, -3, -4, -2, -4, -3, -4, -1, -4, -3, -4, -2, -4, -3, -4};
 
 ofxTidalView::ofxTidalView(int port){
     receiver.setup(port);
@@ -24,15 +24,23 @@ ofxTidalView::ofxTidalView(int port){
 }
 
 void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
-    if(m.getAddress() == "/fromTidal"){
-        float cps = m.getArgAsFloat(1);
-        float delta = m.getArgAsFloat(3);
-        float cycle = m.getArgAsFloat(5);
+    if(m.getAddress() == "/play2"){
+        float cps;
+        float delta;
+        float cycle;
         string inst;
         for (int i = 0; i < m.getNumArgs(); i++) {
+            if(m.getArgAsString(i) == "cps"){
+                cps = m.getArgAsFloat(i+1);
+            }
+            if(m.getArgAsString(i) == "delta"){
+                delta = m.getArgAsFloat(i+1);
+            }
+            if(m.getArgAsString(i) == "cycle"){
+                cycle = m.getArgAsFloat(i+1);
+            }
             if(m.getArgAsString(i) == "s"){
                 inst = m.getArgAsString(i+1);
-                //instNames.push_back(inst);
             }
         }
         //cout << cps << ", " << delta << ", " << cycle << ", " << inst << endl;
@@ -54,8 +62,11 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             }
             
             //calc beat count
-            int beatCount =  (cycle - lastCycle) * resolution;
-            //cout << "beat count = " << beatCount << endl;
+            int beatCount =  floor((cycle - lastCycle) * resolution);
+            if (beatCount > resolution) {
+                beatCount -= resolution;
+            }
+            
             //set inst num
             int instNum;
             string instName;
