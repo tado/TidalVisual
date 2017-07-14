@@ -10,6 +10,9 @@ ofxTidalView::ofxTidalView(int port){
     resolution = 16;
     instNumMax = 1;
     noteCount = 0;
+    updated = false;
+    
+    //init arrays
     for (int i = 0; i < max1; i++) {
         syncopation[i] = 0;
         entropy[i] = 0;
@@ -22,9 +25,10 @@ ofxTidalView::ofxTidalView(int port){
 
 void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
     if(m.getAddress() == "/play2"){
+        
+        //get osc params
         float cps;
         float delta;
-        float cycle;
         string inst;
         for (int i = 0; i < m.getNumArgs(); i++) {
             if(m.getArgAsString(i) == "cps"){
@@ -42,7 +46,9 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
         }
         //cout << cps << ", " << delta << ", " << cycle << ", " << inst << endl;
         
-        if(inst != "sync"){
+        if (inst == "sync") {
+            updateCycle();
+        } else {
             //create unique instname list
             vector<string>::iterator iter = find(instBuffer.begin(), instBuffer.end(), inst);
             size_t index = std::distance(instBuffer.begin(), iter);
@@ -55,9 +61,8 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             //int beatCount =  int(delta * resolution) % resolution;
             float fractional, integer;
             fractional = modff(cycle, &integer);
-            int beatCount =  int(fractional * resolution) % resolution;
+            int beatCount =  int(fractional * resolution);
             
-            //add note to sequence
             int instNum;
             for (int i = 0; i < instBuffer.size(); i++) {
                 if (inst == instBuffer[i]){
@@ -76,16 +81,30 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
             for (int i = 0; i < notes.size(); i++) {
                 noteMatrix[notes[i].instNum][int(notes[i].beatCount) + max2 - resolution] = 1;
             }
-        } else {
-            //sync each one bar
-            lastCycle = cycle;
-            beatMonitor();
-            calcStat();
-            instCleanup();
-            beatShift();
-            notes.clear();
         }
+        
+        
+        /*
+         } else {
+         //sync each one bar
+         lastCycle = cycle;
+         beatMonitor();
+         calcStat();
+         instCleanup();
+         beatShift();
+         notes.clear();
+         }
+         */
     }
+}
+
+void ofxTidalView::updateCycle(){
+    lastCycle = cycle;
+    beatMonitor();
+    calcStat();
+    instCleanup();
+    beatShift();
+    notes.clear();
 }
 
 void ofxTidalView::instCleanup(){
@@ -162,7 +181,7 @@ void ofxTidalView::calcStat(){
         }
         int digit = stoi(bitStr, nullptr, 2);
         syncopation[i] = SG[digit];
-
+        
         cout << "digit " << i << " : "
         << bitStr << " : "  << digit
         << " syncopation : " << SG[digit]

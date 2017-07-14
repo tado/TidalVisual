@@ -22,15 +22,18 @@ public:
     void beatMonitor();
     void calcStat();
     void instCleanup();
+    void updateCycle();
     
     ofxThreadedOSCReceiver receiver;
     vector<string> instNames;
     vector<string> instBuffer;
     vector<TidalNote> notes;
     
+    float cycle;
     float lastCycle;
     int resolution;
     int noteCount;
+    bool updated;
     
     static const int max1 = 128;
     static const int max2 = 64;
