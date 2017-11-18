@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup(){
+void ofApp::setup() {
 	receiver.setup(PORT);
 	//ofSetLogLevel(OF_LOG_SILENT);
 	ofSetFrameRate(60);
@@ -10,7 +10,7 @@ void ofApp::setup(){
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
+void ofApp::update() {
 	while (receiver.hasWaitingMessages()) {
 		ofxOscMessage m;
 		receiver.getNextMessage(m);
@@ -18,7 +18,7 @@ void ofApp::update(){
 		//parse when tidal cycle message comming
 		if (m.getAddress() == "/play2") {
 			TidalNote note;
-			for (int i = 1; i < m.getNumArgs(); i+=2) {
+			for (int i = 1; i < m.getNumArgs(); i += 2) {
 				//parse cycle
 				float cycleCount, fract;
 				if (m.getArgAsString(i) == "cycle") {
@@ -28,7 +28,7 @@ void ofApp::update(){
 					if (cycleCount > lastCycleCount) {
 						notes.clear();
 						//clear inst name buffer
-						if (int(cycleCount) % 8 == 0){
+						if (int(cycleCount) % 8 == 0) {
 							instNameBuffer.clear();
 						}
 					}
@@ -58,9 +58,9 @@ void ofApp::update(){
 }
 
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::draw() {
 	//draw notes
-	for (int i = 0; i < notes.size(); i++){
+	for (int i = 0; i < notes.size(); i++) {
 		float height = ofGetHeight() / (instNameBuffer.size());
 		float width = ofGetWidth() / 128.0;
 		ofDrawRectangle(ofGetWidth() * notes[i].fract, height * notes[i].instNum, width, height);
@@ -68,56 +68,56 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
+void ofApp::keyPressed(int key) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key){
+void ofApp::keyReleased(int key) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
+void ofApp::mouseEntered(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
+void ofApp::mouseExited(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo) {
 
 }
