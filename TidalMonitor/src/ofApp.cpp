@@ -1,6 +1,7 @@
 #include "ofApp.h"
-#include "StSyncopationMonitor.hpp"
 //#include "StISFView.hpp"
+#include "StSyncopationMonitor.hpp"
+#include "StSyncopationMonitorColor.hpp"
 #include "St3DVisalizer.hpp"
 
 //--------------------------------------------------------------
@@ -9,11 +10,12 @@ void ofApp::setup(){
     ofSetFrameRate(30);
     ofSetLogLevel(OF_LOG_SILENT);
     tidal = new ofxTidalView(3333);
-    
-    stateMachine.addState<StSyncopationMonitor>();
-    //stateMachine.addState<StISFView>();
-    stateMachine.addState<St3DVisalizer>();
-    stateMachine.changeState("StSyncopationMonitor");
+
+	//stateMachine.addState<StISFView>();
+	stateMachine.addState<StSyncopationMonitor>();
+	stateMachine.addState<StSyncopationMonitorColor>();
+	stateMachine.addState<St3DVisalizer>();
+	stateMachine.changeState("StSyncopationMonitorColor");
 }
 
 void ofApp::update(){
@@ -31,7 +33,7 @@ void ofApp::oscEvent(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (key == '1') {
-        stateMachine.changeState("StSyncopationMonitor");
+        stateMachine.changeState("StSyncopationMonitorColor");
 
     }
 	/*
