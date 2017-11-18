@@ -34,6 +34,7 @@ public:
     int resolution;
     int noteCount;
     bool updated;
+	int lastCycleCount;
     
     static const int max1 = 128;
     static const int max2 = 64;
