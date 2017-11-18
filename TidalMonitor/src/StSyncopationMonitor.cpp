@@ -27,18 +27,6 @@ void StSyncopationMonitor::draw(){
     //draw matrix
     ofDisableSmoothing();
     if (app->tidal->instNumMax > 0) {
-        /*
-        ofSetColor(255, 127, 63);
-        for (int i = 0; i < app->tidal->notes.size(); i++) {
-            float x = ofMap(app->tidal->notes[i].beatCount+48, 0, app->tidal->resolution*4, 0, width);
-            float h = height / (app->tidal->instNumMax);
-            float y = (h * app->tidal->notes[i].instNum);
-            if (y > height - (h/2)) {
-                y = 0;
-            }
-            ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
-        }
-        */
         for (int i = 0; i < app->tidal->notes.size(); i++) {
             instNames[app->tidal->notes[i].instNum] = app->tidal->notes[i].instName;
         }
@@ -50,7 +38,6 @@ void StSyncopationMonitor::draw(){
                     h = height / (app->tidal->instNumMax);
                     float y = h * i;
                     ofSetColor(255);
-                    //ofDrawRectangle(x, y, width/app->tidal->resolution/12.0, h);
                     ofDrawRectangle(x, y, 3, h);
                 }
             }

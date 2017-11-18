@@ -70,6 +70,7 @@ void ofxTidalView::oscReceiveEvent(ofxOscMessage &m){
                     break;
                 }
             }
+
             TidalNote n;
             n.beatCount = beatCount;
             n.instNum = instNum;
@@ -187,12 +188,14 @@ void ofxTidalView::calcStat(){
         << " syncopation : " << SG[digit]
         << endl;
         
+		/*
         //calc entropy
         uint *currentVector = (uint *) calloc(resolution,sizeof(uint));
         for (int j = 0; j < resolution; j++) {
             currentVector[j] = uint(noteMatrix[i][max2 - resolution + j]);
         }
         entropy[i] = calcEntropy(currentVector, resolution);
+		*/
         
         //calc note count
         int num = 0;

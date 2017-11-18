@@ -128,3 +128,15 @@ Desktop.ini
 
 .mailmap
 /apps*/
+*.dll
+*.exe
+*.exp
+*.lib
+*.rc
+*.opendb
+*.db
+*.vcxproj
+*.filters
+*.user
+*.sln
+*.TMP
