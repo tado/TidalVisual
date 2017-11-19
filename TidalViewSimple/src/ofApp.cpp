@@ -6,7 +6,8 @@ void ofApp::setup() {
 	//ofSetLogLevel(OF_LOG_SILENT);
 	ofSetFrameRate(60);
 	ofBackground(0);
-	lastCycleCount = 0;
+	lastBar = 0;
+	barBufferNum = 8;
 }
 
 //--------------------------------------------------------------
@@ -18,22 +19,25 @@ void ofApp::update() {
 		//parse when tidal cycle message comming
 		if (m.getAddress() == "/play2") {
 			TidalNote note;
-			for (int i = 1; i < m.getNumArgs(); i += 2) {
+			note.timeStamp = ofGetElapsedTimef();
+			for (int i = 0; i < m.getNumArgs(); i += 2) {
 				//parse cycle
-				float cycleCount, fract;
+				float bar, fract;
 				if (m.getArgAsString(i) == "cycle") {
 					cycle = m.getArgAsFloat(i + 1);
-					fract = modf(cycle, &cycleCount);
+					note.cycle = cycle;
+					fract = modf(cycle, &bar);
+					note.bar = int(bar);
 					//update bar
-					if (cycleCount > lastCycleCount) {
-						notes.clear();
+					if (bar > lastBar) {
 						//clear inst name buffer
-						if (int(cycleCount) % 8 == 0) {
+						if (int(bar) % barBufferNum == 0) {
+							notes.clear();
 							instNameBuffer.clear();
 						}
 					}
+					lastBar = int(bar);
 					note.fract = fract;
-					lastCycleCount = int(cycleCount);
 				}
 				//parse inst name
 				if (m.getArgAsString(i) == "s") {
@@ -51,6 +55,10 @@ void ofApp::update() {
 						note.instNum = instNameBuffer.size() - 1;
 					}
 				}
+				//get latency
+				if (m.getArgAsString(i) == "latency") {
+					note.latency = m.getArgAsFloat(i + 1);
+				}
 			}
 			notes.push_back(note);
 		}
@@ -62,8 +70,10 @@ void ofApp::draw() {
 	//draw notes
 	for (int i = 0; i < notes.size(); i++) {
 		float height = ofGetHeight() / (instNameBuffer.size());
-		float width = ofGetWidth() / 128.0;
-		ofDrawRectangle(ofGetWidth() * notes[i].fract, height * notes[i].instNum, width, height);
+		float width = ofGetWidth() / 32.0 / barBufferNum;
+		if (ofGetElapsedTimef() - notes[i].timeStamp > notes[i].latency){
+			ofDrawRectangle(ofGetWidth() * ((notes[i].bar % barBufferNum) + notes[i].fract) / barBufferNum, height * notes[i].instNum, width, height);
+		}
 	}
 }
 

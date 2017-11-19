@@ -7,8 +7,12 @@
 class TidalNote {
 public:
 	string instName;
+	float cycle;
 	int instNum;
+	int bar;
 	float fract;
+	float latency;
+	float timeStamp;
 };
 
 class ofApp : public ofBaseApp {
@@ -33,6 +37,6 @@ public:
 	ofxOscReceiver receiver;
 	vector<TidalNote> notes;
 	vector<string> instNameBuffer;
-	int lastCycleCount;
-	int currentNoteNum;
+	int lastBar;
+	int barBufferNum;
 };
