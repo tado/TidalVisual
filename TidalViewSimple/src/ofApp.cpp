@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
 	receiver.setup(PORT);
-	//ofSetLogLevel(OF_LOG_SILENT);
 	ofSetFrameRate(60);
 	ofBackground(0);
 	lastBar = 0;
@@ -28,16 +27,8 @@ void ofApp::update() {
 					note.cycle = cycle;
 					fract = modf(cycle, &bar);
 					note.bar = int(bar);
-					//update bar
-					if (bar > lastBar) {
-						//clear inst name buffer
-						if (int(bar) % barBufferNum == 0) {
-							notes.clear();
-							instNameBuffer.clear();
-						}
-					}
-					lastBar = int(bar);
 					note.fract = fract;
+					lastBar = int(bar);
 				}
 				//parse inst name
 				if (m.getArgAsString(i) == "s") {
@@ -71,8 +62,10 @@ void ofApp::draw() {
 	for (int i = 0; i < notes.size(); i++) {
 		float height = ofGetHeight() / (instNameBuffer.size());
 		float width = ofGetWidth() / 32.0 / barBufferNum;
+		float x = (notes[i].cycle - lastBar + barBufferNum -1) * ofGetWidth() / barBufferNum;
+		float y = height * notes[i].instNum;
 		if (ofGetElapsedTimef() - notes[i].timeStamp > notes[i].latency){
-			ofDrawRectangle(ofGetWidth() * ((notes[i].bar % barBufferNum) + notes[i].fract) / barBufferNum, height * notes[i].instNum, width, height);
+			ofDrawRectangle(x, y, width, height);
 		}
 	}
 }
